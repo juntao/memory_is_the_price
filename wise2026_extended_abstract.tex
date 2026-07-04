@@ -137,7 +137,7 @@ market would apply.}
 \textbf{H2 is supported.} Published deployments show a $\sim$36$\times$
 per-GPU decode throughput gap between a 96-GPU expert-parallel pool and a
 single 8-GPU node, so no provider can sell at the market floor from a
-single-node deployment~\cite{lmsys}. In all seven panels for models of 200B+
+single-node deployment~\cite{lmsys,dzhsurf}. In all seven panels for models of 200B+
 total parameters, the floor is set by a vertically integrated neocloud (six
 of seven by DeepInfra alone); hyperscalers list identical models at
 2--5$\times$ the floor; and participation collapses with footprint, from 17
@@ -182,6 +182,8 @@ Open Infra Index, 2025.
 large-scale expert parallelism on 96 H100 GPUs. 2025-05-05.
 \bibitem{heckman} Heckman, J.~J. Sample selection bias as a specification
 error. \emph{Econometrica} 47(1), 153--161, 1979.
+\bibitem{dzhsurf} dzhsurf. DeepSeek V3/R1 deployment benchmarks, 8$\times$H100
+(AWQ 4-bit, vLLM). \url{https://github.com/dzhsurf/deepseek-v3-r1-deploy-and-benchmarks}
 \bibitem{scher} Scher, A. Observations about LLM inference pricing. MIRI
 Technical Governance Team blog, 2025-03-03.
 \bibitem{li} Li, H., et al. When is the same model not the same service?

@@ -7,8 +7,7 @@ Michael J. Yuan (ByteFuture Inc.) and Ju Long (Texas State University).
 Working paper, July 2026. Data collected 2026-07-01.
 
 **Read the paper:**
-[full paper (PDF)](https://github.com/juntao/memory_is_the_price/blob/main/memory_is_the_price.pdf) ·
-[WISE 2026 extended abstract (PDF)](https://github.com/juntao/memory_is_the_price/blob/main/wise2026_extended_abstract.pdf)
+[full paper (PDF)](https://github.com/juntao/memory_is_the_price/blob/main/memory_is_the_price.pdf)
 
 ## Summary
 
@@ -35,7 +34,7 @@ dispersion through selection.
 | `memory_is_the_price.tex` | LaTeX source, the single source of truth (arXiv-ready, self-contained bibliography) |
 | `memory_is_the_price.pdf` | The paper, built from the LaTeX source with pdflatex ([direct link](https://raw.githubusercontent.com/juntao/memory_is_the_price/main/memory_is_the_price.pdf)) |
 | `wise2026_extended_abstract.tex` | WISE 2026 extended abstract, LaTeX source (6-page format) |
-| `wise2026_extended_abstract.pdf` | WISE 2026 extended abstract ([direct link](https://raw.githubusercontent.com/juntao/memory_is_the_price/main/wise2026_extended_abstract.pdf)) |
+| `wise2026_extended_abstract.pdf` | WISE 2026 extended abstract |
 | `pd_prices.json` | Raw price panel: 123 rows of (model, provider, input/output $/M, throughput, quantization, source URL) |
 | `pd_arch.json` | Architecture data for 27 candidate models (total/active params, expert count E, top-k) |
 | `pd_level.json` | Derived: per-model median output price + architecture (the 18-model panel) |
