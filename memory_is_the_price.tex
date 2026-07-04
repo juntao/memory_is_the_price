@@ -185,10 +185,10 @@ decode economics, and we study output prices throughout.
 
 Two facts about the input markets frame our hypotheses. First, high-bandwidth
 memory (HBM) is the expensive and supply-constrained component of AI
-accelerators: HBM3E contract prices ran \$13--20/GB in 2025 (more than four
-times DDR5) and constitute 35--47\% of an accelerator's manufacturing
-cost~\cite{r4,r5}; SK hynix, the leading supplier, sold out its capacity into
-2026~\cite{r6}. Second, the number of GPUs a provider must deploy for a model
+accelerators: HBM3E commanded a price premium more than four times that of
+DDR5 in 2025~\cite{r4} and represents roughly 40--50\% of an accelerator's
+manufacturing cost~\cite{r5}; SK hynix, the leading supplier, sold out its
+capacity into 2026~\cite{r6}. Second, the number of GPUs a provider must deploy for a model
 is determined by the model's \emph{total} memory footprint, not by its
 compute: DeepSeek R1 at FP8 requires $\sim$700 GB for weights, making an
 8$\times$H200 node (1{,}128 GB) the standard minimal
@@ -466,17 +466,18 @@ DeepSeek production, EP144 decode (18-node H800) & $\sim$1{,}850 & $<$0.50 impli
 $\geq$200B total parameters, the lowest price is posted by a specialized
 high-volume provider (Table~\ref{tab:floors}): six of seven by DeepInfra
 alone, the seventh by the model's owner. DeepInfra is the archetype of the
-class: roughly 30 employees, $\sim$\$136M raised, GPUs owned outright (A100
-through B300) in eight U.S.\ colocation sites, with published owned-hardware
-economics of $\sim$\$1.98/GPU-hour against \$6.50 for equivalent rented
-public-cloud capacity, and an announced collaboration with NVIDIA on Dynamo
+class: it raised \$107M in Series~B funding, owns and operates its GPU
+infrastructure (NVIDIA Blackwell B300) across eight U.S.\ data centers, and
+publishes owned-hardware economics of $\sim$\$1.98/GPU-hour against \$6.50 for
+equivalent rented public-cloud capacity, alongside a collaboration with NVIDIA
+on Dynamo
 disaggregated serving~\cite{r12}. By contrast, Azure AI Foundry and Amazon
 Bedrock list DeepSeek R1 at \$1.35 input / \$5.40 output, 2.5$\times$ the
 neocloud floor, and Azure lists DeepSeek V3 at \$4.56 against a \$0.90 floor,
 5.1$\times$, though the premium narrows to 1.4--2.2$\times$ on V3.1. All are
 positioned explicitly as managed enterprise offerings~\cite{r13}. Among the floor-setters, only SiliconFlow documents its
 serving architecture publicly, as co-author of the Huawei CloudMatrix-384
-paper describing hierarchical expert parallelism on a 384-NPU
+paper describing large-scale expert parallelism (EP320) on a 384-NPU
 supernode~\cite{r14}.
 
 \begin{table}[t]
@@ -510,7 +511,7 @@ Kimi K2 at one trillion parameters attracts three. Cloudflare, an edge network
 with H100-class GPUs in more than 180 cities, offers only small dense models
 in our panel (Llama-3.1-8B and Llama-3.3-70B, in both cases at the
 \emph{highest} price in the panel) and no 671B-class model. The exception is
-instructive: in April 2026 Cloudflare began serving Kimi K2.x, but did so by
+instructive: in March 2026 Cloudflare began serving Kimi K2.5, but did so by
 building centralized multi-node serving with disaggregated prefill and expert
 parallelism in selected locations~\cite{r19}. In effect, it constructed a
 small EP pool rather than serving the model at the edge. Entry into large-MoE
