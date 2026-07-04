@@ -1,0 +1,272 @@
+[
+ {
+  "model": "DeepSeek R1",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "is_moe": true,
+  "num_experts": 256,
+  "top_k": 8,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1"
+ },
+ {
+  "model": "DeepSeek V3",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "is_moe": true,
+  "num_experts": 256,
+  "top_k": 8,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3"
+ },
+ {
+  "model": "DeepSeek V3.1",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "is_moe": true,
+  "num_experts": 256,
+  "top_k": 8,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1"
+ },
+ {
+  "model": "Qwen3 235B-A22B",
+  "total_params_b": 235,
+  "active_params_b": 22,
+  "is_moe": true,
+  "num_experts": 128,
+  "top_k": 8,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B"
+ },
+ {
+  "model": "Qwen3 30B-A3B",
+  "total_params_b": 30.5,
+  "active_params_b": 3.3,
+  "is_moe": true,
+  "num_experts": 128,
+  "top_k": 8,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/Qwen/Qwen3-30B-A3B"
+ },
+ {
+  "model": "Qwen2.5 72B",
+  "total_params_b": 72.7,
+  "active_params_b": 72.7,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct"
+ },
+ {
+  "model": "Qwen2.5 7B",
+  "total_params_b": 7.61,
+  "active_params_b": 7.61,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct"
+ },
+ {
+  "model": "Llama 3.1 8B",
+  "total_params_b": 8.03,
+  "active_params_b": 8.03,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
+ },
+ {
+  "model": "Llama 3.3 70B",
+  "total_params_b": 70.6,
+  "active_params_b": 70.6,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
+ },
+ {
+  "model": "Llama 3.1 405B",
+  "total_params_b": 405.9,
+  "active_params_b": 405.9,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct"
+ },
+ {
+  "model": "Llama 4 Scout",
+  "total_params_b": 109,
+  "active_params_b": 17,
+  "is_moe": true,
+  "num_experts": 16,
+  "top_k": 1,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"
+ },
+ {
+  "model": "Llama 4 Maverick",
+  "total_params_b": 400,
+  "active_params_b": 17,
+  "is_moe": true,
+  "num_experts": 128,
+  "top_k": 1,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+ },
+ {
+  "model": "Mixtral 8x7B",
+  "total_params_b": 46.7,
+  "active_params_b": 12.9,
+  "is_moe": true,
+  "num_experts": 8,
+  "top_k": 2,
+  "release_year": 2023,
+  "source_url": "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1"
+ },
+ {
+  "model": "Mixtral 8x22B",
+  "total_params_b": 141,
+  "active_params_b": 39,
+  "is_moe": true,
+  "num_experts": 8,
+  "top_k": 2,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1"
+ },
+ {
+  "model": "Mistral Small 3",
+  "total_params_b": 23.6,
+  "active_params_b": 23.6,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/mistralai/Mistral-Small-24B-Instruct-2501"
+ },
+ {
+  "model": "GPT-OSS 120B",
+  "total_params_b": 117,
+  "active_params_b": 5.1,
+  "is_moe": true,
+  "num_experts": 128,
+  "top_k": 4,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/openai/gpt-oss-120b"
+ },
+ {
+  "model": "GPT-OSS 20B",
+  "total_params_b": 21,
+  "active_params_b": 3.6,
+  "is_moe": true,
+  "num_experts": 32,
+  "top_k": 4,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/openai/gpt-oss-20b"
+ },
+ {
+  "model": "Kimi K2",
+  "total_params_b": 1000,
+  "active_params_b": 32,
+  "is_moe": true,
+  "num_experts": 384,
+  "top_k": 8,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct"
+ },
+ {
+  "model": "GLM 4.5",
+  "total_params_b": 355,
+  "active_params_b": 32,
+  "is_moe": true,
+  "num_experts": 160,
+  "top_k": 8,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/zai-org/GLM-4.5"
+ },
+ {
+  "model": "GLM 4.5 Air",
+  "total_params_b": 106,
+  "active_params_b": 12,
+  "is_moe": true,
+  "num_experts": 128,
+  "top_k": 8,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/zai-org/GLM-4.5-Air"
+ },
+ {
+  "model": "MiniMax M1",
+  "total_params_b": 456,
+  "active_params_b": 45.9,
+  "is_moe": true,
+  "num_experts": 32,
+  "top_k": 2,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M1-80k"
+ },
+ {
+  "model": "MiniMax M2",
+  "total_params_b": 230,
+  "active_params_b": 10,
+  "is_moe": true,
+  "num_experts": 256,
+  "top_k": 8,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2"
+ },
+ {
+  "model": "Gemma 3 27B",
+  "total_params_b": 27.4,
+  "active_params_b": 27.4,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/google/gemma-3-27b-it"
+ },
+ {
+  "model": "Gemma 2 9B",
+  "total_params_b": 9.24,
+  "active_params_b": 9.24,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/google/gemma-2-9b-it"
+ },
+ {
+  "model": "Gemma 3 12B",
+  "total_params_b": 12.2,
+  "active_params_b": 12.2,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2025,
+  "source_url": "https://huggingface.co/google/gemma-3-12b-it"
+ },
+ {
+  "model": "Hermes 3 70B",
+  "total_params_b": 70.6,
+  "active_params_b": 70.6,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-70B"
+ },
+ {
+  "model": "Nemotron 70B",
+  "total_params_b": 70.6,
+  "active_params_b": 70.6,
+  "is_moe": false,
+  "num_experts": null,
+  "top_k": null,
+  "release_year": 2024,
+  "source_url": "https://huggingface.co/nvidia/Llama-3.1-Nemotron-70B-Instruct-HF"
+ }
+]
