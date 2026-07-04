@@ -36,10 +36,8 @@ dispersion through selection.
 | `pd_dispersion.json` | Derived: per-model dispersion statistics (n, min, max, CV, E/k) |
 | `analysis.py` | Dependency-free Python; reproduces every statistic in Section 4 |
 | `make_figures.py` | Regenerates Figures 1-2 from the JSON (requires matplotlib) |
-| `fig1_price_level.pdf` | Figure 1: median price vs. active parameters, log-log |
-| `fig2_dispersion.pdf` | Figure 2: within-model price dispersion (CV) by panel |
-| `chart_pd_level.svg` | Web-friendly SVG version of Figure 1 |
-| `chart_pd_disp.svg` | Web-friendly SVG version of Figure 2 |
+| `fig1_price_level.{pdf,svg}` | Figure 1: median price vs. active parameters, log-log |
+| `fig2_dispersion.{pdf,svg}` | Figure 2: within-model price dispersion (CV) by panel |
 
 ## Reproduce
 

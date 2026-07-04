@@ -4,7 +4,7 @@ JSON data. Requires matplotlib. Run from the repository root:
 
     python3 make_figures.py
 
-Outputs: fig1_price_level.pdf, fig2_dispersion.pdf
+Outputs: fig1_price_level.{pdf,svg}, fig2_dispersion.{pdf,svg}
 """
 
 import json
@@ -76,7 +76,8 @@ ax.grid(True, which="major", ls=":", lw=0.5, alpha=0.5)
 ax.legend(fontsize=7.5, loc="upper left", framealpha=0.9)
 fig.tight_layout()
 fig.savefig("fig1_price_level.pdf")
-print("wrote fig1_price_level.pdf")
+fig.savefig("fig1_price_level.svg")
+print("wrote fig1_price_level.pdf and .svg")
 
 # ---------- Figure 2: CV of output price per panel ----------
 
@@ -100,4 +101,5 @@ ax.legend(handles=[Patch(color="#dc2626", label="MoE"),
 ax.set_ylim(0, 1.0)
 fig.tight_layout()
 fig.savefig("fig2_dispersion.pdf")
-print("wrote fig2_dispersion.pdf")
+fig.savefig("fig2_dispersion.svg")
+print("wrote fig2_dispersion.pdf and .svg")
