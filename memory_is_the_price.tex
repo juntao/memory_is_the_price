@@ -252,10 +252,10 @@ mechanism of \S\ref{sec:background} implies that these savings, whatever share
 of them reaches customers, are only captured when enough concurrent traffic is
 aggregated that every expert sees full tiles, and that requires dedicated,
 disaggregated decoding infrastructure far larger than a single node. The serving-systems literature
-has converged on exactly this design. Splitwise showed that splitting prefill
-and decode onto separate machine pools yields 1.4$\times$ throughput at 20\%
-lower cost, observing that decode ``does not require the compute capability of
-the latest GPUs''~\cite{r33}; DistServe disaggregates the phases onto
+has converged on exactly this design. Splitwise showed that splitting the prefill
+and decode phases onto separate machine pools yields 1.4$\times$ throughput at
+20\% lower cost, observing that the decode phase ``does not require the compute
+capability of the latest GPUs''~\cite{r33}; DistServe disaggregates the phases onto
 different GPUs for up to 7.4$\times$ goodput~\cite{r34}; and Moonshot's
 production platform for Kimi, Mooncake, ``separates the prefill and decoding
 clusters'' outright~\cite{r35}. For large MoE, the decode pool must
