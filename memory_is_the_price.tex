@@ -550,7 +550,7 @@ blocks) either pays those premiums or exits.
 Both results point to the same hardware mismatch. The mainstream GPU bundles
 enormous compute with scarce, expensive HBM; MoE decoding uses the memory
 fully and the compute hardly at all, except inside hyperscale expert-parallel
-pools that only a few operators can build. For everyone else, the economically rational serving device is the opposite shape. It has \textbf{large, cheap memory capacity} to hold the full expert set without buying stranded FLOPS. It has \textbf{modest compute}, since decoding at realistic concurrency cannot exercise more. And it has \textbf{moderate bandwidth}, sufficient for interactive token rates and procurable from commodity supply chains rather than the allocation-constrained HBM market. Several shipping products approximate this design point, notably Apple's Mac Studio (up to 512 GB unified LPDDR5) and NVIDIA's DGX Spark (128 GB LPDDR5X). Purpose-built decode accelerators instantiate it directly, such as the Skymizer HTX-301, a 28 nm PCIe card carrying 384 GB of commodity LPDDR, whose performance figures are vendor-claimed pending independent benchmarks. The
+pools that only a few operators can build. For everyone else, the economically rational serving device is the opposite shape. It has \textbf{large, cheap memory capacity} to hold the full expert set without buying stranded FLOPS. It has \textbf{modest compute}, since decoding at realistic concurrency cannot exercise more. And it has \textbf{moderate bandwidth}, sufficient for interactive token rates and procurable from commodity supply chains rather than the allocation-constrained HBM market. Several shipping products approximate this design point, notably Apple's Mac Studio (up to 512 GB unified LPDDR5)~\cite{r42} and NVIDIA's DGX Spark (128 GB LPDDR5X)~\cite{r43}. Purpose-built decode accelerators instantiate it directly, such as the Skymizer HTX-301, a 28 nm PCIe card carrying 384 GB of commodity LPDDR, whose performance figures are vendor-claimed pending independent benchmarks~\cite{r44}. The
 market prices measured here quantify the opportunity such hardware addresses:
 the gap between footprint-cheap serving cost and market price is widest for
 the most sparse frontier models (Kimi K2, MiniMax M2, GPT-OSS-120B), which is
@@ -699,6 +699,14 @@ CloudMatrix384. arXiv:2506.12708. \url{https://arxiv.org/pdf/2506.12708}
 Political Economy} 69(3), 213--225, 1961.
 \bibitem{r29} Heckman, J.~J. Sample selection bias as a specification error.
 \emph{Econometrica} 47(1), 153--161, 1979.
+\bibitem{r42} Apple. Apple reveals M3 Ultra, taking Apple silicon to a new
+extreme. Newsroom, March 2025.
+\url{https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/}
+\bibitem{r43} NVIDIA. DGX Spark.
+\url{https://www.nvidia.com/en-us/products/workstations/dgx-spark/}
+\bibitem{r44} Skymizer Taiwan Inc. HTX-301 announcement (April 2026) and
+company profile v1.0 (March 2026). Performance figures vendor-claimed and
+pre-production.
 \end{thebibliography}
 
 \end{document}
