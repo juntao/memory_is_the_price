@@ -184,9 +184,11 @@ regression
 \label{eq:hedonic}
 \end{equation}
 the coefficients are implicit prices in Rosen's sense~\cite{r27}. The coefficient $c_1$ is the market's marginal valuation of active compute, and $c_2$ is its valuation of resident-but-inactive parameters, the capacity that must be held in memory although it does not fire. \emph{H1 (compute pricing)} predicts $c_2 = 0$. The
-alternative follows from \S\ref{sec:background}. If memory rather than compute is the first-order cost of serving, because capital tied up in HBM scales with bytes held and decode throughput is limited by bytes streamed, then prices should track the \emph{total} footprint. This implies $c_2 \approx c_1$: a 671B/37B MoE is billed like a 671B dense model. The ratio $c_2/c_1$ measures how much of
-the advertised sparsity discount the market actually passes to customers;
-under H1 it is zero.
+alternative follows from \S\ref{sec:background}. If memory rather than compute is the first-order cost of serving, because capital tied up in HBM scales with bytes held and decode throughput is limited by bytes streamed, then prices should track the \emph{total} footprint. This implies $c_2 \approx c_1$: a 671B/37B MoE is billed like a 671B dense model. The ratio $c_2/c_1$ therefore measures the
+share of the advertised sparsity discount that the market withholds from
+customers. Under H1 the ratio is zero, because the full compute saving
+passes through to prices; under the memory-pricing alternative it approaches
+one, and customers keep none of the discount.
 
 \subsection{Hypothesis 2: capturing the compute savings requires scale}
 \label{sec:h2}
