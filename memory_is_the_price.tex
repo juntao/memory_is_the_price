@@ -340,11 +340,12 @@ model's sparsity ratio.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig1_price_level.pdf}
-\caption{Median output price versus active parameters per token, 18 models,
-log-log. Green: dense; red: MoE. The dashed green line is the dense-only OLS
-fit, the price schedule a compute-priced market would apply to all models.
-Every MoE model sits above the line; the vertical gap for DeepSeek R1
-(6.6$\times$) is annotated.}
+\caption{The figure plots median output price against active parameters per
+token for all 18 models on log-log axes, with dense models in green and MoE
+models in red. The dashed green line is the dense-only OLS fit, which is the
+price schedule a compute-priced market would apply to all models. Every MoE
+model sits above the line, and the vertical gap for DeepSeek R1 (6.6$\times$)
+is annotated.}
 \label{fig:level}
 \end{figure}
 
@@ -360,9 +361,10 @@ suggest.
 
 \begin{table}[t]
 \centering
-\caption{OLS estimates, log median output price on architecture ($n = 18$
-models, $R^2 = 0.866$). H1 (compute pricing) predicts $c_2 = 0$; pure
-footprint pricing predicts $c_2 = c_1$; measured $c_2/c_1 = 0.83$.}
+\caption{The table reports OLS estimates of the hedonic regression of log
+median output price on architecture ($n = 18$ models, $R^2 = 0.866$). H1
+(compute pricing) predicts $c_2 = 0$, and pure footprint pricing predicts
+$c_2 = c_1$; the measured ratio is $c_2/c_1 = 0.83$.}
 \label{tab:ols}
 \begin{tabular}{lrrr}
 \toprule
@@ -383,9 +385,10 @@ and GPT-OSS-20B (6$\times$) sit $\sim$2.5$\times$ above.
 
 \begin{table}[t]
 \centering
-\caption{The 18-model panel: median output price across providers
-(2026-07-01), architecture, price per active-parameter-billion, and multiple
-over the dense-only price line. Dense models (---) define the reference line.}
+\caption{The table reports, for the 18-model panel, the median output price
+across providers (2026-07-01), the model architecture, the price per
+active-parameter-billion, and the multiple over the dense-only price line.
+Dense models, marked ``---'', define the reference line.}
 \label{tab:panel}
 \small
 \begin{tabular}{lrrrrrl}
@@ -439,11 +442,11 @@ from an 8-GPU deployment}. The floor is only reachable with EP-scale pools.
 
 \begin{table}[t]
 \centering
-\caption{Decode throughput and cost by deployment scale. The
-$\sim$36$\times$ per-GPU gap between the EP pool and the single node is the
-mechanism behind H2. NVIDIA's Wide-EP measurements on GB200 NVL72 (EP32 up to
-1.8$\times$ per-GPU throughput over EP8) extend the pattern to current
-hardware~\cite{r11}.}
+\caption{The table compares decode throughput and cost across deployment
+scales. The $\sim$36$\times$ per-GPU gap between the EP pool and the single
+node is the mechanism behind H2. NVIDIA's Wide-EP measurements on GB200 NVL72
+(EP32 delivers up to 1.8$\times$ the per-GPU throughput of EP8) extend the
+pattern to current hardware~\cite{r11}.}
 \label{tab:deploy}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -478,8 +481,9 @@ supernode~\cite{r14}.
 
 \begin{table}[t]
 \centering
-\caption{Price-floor providers for all seven large-MoE panels ($\geq$200B
-total parameters). No hyperscaler or edge provider sets a floor.}
+\caption{The table lists the price-floor provider for each of the seven
+large-MoE panels ($\geq$200B total parameters). No hyperscaler or edge
+provider sets a floor.}
 \label{tab:floors}
 \begin{tabular}{lrll}
 \toprule
@@ -526,8 +530,9 @@ is $-0.40$, and $-0.54$ when hyperscaler and edge endpoints are excluded).
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig2_dispersion.pdf}
-\caption{Within-model price dispersion (coefficient of variation of output
-price across providers), MoE (red) versus dense (green) panels.}
+\caption{The figure shows within-model price dispersion, measured as the
+coefficient of variation of output price across providers, for MoE panels
+(red) versus dense panels (green).}
 \label{fig:disp}
 \end{figure}
 
@@ -578,14 +583,15 @@ cost floors, not observations of provider internals.
 2.1$\times$ the price of its architecture-identical sibling V3, a
 reasoning-model demand premium that the regression absorbs as noise.
 Popularity may also correlate with aggressive pricing.
-\item \textbf{Single snapshot.} The panel is one collection date (2026-07-01)
-in a market that reprices within weeks: DeepInfra's own R1 price moved from
+\item \textbf{The panel is a single snapshot.} It reflects one collection
+date (2026-07-01) in a market that reprices within weeks: DeepInfra's own R1 price moved from
 the panel's \$2.15 to \$2.50 between collection and verification, and an
 earlier 14$\times$ R1 spread reported in a prior draft had collapsed to
 $\sim$2.5$\times$ by collection time. The elasticities should be re-estimated
 longitudinally; the collection pipeline is automated.
-\item \textbf{Sample limits.} OpenRouter covers the competitive open-weight
-market; hyperscaler-exclusive and closed models are underrepresented. The
+\item \textbf{The sample has limits.} OpenRouter covers the competitive
+open-weight market; hyperscaler-exclusive and closed models are
+underrepresented. The
 dense subsample is small ($n = 6$) and confined to $\leq$73B, because larger
 dense models have left the market, which is itself evidence of footprint
 economics. Delivered throughput tiers are not controlled. Finally, capacity
