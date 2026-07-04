@@ -267,9 +267,10 @@ model's sparsity ratio.
 \centering
 \includegraphics[width=\linewidth]{fig1_price_level.pdf}
 \caption{The figure plots median output price against active parameters per
-token for all 18 models on log-log axes, with dense models in green and MoE
-models in red. The dashed green line is the dense-only OLS fit, which is the
-price schedule a compute-priced market would apply to all models. Every MoE
+token for all 18 models on log-log axes, with dense models as green circles
+and MoE models as red triangles. The dashed line is the dense-only OLS fit,
+which is the price schedule a compute-priced market would apply to all
+models. Every MoE
 model sits above the line, and the vertical gap for DeepSeek R1 (6.6$\times$)
 is annotated.}
 \label{fig:level}
@@ -449,7 +450,7 @@ is $-0.40$, and $-0.54$ when hyperscaler and edge endpoints are excluded).
 \includegraphics[width=\linewidth]{fig2_dispersion.pdf}
 \caption{The figure shows within-model price dispersion, measured as the
 coefficient of variation of output price across providers, for MoE panels
-(red) versus dense panels (green).}
+(hatched bars) versus dense panels (solid bars).}
 \label{fig:disp}
 \end{figure}
 
