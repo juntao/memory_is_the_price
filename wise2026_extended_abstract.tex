@@ -32,11 +32,7 @@ nothing about their production systems, we treat posted prices as an
 observable proxy for the latent serving configuration. A hedonic regression
 over 121 provider--model price observations rejects the claim: the market
 bills MoE models most of the way toward their total memory footprint
-(sparsity elasticity 0.554, $t = 8.3$). Market structure explains why:
-capturing MoE's compute savings requires expert-parallel serving pools far
-larger than one node, so price floors belong exclusively to vertically
-integrated neoclouds, hyperscalers list identical models at 2--5$\times$ the
-floor, and provider participation collapses with model footprint.
+(sparsity elasticity 0.554, $t = 8.3$). Market structure explains why. Capturing MoE's compute savings requires expert-parallel serving pools far larger than one node. Price floors therefore belong exclusively to vertically integrated neoclouds, hyperscalers list identical models at 2--5$\times$ the floor, and provider participation collapses with model footprint.
 
 \section{Motivation: an efficiency claim the market can test}
 
@@ -44,9 +40,7 @@ Frontier open-weight language models have shifted decisively to sparse MoE
 architectures, which store hundreds of billions of parameters but activate
 only a small fraction per token: DeepSeek-R1 activates 37B of 671B, and Kimi
 K2 activates 32B of one trillion. The architecture's economic pitch is that
-customers pay only for active compute. Switch Transformers promised
-``outrageous numbers of parameters --- but a constant computational
-cost''~\cite{fedus}, and Mistral stated that Mixtral ``processes input and
+customers pay only for active compute. Switch Transformers promised ``outrageous numbers of parameters'' at ``a constant computational cost''~\cite{fedus}, and Mistral stated that Mixtral ``processes input and
 generates output at the same speed and for the same cost'' as a dense model
 the size of its active parameters~\cite{mistral}.
 
@@ -57,11 +51,7 @@ served precision, batch size, utilization, or margin of any endpoint, and
 black-box audits show that 11 of 31 commercial Llama endpoints served output
 distributions deviating from the reference weights~\cite{gao}. The serving
 configuration is thus a latent variable, and the posted price is its
-observable proxy. Open-weight serving approximates the textbook competitive
-case (the weights are free, the software is open source, entry is
-unrestricted, and dozens of providers quote side by side on the OpenRouter
-marketplace), so competition disciplines prices toward marginal cost, and
-sustained price structure identifies cost structure~\cite{hayek}.
+observable proxy. Open-weight serving approximates the textbook competitive case: the weights are free, the software is open source, entry is unrestricted, and dozens of providers quote side by side on the OpenRouter marketplace. Competition therefore disciplines prices toward marginal cost, and sustained price structure identifies cost structure~\cite{hayek}.
 
 \section{Hypotheses}
 
@@ -145,11 +135,7 @@ are a selected sample~\cite{heckman}.
 
 \section{Contribution and implications}
 
-To our knowledge this paper provides the first hedonic estimate of the
-sparsity elasticity of price, formalizing an observation made informally on
-five models by Scher~\cite{scher} and raised descriptively by Li et
-al.~\cite{li}, and the first market-structure evidence that large-MoE serving
-is gated by scale. For information-systems and economics audiences, the study
+To our knowledge this paper provides the first hedonic estimate of the sparsity elasticity of price, formalizing an observation made informally on five models by Scher~\cite{scher} and raised descriptively by Li et al.~\cite{li}. It also provides the first market-structure evidence that large-MoE serving is gated by scale. For information-systems and economics audiences, the study
 demonstrates a general method: using marketplace prices as revealed cost
 structure for digital infrastructure whose production technology is
 deliberately undisclosed. For practitioners, the results imply that MoE

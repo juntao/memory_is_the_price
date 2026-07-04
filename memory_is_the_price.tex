@@ -63,8 +63,7 @@ the largest dense open release, is effectively delisted from the commercial
 serving market as of mid-2026.
 
 Sparsity is marketed as an efficiency technology. The paper that popularized
-the design promised ``outrageous numbers of parameters --- but a constant
-computational cost''~\cite{r30}, and on compute-based reasoning a
+the design promised ``outrageous numbers of parameters'' at ``a constant computational cost''~\cite{r30}, and on compute-based reasoning a
 671B-parameter model that computes with only 37B parameters per token should
 cost about as much to serve as a 37B dense model~\cite{r31,r32}. Market prices
 do not bear this out. At the time of our data collection, DeepSeek R1 (37B
@@ -106,10 +105,7 @@ The one thing every provider must publish is a price. This turns an
 information-asymmetry problem into an inference problem with a classical
 structure. The serving configuration behind an endpoint (cluster scale,
 parallelism degree, batch size, served precision, utilization) is the
-provider's private information; the observer sees only the posted price. But
-prices are the market's mechanism for aggregating dispersed private
-information~\cite{r26}, and open-weight serving approximates the textbook
-competitive case: the weights are free, the software is open source, entry is
+provider's private information; the observer sees only the posted price. But prices are the market's mechanism for aggregating dispersed private information~\cite{r26}. Open-weight serving, moreover, approximates the textbook competitive case: the weights are free, the software is open source, entry is
 unrestricted, and dozens of providers quote side by side on a public
 marketplace. Competition disciplines posted prices toward marginal cost, and
 marginal cost is a function of the serving technology chosen. Sustained price
@@ -154,12 +150,7 @@ only $\sim$2 floating-point operations per parameter read, making it
 memory-bound on all practical hardware. Output-token prices therefore reflect
 decode economics, and we study output prices throughout.
 
-Two facts about the input markets frame our hypotheses. First, high-bandwidth
-memory (HBM) is the expensive and supply-constrained component of AI
-accelerators: HBM3E commanded a price premium more than four times that of
-DDR5 in 2025~\cite{r4} and represents roughly 40--50\% of an accelerator's
-manufacturing cost~\cite{r5}; SK hynix, the leading supplier, sold out its
-capacity into 2026~\cite{r6}. Second, the number of GPUs a provider must deploy for a model is determined by the model's \emph{total} memory footprint, not by its compute. DeepSeek R1 at FP8 requires $\sim$700 GB for weights, making an 8$\times$H200 node (1{,}128 GB) the standard minimal deployment~\cite{r17}; Kimi K2 at FP8 fills the same node almost completely.
+Two facts about the input markets frame our hypotheses. First, high-bandwidth memory (HBM) is the expensive and supply-constrained component of AI accelerators. HBM3E commanded a price premium more than four times that of DDR5 in 2025~\cite{r4} and represents roughly 40--50\% of an accelerator's manufacturing cost~\cite{r5}. SK hynix, the leading supplier, sold out its capacity into 2026~\cite{r6}. Second, the number of GPUs a provider must deploy for a model is determined by the model's \emph{total} memory footprint, not by its compute. DeepSeek R1 at FP8 requires $\sim$700 GB for weights, making an 8$\times$H200 node (1{,}128 GB) the standard minimal deployment~\cite{r17}; Kimi K2 at FP8 fills the same node almost completely.
 Sparsity does not reduce this footprint: although only $k$ of $E$ experts fire
 per token, all $E$ must reside in memory, because different tokens in a batch
 activate different experts~\cite{r7}.
@@ -176,8 +167,7 @@ DeepSeek's own production units of EP144 across 18 nodes~\cite{r10}.
 
 The proposition that MoE reduces serving cost by reducing compute has
 accompanied the architecture since its introduction, stated by its strongest
-proponents. Switch Transformers promised models ``with outrageous numbers of
-parameters --- but a constant computational cost''~\cite{r30}. Mistral's
+proponents. Switch Transformers promised models ``with outrageous numbers of parameters'' at ``a constant computational cost''~\cite{r30}. Mistral's
 Mixtral 8x7B announcement drew the pricing implication explicitly: the model
 ``only uses 12.9B parameters per token'' and ``therefore, processes input and
 generates output at the same speed and for the same cost as a 12.9B
@@ -193,10 +183,7 @@ regression
                         + c_2 \log(\text{total}/\text{active})
 \label{eq:hedonic}
 \end{equation}
-the coefficients are implicit prices in Rosen's sense~\cite{r27}: $c_1$ is the
-market's marginal valuation of active compute, and $c_2$ its valuation of
-resident-but-inactive parameters, the capacity that must be held in memory
-although it does not fire. \emph{H1 (compute pricing)} predicts $c_2 = 0$. The
+the coefficients are implicit prices in Rosen's sense~\cite{r27}. The coefficient $c_1$ is the market's marginal valuation of active compute, and $c_2$ is its valuation of resident-but-inactive parameters, the capacity that must be held in memory although it does not fire. \emph{H1 (compute pricing)} predicts $c_2 = 0$. The
 alternative follows from \S\ref{sec:background}. If memory rather than compute is the first-order cost of serving, because capital tied up in HBM scales with bytes held and decode throughput is limited by bytes streamed, then prices should track the \emph{total} footprint. This implies $c_2 \approx c_1$: a 671B/37B MoE is billed like a 671B dense model. The ratio $c_2/c_1$ measures how much of
 the advertised sparsity discount the market actually passes to customers;
 under H1 it is zero.
@@ -252,12 +239,7 @@ figures: GLM-4.5 has 160 routed experts (\path{n_routed_experts=160}), not
 \subsection{Verification pass}
 
 A dedicated verification step re-fetched the five most anomalous price points.
-Two extreme but genuine values were retained (DeepInfra's \$0.10/M output
-loss-leader on Qwen3-235B-A22B, confirmed on DeepInfra's own price
-page~\cite{r18}; Cloudflare's \$2.25/M on Llama-3.3-70B); one duplicate
-listing was deduplicated (DeepInfra's separate fp8/bf16 endpoints for
-Llama-3.1-8B); one stale row was dropped (a delisted SiliconFlow Qwen2.5-7B
-price). The same pass tested whether wide within-model spreads were explained
+Two extreme but genuine values were retained: DeepInfra's \$0.10/M output loss-leader on Qwen3-235B-A22B, confirmed on DeepInfra's own price page~\cite{r18}, and Cloudflare's \$2.25/M on Llama-3.3-70B. One duplicate listing was deduplicated (DeepInfra's separate fp8/bf16 endpoints for Llama-3.1-8B). One stale row was dropped (a delisted SiliconFlow Qwen2.5-7B price). The same pass tested whether wide within-model spreads were explained
 by quantization differences across providers; they were not: in the three
 widest panels, the minimum and maximum prices were both fp8 offerings.
 
@@ -319,14 +301,14 @@ $c_2$: log(total/active)      & $+0.554$ & 0.067 & 8.3 \\
 \end{table}
 
 Table~\ref{tab:panel} reports the underlying panel. Per active parameter, MoE
-models cost 3--12$\times$ more than dense models. The per-model premium over the dense line tracks the sparsity ratio: Kimi K2 (31$\times$ sparse) sits 7.7$\times$ above the line, MiniMax M2 (23$\times$) sits 9.3$\times$ above, and GPT-OSS-120B (23$\times$) sits 6.6$\times$ above, while the mildly sparse Llama-4 Scout and GPT-OSS-20B (6$\times$) sit $\sim$2.5$\times$ above.
+models cost 3--12$\times$ more than dense models. The per-model premium over the dense line tracks the sparsity ratio: Kimi K2 (31$\times$ sparse) sits 7.7$\times$ above the line, MiniMax M2 (23$\times$) sits 9.3$\times$ above, and GPT-OSS-120B (23$\times$) sits 6.6$\times$ above. The mildly sparse Llama-4 Scout and GPT-OSS-20B (6$\times$) sit $\sim$2.5$\times$ above.
 
 \begin{table}[t]
 \centering
 \caption{The table reports, for the 18-model panel, the median output price
 across providers (2026-07-01), the model architecture, the price per
 active-parameter-billion, and the multiple over the dense-only price line.
-Dense models, marked ``---'', define the reference line.}
+Dense models, marked ``--'', define the reference line.}
 \label{tab:panel}
 \small
 \begin{tabular}{lrrrrrl}
@@ -345,12 +327,12 @@ GPT-OSS 120B     & 0.50  & 5.1  & 117     & 0.098 & 6.6 & yes \\
 Llama 4 Scout    & 0.47  & 17   & 109     & 0.027 & 2.4 & yes \\
 Qwen3 30B-A3B    & 0.30  & 3.3  & 30.5    & 0.091 & 5.6 & yes \\
 GPT-OSS 20B      & 0.15  & 3.6  & 21      & 0.042 & 2.6 & yes \\
-Llama 3.3 70B    & 0.71  & 70.6 & 70.6    & 0.010 & --- & no  \\
-Qwen2.5 72B      & 0.50  & 72.7 & 72.7    & 0.007 & --- & no  \\
-Gemma 3 12B      & 0.29  & 12.2 & 12.2    & 0.024 & --- & no  \\
-Mistral Small 3  & 0.28  & 23.6 & 23.6    & 0.012 & --- & no  \\
-Gemma 3 27B      & 0.25  & 27.4 & 27.4    & 0.009 & --- & no  \\
-Llama 3.1 8B     & 0.065 & 8.0  & 8.0     & 0.008 & --- & no  \\
+Llama 3.3 70B    & 0.71  & 70.6 & 70.6    & 0.010 & -- & no  \\
+Qwen2.5 72B      & 0.50  & 72.7 & 72.7    & 0.007 & -- & no  \\
+Gemma 3 12B      & 0.29  & 12.2 & 12.2    & 0.024 & -- & no  \\
+Mistral Small 3  & 0.28  & 23.6 & 23.6    & 0.012 & -- & no  \\
+Gemma 3 27B      & 0.25  & 27.4 & 27.4    & 0.009 & -- & no  \\
+Llama 3.1 8B     & 0.065 & 8.0  & 8.0     & 0.008 & -- & no  \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -403,13 +385,7 @@ DeepSeek production, EP144 decode (18-node H800) & $\sim$1{,}850 & $<$0.50 impli
 2--5$\times$ the floor.} In every one of the seven panels for models of
 $\geq$200B total parameters, the lowest price is posted by a specialized
 high-volume provider (Table~\ref{tab:floors}): six of seven by DeepInfra
-alone, the seventh by the model's owner. DeepInfra is the archetype of the
-class: it raised \$107M in Series~B funding, owns and operates its GPU
-infrastructure (NVIDIA Blackwell B300) across eight U.S.\ data centers, and
-publishes owned-hardware economics of $\sim$\$1.98/GPU-hour against \$6.50 for
-equivalent rented public-cloud capacity, alongside a collaboration with NVIDIA
-on Dynamo
-disaggregated serving~\cite{r12}. By contrast, Azure AI Foundry and Amazon
+alone, the seventh by the model's owner. DeepInfra is the archetype of the class. It raised \$107M in Series~B funding and owns and operates its GPU infrastructure (NVIDIA Blackwell B300) across eight U.S.\ data centers. It publishes owned-hardware economics of $\sim$\$1.98/GPU-hour against \$6.50 for equivalent rented public-cloud capacity, alongside a collaboration with NVIDIA on Dynamo disaggregated serving~\cite{r12}. By contrast, Azure AI Foundry and Amazon
 Bedrock list DeepSeek R1 at \$1.35 input / \$5.40 output, 2.5$\times$ the
 neocloud floor, and Azure lists DeepSeek V3 at \$4.56 against a \$0.90 floor,
 5.1$\times$, though the premium narrows to 1.4--2.2$\times$ on V3.1. All are
@@ -595,8 +571,7 @@ $k{=}8$; 230B total / 10B active). HuggingFace, fetched 2026-07-01.
 \url{https://huggingface.co/MiniMaxAI/MiniMax-M2}
 \bibitem{r30} Fedus, W., Zoph, B., \& Shazeer, N. Switch Transformers:
 scaling to trillion parameter models with simple and efficient sparsity.
-arXiv:2101.03961, 2021. \url{https://arxiv.org/abs/2101.03961} (``with
-outrageous numbers of parameters --- but a constant computational cost'').
+arXiv:2101.03961, 2021. \url{https://arxiv.org/abs/2101.03961} (``with outrageous numbers of parameters'' at ``a constant computational cost'').
 \bibitem{r31} Mistral AI. Mixtral of experts. 2023-12-11.
 \url{https://mistral.ai/news/mixtral-of-experts/} (``Mixtral has 46.7B total
 parameters but only uses 12.9B parameters per token. It, therefore, processes
@@ -605,8 +580,7 @@ model.'')
 \bibitem{r32} Databricks. Introducing DBRX: a new state-of-the-art open LLM.
 2024-03-27.
 \url{https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm}
-(``thanks to having about half as many active parameters --- DBRX inference
-throughput is up to 2x faster'' than Llama2-70B).
+(DBRX inference throughput is ``up to 2x faster'' than Llama2-70B ``thanks to having about half as many active parameters'').
 \bibitem{r12} DeepInfra. Series B announcement and DeepCluster owned-hardware
 pricing. \url{https://deepinfra.com/blog/deepinfra-series-b};
 \url{https://deepinfra.com/deepcluster}

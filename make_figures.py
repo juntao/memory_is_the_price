@@ -32,9 +32,11 @@ ax.plot(xs, ys, ls="--", color="#16a34a", lw=1.4, zorder=1,
         label="Dense-only OLS fit (compute-priced schedule)")
 
 ax.scatter([d["act"] for d in dense], [d["med"] for d in dense],
-           s=42, color="#16a34a", zorder=3, label="Dense (6)")
+           s=44, marker="o", color="#16a34a", zorder=3,
+           edgecolor="#1a1c20", linewidth=0.4, label="Dense (6)")
 ax.scatter([d["act"] for d in moe], [d["med"] for d in moe],
-           s=42, color="#dc2626", zorder=3, label="MoE (12)")
+           s=52, marker="^", color="#dc2626", zorder=3,
+           edgecolor="#1a1c20", linewidth=0.4, label="MoE (12)")
 
 r1 = next(d for d in lev if d["model"] == "DeepSeek R1")
 r1_line = 10 ** (-1.687 + 0.796 * math.log10(r1["act"]))
@@ -87,7 +89,9 @@ rows = moe_d + den_d
 fig, ax = plt.subplots(figsize=(7.0, 3.9))
 x = range(len(rows))
 colors = ["#dc2626" if d["moe"] else "#16a34a" for d in rows]
-ax.bar(x, [d["cv"] for d in rows], color=colors, width=0.72)
+hatches = ["//" if d["moe"] else "" for d in rows]
+ax.bar(x, [d["cv"] for d in rows], color=colors, width=0.72,
+       edgecolor="#1a1c20", linewidth=0.4, hatch=hatches)
 for i, d in enumerate(rows):
     ax.text(i, d["cv"] + 0.012, f"{d['cv']:.2f}", ha="center", fontsize=6.5)
 ax.set_xticks(list(x))
@@ -96,8 +100,10 @@ ax.set_xticklabels([f"{d['model']} (n={d['n']})" for d in rows],
 ax.set_ylabel("CV of output price", fontsize=9)
 ax.tick_params(axis="y", labelsize=8)
 ax.grid(True, axis="y", ls=":", lw=0.5, alpha=0.5)
-ax.legend(handles=[Patch(color="#dc2626", label="MoE"),
-                   Patch(color="#16a34a", label="Dense")], fontsize=8)
+ax.legend(handles=[Patch(facecolor="#dc2626", hatch="//",
+                         edgecolor="#1a1c20", label="MoE"),
+                   Patch(facecolor="#16a34a", edgecolor="#1a1c20",
+                         label="Dense")], fontsize=8)
 ax.set_ylim(0, 1.0)
 fig.tight_layout()
 fig.savefig("fig2_dispersion.pdf")
