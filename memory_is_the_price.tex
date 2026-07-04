@@ -36,15 +36,7 @@ price observations covering 18 open-weight models (12 MoE, 6 dense), joined to
 architecture parameters verified against each model's HuggingFace
 configuration. The prices contradict the claim. A hedonic log-log regression
 of median output price on active parameters and the sparsity ratio yields
-$R^2 = 0.87$ with a sparsity elasticity of 0.554 ($t = 8.3$), which is 83\% of
-the active-parameter elasticity: MoE models are billed most of the way toward
-their total memory footprint, and customers keep almost none of the advertised
-compute discount. The structure of the market explains why. Realizing MoE's
-compute savings requires expert-parallel decoding pools far larger than a
-single node, so the price floor of every large-MoE panel is set by a
-vertically integrated ``neocloud,'' hyperscalers list identical models at
-2--5$\times$ that floor, and provider participation collapses with model
-footprint, which compresses the observed price dispersion through selection.
+$R^2 = 0.87$ with a sparsity elasticity of 0.554 ($t = 8.3$), which is 83\% of the active-parameter elasticity. MoE models are therefore billed most of the way toward their total memory footprint, and customers keep almost none of the advertised compute discount. The structure of the market explains why. Realizing MoE's compute savings requires expert-parallel decoding pools far larger than a single node. As a result, the price floor of every large-MoE panel is set by a vertically integrated ``neocloud,'' and hyperscalers list identical models at 2--5$\times$ that floor. Provider participation collapses with model footprint, which compresses the observed price dispersion through selection.
 We conclude that MoE serving economics are governed by memory capacity and
 bandwidth rather than FLOPS, and that the hardware suited to them is
 decode-oriented: large commodity memory, modest compute, moderate bandwidth.
@@ -102,12 +94,7 @@ providers ``may quantize, watermark, or finetune the underlying
 model\ldots\ possibly without notifying users''~\cite{r23}.
 
 The secrecy is not uniform, and the exceptions delimit what is actually
-hidden. The serving software stack is open source (vLLM, SGLang); the
-techniques for efficient MoE serving are published; and DeepSeek, a model
-vendor with an evident strategic interest in commoditizing the serving of its
-own models, has disclosed its production system in detail, down to its EP144
-decode topology and a theoretical 545\% margin~\cite{r10}, a recipe third
-parties have publicly reproduced~\cite{r8}. What remains hidden is the mapping
+hidden. The serving software stack is open source (vLLM, SGLang), and the techniques for efficient MoE serving are published. DeepSeek, a model vendor with an evident strategic interest in commoditizing the serving of its own models, has disclosed its production system in detail, down to its EP144 decode topology and a theoretical 545\% margin~\cite{r10}. Third parties have publicly reproduced that recipe~\cite{r8}. What remains hidden is the mapping
 from any \emph{particular} commercial endpoint to its deployment: which
 provider runs expert parallelism at what scale, at what batch size and
 utilization, at what unit cost. Engineering blogs occasionally reveal
@@ -134,11 +121,7 @@ characteristics that drive resource consumption (active parameters; total
 memory footprint) and read the estimated coefficients as implicit prices, the
 market's marginal valuation of each underlying resource. The industry's claim
 that sparsity's compute savings pass through into proportionally cheaper
-serving then becomes a testable restriction on hedonic coefficients (H1), and
-the question of what serving scale is required to capture those compute
-savings becomes a prediction about which provider class posts each panel's
-price floor, who participates in each market, and how endogenous participation
-truncates the observed price distribution (H2).
+serving then becomes a testable restriction on hedonic coefficients (H1). The question of what serving scale is required to capture those savings becomes a prediction about which provider class posts each panel's price floor, who participates in each market, and how endogenous participation truncates the observed price distribution (H2).
 
 We are explicit about the limits of this inversion. Price is a low-dimensional
 proxy: it cannot reconstruct any single endpoint's configuration, and an
@@ -151,24 +134,12 @@ $\sim$40 providers.
 
 Three strands of prior work frame our contribution. Bottom-up cost models
 compute what MoE serving \emph{should} cost under optimal
-deployment~\cite{r24,r7} but do not test market prices. Black-box measurement
-studies characterize hosted endpoints behaviorally: Gao et al.\ detect
-undisclosed weight modifications from outputs~\cite{r23}, and Li et al.\
-document that hosted open-weight APIs are heterogeneous services whose listed
-prices are their most anchored attribute, observing descriptively, without a
-regression, that neither total nor active parameter count suffices to explain
-price~\cite{r22}. Closest to our first hypothesis, Scher compared five MoE
+deployment~\cite{r24,r7} but do not test market prices. Black-box measurement studies characterize hosted endpoints behaviorally. Gao et al.\ detect undisclosed weight modifications from outputs~\cite{r23}. Li et al.\ document that hosted open-weight APIs are heterogeneous services whose listed prices are their most anchored attribute, observing descriptively, without a regression, that neither total nor active parameter count suffices to explain price~\cite{r22}. Closest to our first hypothesis, Scher compared five MoE
 models against a dense price trendline in early 2025 and observed informally
 that MoE prices sit ``somewhere between their active and total parameter
 count, perhaps closer to the total parameter count''~\cite{r21}. We formalize
 that observation into an identified quantity. To our knowledge, this paper
-provides the first hedonic estimate of the sparsity elasticity of price
-(\S\ref{sec:h1result}); the first evidence that the price floors for large MoE
-models are set exclusively by massively parallel providers
-(\S\ref{sec:h2result}); and the first documentation that provider
-participation, and through selection measured price dispersion, is gated by
-model memory footprint
-(\S\ref{sec:h2result}--\ref{sec:dispersion}). The concluding section draws out
+makes three contributions. It provides the first hedonic estimate of the sparsity elasticity of price (\S\ref{sec:h1result}). It presents the first evidence that the price floors for large MoE models are set exclusively by massively parallel providers (\S\ref{sec:h2result}). And it provides the first documentation that provider participation, and through selection the measured price dispersion, is gated by model memory footprint (\S\ref{sec:h2result}--\ref{sec:dispersion}). The concluding section draws out
 the hardware implication.
 
 \section{Background and hypotheses}
@@ -188,21 +159,13 @@ memory (HBM) is the expensive and supply-constrained component of AI
 accelerators: HBM3E commanded a price premium more than four times that of
 DDR5 in 2025~\cite{r4} and represents roughly 40--50\% of an accelerator's
 manufacturing cost~\cite{r5}; SK hynix, the leading supplier, sold out its
-capacity into 2026~\cite{r6}. Second, the number of GPUs a provider must deploy for a model
-is determined by the model's \emph{total} memory footprint, not by its
-compute: DeepSeek R1 at FP8 requires $\sim$700 GB for weights, making an
-8$\times$H200 node (1{,}128 GB) the standard minimal
-deployment~\cite{r17}; Kimi K2 at FP8 fills the same node almost completely.
+capacity into 2026~\cite{r6}. Second, the number of GPUs a provider must deploy for a model is determined by the model's \emph{total} memory footprint, not by its compute. DeepSeek R1 at FP8 requires $\sim$700 GB for weights, making an 8$\times$H200 node (1{,}128 GB) the standard minimal deployment~\cite{r17}; Kimi K2 at FP8 fills the same node almost completely.
 Sparsity does not reduce this footprint: although only $k$ of $E$ experts fire
 per token, all $E$ must reside in memory, because different tokens in a batch
 activate different experts~\cite{r7}.
 
 A third fact concerns serving efficiency at scale. On a single 8-GPU node, a
-256-expert model cannot be batched to compute efficiency: with top-8 routing,
-each expert receives only $K/32$ tokens per step from a batch of $K$, far
-below the $\sim$128-token tile that saturates the grouped-GEMM kernels, so the
-node remains memory-bound at well under 1\% model-FLOPS utilization at any
-feasible batch~\cite{r9,r16}. Recovering efficiency requires \emph{expert
+256-expert model cannot be batched to compute efficiency. With top-8 routing, each expert receives only $K/32$ tokens per step from a batch of $K$, far below the $\sim$128-token tile that saturates the grouped-GEMM kernels. The node therefore remains memory-bound at well under 1\% model-FLOPS utilization at any feasible batch~\cite{r9,r16}. Recovering efficiency requires \emph{expert
 parallelism} (EP): spreading experts across many GPUs and aggregating tokens
 from thousands of concurrent users so that every expert sees full tiles.
 Published EP deployments include SGLang's 96$\times$H100 system~\cite{r8} and
@@ -234,11 +197,7 @@ the coefficients are implicit prices in Rosen's sense~\cite{r27}: $c_1$ is the
 market's marginal valuation of active compute, and $c_2$ its valuation of
 resident-but-inactive parameters, the capacity that must be held in memory
 although it does not fire. \emph{H1 (compute pricing)} predicts $c_2 = 0$. The
-alternative follows from \S\ref{sec:background}: if memory rather than compute
-is the first-order cost of serving (capital tied up in HBM scales with bytes
-held, and decode throughput is limited by bytes streamed), then prices should
-track the \emph{total} footprint, implying $c_2 \approx c_1$ (a 671B/37B MoE
-is billed like a 671B dense model). The ratio $c_2/c_1$ measures how much of
+alternative follows from \S\ref{sec:background}. If memory rather than compute is the first-order cost of serving, because capital tied up in HBM scales with bytes held and decode throughput is limited by bytes streamed, then prices should track the \emph{total} footprint. This implies $c_2 \approx c_1$: a 671B/37B MoE is billed like a 671B dense model. The ratio $c_2/c_1$ measures how much of
 the advertised sparsity discount the market actually passes to customers;
 under H1 it is zero.
 
@@ -254,23 +213,12 @@ aggregated that every expert sees full tiles, and that requires dedicated,
 disaggregated decoding infrastructure far larger than a single node. The serving-systems literature
 has converged on exactly this design. Splitwise showed that splitting the prefill
 and decode phases onto separate machine pools yields 1.4$\times$ throughput at
-20\% lower cost, observing that the decode phase ``does not require the compute
-capability of the latest GPUs''~\cite{r33}; DistServe disaggregates the phases onto
-different GPUs for up to 7.4$\times$ goodput~\cite{r34}; and Moonshot's
-production platform for Kimi, Mooncake, ``separates the prefill and decoding
-clusters'' outright~\cite{r35}. For large MoE, the decode pool must
+20\% lower cost, observing that the decode phase ``does not require the compute capability of the latest GPUs''~\cite{r33}. DistServe disaggregates the phases onto different GPUs for up to 7.4$\times$ goodput~\cite{r34}. Moonshot's production platform for Kimi, Mooncake, ``separates the prefill and decoding clusters'' outright~\cite{r35}. For large MoE, the decode pool must
 additionally be expert-parallel, spread across tens to hundreds of
 GPUs~\cite{r8,r10,r11}. The economic consequence is H2: the
 ability to serve large MoE at competitive prices is confined to providers who
 operate such pools and can amortize them across massive request volume. This
-predicts three observable market patterns: (a) the \emph{price floor} for each
-large-MoE model should be set by specialized high-volume GPU clouds
-(``neoclouds'') rather than by general-purpose clouds; (b) general-purpose
-clouds, whose business does not justify dedicated EP pools per open model,
-should price visibly above the floor; and (c) providers that cannot justify EP
-infrastructure at all (edge networks, boutique hosts, and by extension
-on-premises operators) should not offer large MoE models, exiting rather than
-listing at uncompetitive prices. A corollary concerns price
+predicts three observable market patterns. (a) The \emph{price floor} for each large-MoE model should be set by specialized high-volume GPU clouds (``neoclouds'') rather than by general-purpose clouds. (b) General-purpose clouds, whose business does not justify dedicated EP pools per open model, should price visibly above the floor. (c) Providers that cannot justify EP infrastructure at all (edge networks, boutique hosts, and by extension on-premises operators) should not offer large MoE models, exiting rather than listing at uncompetitive prices. A corollary concerns price
 \emph{dispersion}: because exit removes the high-cost providers from
 observation, the measured spread of prices for large MoE should be
 \emph{compressed} relative to dense models that any provider can serve.
@@ -317,13 +265,7 @@ widest panels, the minimum and maximum prices were both fp8 offerings.
 
 To test H1 we compute each model's median output price across providers
 (robust to loss-leaders and premium listings) and fit the hedonic
-regression~\eqref{eq:hedonic} by ordinary least squares ($n = 18$). To test
-H2 (\S\ref{sec:h2}) we identify
-each panel's floor-setting provider and its class; compare hyperscaler and
-GPU-cloud medians within panels listed on both; relate provider participation
-to model footprint; and measure within-model dispersion (coefficient of
-variation of output price) for MoE versus dense panels, including a robustness
-split excluding hyperscaler and edge endpoints. All statistics are computed
+regression~\eqref{eq:hedonic} by ordinary least squares ($n = 18$). To test H2 (\S\ref{sec:h2}) we proceed in four steps. We identify each panel's floor-setting provider and its class. We compare hyperscaler and GPU-cloud medians within panels listed on both. We relate provider participation to model footprint. Finally, we measure within-model dispersion (the coefficient of variation of output price) for MoE versus dense panels, including a robustness split that excludes hyperscaler and edge endpoints. All statistics are computed
 deterministically from the archived JSON with no model-generated numbers.
 
 \section{Results}
@@ -377,11 +319,7 @@ $c_2$: log(total/active)      & $+0.554$ & 0.067 & 8.3 \\
 \end{table}
 
 Table~\ref{tab:panel} reports the underlying panel. Per active parameter, MoE
-models cost 3--12$\times$ more than dense models, and the per-model premium
-over the dense line tracks the sparsity ratio: Kimi K2 (31$\times$ sparse)
-sits 7.7$\times$ above the line, MiniMax M2 (23$\times$) 9.3$\times$,
-GPT-OSS-120B (23$\times$) 6.6$\times$, while the mildly sparse Llama-4 Scout
-and GPT-OSS-20B (6$\times$) sit $\sim$2.5$\times$ above.
+models cost 3--12$\times$ more than dense models. The per-model premium over the dense line tracks the sparsity ratio: Kimi K2 (31$\times$ sparse) sits 7.7$\times$ above the line, MiniMax M2 (23$\times$) sits 9.3$\times$ above, and GPT-OSS-120B (23$\times$) sits 6.6$\times$ above, while the mildly sparse Llama-4 Scout and GPT-OSS-20B (6$\times$) sit $\sim$2.5$\times$ above.
 
 \begin{table}[t]
 \centering
@@ -564,13 +502,7 @@ limitation and the reason we believe the conclusions survive it.
 
 \begin{itemize}
 \item \textbf{Price is not cost.} List prices embed margins, loss-leader
-strategies, and enterprise positioning. The footprint elasticity establishes
-what the market \emph{charges}; the inference to underlying cost is an
-interpretation, supported by the deployment-cost evidence of
-Table~\ref{tab:deploy} (EP-pool cost \$0.20--0.50/M against floors of
-\$0.79--2.50) and by the competitive structure of open-weight serving, but
-LMSYS's \$0.20/M and DeepSeek's 545\% margin figures are self-reported, not
-audited.
+strategies, and enterprise positioning. The footprint elasticity establishes what the market \emph{charges}; the inference to underlying cost is an interpretation. That interpretation is supported by the deployment-cost evidence of Table~\ref{tab:deploy} (EP-pool cost \$0.20--0.50/M against floors of \$0.79--2.50) and by the competitive structure of open-weight serving. LMSYS's \$0.20/M and DeepSeek's 545\% margin figures, however, are self-reported, not audited.
 \item \textbf{Inference from prices is indirect.} Provider opacity is the
 premise of our design (\S1), but it also limits what we can claim: that the
 floor-setting neoclouds run large-scale expert parallelism is inferred from
@@ -618,18 +550,7 @@ blocks) either pays those premiums or exits.
 Both results point to the same hardware mismatch. The mainstream GPU bundles
 enormous compute with scarce, expensive HBM; MoE decoding uses the memory
 fully and the compute hardly at all, except inside hyperscale expert-parallel
-pools that only a few operators can build. For everyone else, the economically
-rational serving device is the opposite shape: \textbf{large, cheap memory
-capacity} to hold the full expert set without buying stranded FLOPS;
-\textbf{modest compute}, since decode at realistic concurrency cannot exercise
-more; and \textbf{moderate bandwidth}, sufficient for interactive token rates
-and procurable from commodity supply chains rather than the
-allocation-constrained HBM market. Several shipping products approximate this
-design point, notably Apple's Mac Studio (up to 512 GB unified LPDDR5) and
-NVIDIA's DGX Spark (128 GB LPDDR5X), and purpose-built decode accelerators
-such as the Skymizer HTX-301 (384 GB commodity LPDDR on a 28 nm PCIe card;
-performance figures vendor-claimed pending independent benchmarks) instantiate
-it directly. The
+pools that only a few operators can build. For everyone else, the economically rational serving device is the opposite shape. It has \textbf{large, cheap memory capacity} to hold the full expert set without buying stranded FLOPS. It has \textbf{modest compute}, since decoding at realistic concurrency cannot exercise more. And it has \textbf{moderate bandwidth}, sufficient for interactive token rates and procurable from commodity supply chains rather than the allocation-constrained HBM market. Several shipping products approximate this design point, notably Apple's Mac Studio (up to 512 GB unified LPDDR5) and NVIDIA's DGX Spark (128 GB LPDDR5X). Purpose-built decode accelerators instantiate it directly, such as the Skymizer HTX-301, a 28 nm PCIe card carrying 384 GB of commodity LPDDR, whose performance figures are vendor-claimed pending independent benchmarks. The
 market prices measured here quantify the opportunity such hardware addresses:
 the gap between footprint-cheap serving cost and market price is widest for
 the most sparse frontier models (Kimi K2, MiniMax M2, GPT-OSS-120B), which is
