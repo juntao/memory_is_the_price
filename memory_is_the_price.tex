@@ -388,7 +388,10 @@ DeepSeek production, EP144 decode (18-node H800) & $\sim$1{,}850 & $<$0.50 impli
 2--5$\times$ the floor.} In every one of the seven panels for models of
 $\geq$200B total parameters, the lowest price is posted by a specialized
 high-volume provider (Table~\ref{tab:floors}): six of seven by DeepInfra
-alone, the seventh by the model's owner. DeepInfra is the archetype of the class. It raised \$107M in Series~B funding and owns and operates its GPU infrastructure (NVIDIA Blackwell B300) across eight U.S.\ data centers. It publishes owned-hardware economics of $\sim$\$1.98/GPU-hour against \$6.50 for equivalent rented public-cloud capacity, alongside a collaboration with NVIDIA on Dynamo disaggregated serving~\cite{r12}. By contrast, Azure AI Foundry and Amazon
+alone, the seventh by the model's owner. Figure~\ref{fig:floors} plots every
+provider quote in these panels and marks each panel's floor; the floor
+marker is a neocloud or the model's owner in every row, and every
+hyperscaler listing sits at or above it. DeepInfra is the archetype of the class. It raised \$107M in Series~B funding and owns and operates its GPU infrastructure (NVIDIA Blackwell B300) across eight U.S.\ data centers. It publishes owned-hardware economics of $\sim$\$1.98/GPU-hour against \$6.50 for equivalent rented public-cloud capacity, alongside a collaboration with NVIDIA on Dynamo disaggregated serving~\cite{r12}. By contrast, Azure AI Foundry and Amazon
 Bedrock list DeepSeek R1 at \$1.35 input / \$5.40 output, 2.5$\times$ the
 neocloud floor, and Azure lists DeepSeek V3 at \$4.56 against a \$0.90 floor,
 5.1$\times$, though the premium narrows to 1.4--2.2$\times$ on V3.1. All are
@@ -417,6 +420,19 @@ MiniMax M2 (230B)         & 1.20 & MiniMax   & model owner \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{fig3_floors.pdf}
+\caption{The figure plots every provider's output price for the seven
+panels of models with 200B+ total parameters (log scale). The lowest quote
+in each panel (filled triangle, labeled) is posted by a vertically
+integrated neocloud in six of seven panels and by the model's owner in the
+seventh. Hyperscaler listings (squares) sit at or above the floor in every
+panel where they appear, and the remaining providers (open circles) fill
+the range between.}
+\label{fig:floors}
+\end{figure}
 
 \emph{(c) Providers without EP scale exit.} Market participation collapses
 with footprint, by provider class rather than by count alone. GPT-OSS-120B,
@@ -529,7 +545,7 @@ blocks) either pays those premiums or exits.
 Both results point to the same hardware mismatch. The mainstream GPU bundles
 enormous compute with scarce, expensive HBM; MoE decoding uses the memory
 fully and the compute hardly at all, except inside hyperscale expert-parallel
-pools that only a few operators can build. For everyone else, the economically rational serving device is the opposite shape. It has \textbf{large, cheap memory capacity} to hold the full expert set without buying stranded FLOPS. It has \textbf{modest compute}, since decoding at realistic concurrency cannot exercise more. And it has \textbf{moderate bandwidth}, sufficient for interactive token rates and procurable from commodity supply chains rather than the allocation-constrained HBM market. Several shipping products approximate this design point, notably Apple's Mac Studio (up to 512 GB unified LPDDR5)~\cite{r42} and NVIDIA's DGX Spark (128 GB LPDDR5X)~\cite{r43}. Purpose-built decode accelerators instantiate it directly, such as the Skymizer HTX-301, a 28 nm PCIe card carrying 384 GB of commodity LPDDR, whose performance figures are vendor-claimed pending independent benchmarks~\cite{r44}. The
+pools that only a few operators can build. For everyone else, the economically rational serving device is the opposite shape. It has \textbf{large, cheap memory capacity} to hold the full expert set without buying stranded FLOPS. It has \textbf{modest compute}, since decoding at realistic concurrency cannot exercise more. And it has \textbf{moderate bandwidth}, sufficient for interactive token rates and procurable from commodity supply chains rather than the allocation-constrained HBM market. Shipping products are beginning to approximate this design point, notably Apple's Mac Studio (up to 512 GB unified LPDDR5)~\cite{r42}. NVIDIA's DGX Spark (128 GB LPDDR5X)~\cite{r43} supplies the memory capacity but pairs it with a compute-to-bandwidth balance that only datacenter-scale concurrency could exercise, so it meets the capacity criterion alone. Purpose-built decode accelerators instantiate the full design point directly, such as the Skymizer HTX-301, a 28 nm PCIe card carrying 384 GB of commodity LPDDR, whose performance figures are vendor-claimed pending independent benchmarks~\cite{r44}. The
 market prices measured here quantify the opportunity such hardware addresses:
 the gap between footprint-cheap serving cost and market price is widest for
 the most sparse frontier models (Kimi K2, MiniMax M2, GPT-OSS-120B), which is

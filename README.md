@@ -43,6 +43,7 @@ dispersion through selection.
 | `make_figures.py` | Regenerates Figures 1-2 from the JSON (requires matplotlib) |
 | `fig1_price_level.{pdf,svg}` | Figure 1: median price vs. active parameters, log-log |
 | `fig2_dispersion.{pdf,svg}` | Figure 2: within-model price dispersion (CV) by panel |
+| `fig3_floors.{pdf,svg}` | Figure 3: per-panel provider quotes; every 200B+ floor is a neocloud |
 
 ## Reproduce
 

@@ -109,3 +109,56 @@ fig.tight_layout()
 fig.savefig("fig2_dispersion.pdf")
 fig.savefig("fig2_dispersion.svg")
 print("wrote fig2_dispersion.pdf and .svg")
+
+# ---------- Figure 3: per-panel provider quotes; floors are neoclouds ----------
+
+prices = json.load(open("pd_prices.json"))
+HYPER = {"Azure", "Amazon Bedrock", "Google", "Google Vertex"}
+panels = [("Kimi K2", "1,000B"), ("DeepSeek R1", "671B"),
+          ("DeepSeek V3", "671B"), ("DeepSeek V3.1", "671B"),
+          ("Llama 4 Maverick", "400B"), ("Qwen3 235B-A22B", "235B"),
+          ("MiniMax M2", "230B")]
+fig, ax = plt.subplots(figsize=(7.0, 3.9))
+for i, (m, tot) in enumerate(panels):
+    y = len(panels) - 1 - i
+    rows = [r for r in prices if r["model"] == m]
+    floor = min(rows, key=lambda r: r["output_usd_per_m"])
+    for r in rows:
+        p = r["output_usd_per_m"]
+        if r is floor:
+            continue
+        if r["provider"] in HYPER:
+            ax.scatter(p, y, s=46, marker="s", color="#dc2626", zorder=3,
+                       edgecolor="#1a1c20", linewidth=0.4)
+        else:
+            ax.scatter(p, y, s=30, marker="o", facecolor="none", zorder=2,
+                       edgecolor="#5b6470", linewidth=0.9)
+    ax.scatter(floor["output_usd_per_m"], y, s=70, marker="^",
+               color="#16a34a", zorder=4, edgecolor="#1a1c20", linewidth=0.4)
+    ax.annotate(floor["provider"],
+                (floor["output_usd_per_m"], y), textcoords="offset points",
+                xytext=(0, -11), ha="center", fontsize=6.5, color="#14532d")
+ax.set_yticks(range(len(panels)))
+ax.set_yticklabels([f"{m} ({t})" for m, t in reversed(panels)], fontsize=8)
+ax.set_xscale("log")
+ax.set_xlim(0.07, 9)
+ax.set_xticks([0.1, 0.3, 1, 3])
+ax.set_xticklabels(["0.1", "0.3", "1", "3"])
+ax.set_xlabel(r"Output price (\$/M tokens, log scale)", fontsize=9)
+ax.tick_params(axis="x", labelsize=8)
+ax.grid(True, axis="x", ls=":", lw=0.5, alpha=0.5)
+from matplotlib.lines import Line2D
+ax.legend(handles=[
+    Line2D([0], [0], marker="^", color="none", markerfacecolor="#16a34a",
+           markeredgecolor="#1a1c20", markersize=8,
+           label="panel floor (neocloud / model owner)"),
+    Line2D([0], [0], marker="s", color="none", markerfacecolor="#dc2626",
+           markeredgecolor="#1a1c20", markersize=7,
+           label="hyperscaler listing"),
+    Line2D([0], [0], marker="o", color="none", markerfacecolor="none",
+           markeredgecolor="#5b6470", markersize=6.5,
+           label="other providers")], fontsize=7.5, loc="upper left")
+fig.tight_layout()
+fig.savefig("fig3_floors.pdf")
+fig.savefig("fig3_floors.svg")
+print("wrote fig3_floors.pdf and .svg")
