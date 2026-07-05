@@ -15,7 +15,7 @@ Sparse Mixture-of-Experts (MoE) models are widely claimed to cost what their
 *active* compute costs. We test that claim against the serving market itself.
 Because providers disclose almost nothing about their production systems, we
 treat posted prices as an observable proxy for the latent serving
-configuration: from 121 provider-model price observations (18 open-weight
+configuration: from 119 provider-model price observations (18 open-weight
 models, 12 MoE and 6 dense, collected from OpenRouter's public endpoints API),
 a hedonic regression shows the market bills MoE models most of the way toward
 their **total memory footprint** (sparsity elasticity 0.554, t = 8.3, 83% of
@@ -66,9 +66,10 @@ pdflatex memory_is_the_price.tex && pdflatex memory_is_the_price.tex
   endpoints excluded.
 - Architecture parameters verified against each model repository's HuggingFace
   `config.json` on the same day.
-- 123 raw rows reduce to 121 qualifying observations: DeepInfra's twin
-  fp8/bf16 Llama-3.1-8B endpoints are deduplicated and one delisted
-  SiliconFlow Qwen2.5-7B row is dropped. Models with fewer than three
-  qualifying providers are excluded from the 18-model panel.
+- 123 raw rows reduce to 119 qualifying observations: DeepInfra's twin
+  fp8/bf16 Llama-3.1-8B endpoints are deduplicated, one delisted SiliconFlow
+  Qwen2.5-7B row is dropped, and dropping that row leaves the Qwen2.5-7B
+  panel below the three-provider threshold, which removes its remaining two
+  rows along with the model.
 - Prices in this market move within weeks; the panel is a single snapshot and
   the elasticities should be re-estimated longitudinally.

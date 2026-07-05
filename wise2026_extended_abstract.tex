@@ -30,7 +30,7 @@ claimed to cost what their \emph{active} compute costs. We test this claim
 against the LLM serving market itself. Because providers disclose almost
 nothing about their production systems, we treat posted prices as an
 observable proxy for the latent serving configuration. A hedonic regression
-over 121 provider--model price observations rejects the claim: the market
+over 119 provider--model price observations rejects the claim: the market
 bills MoE models most of the way toward their total memory footprint
 (sparsity elasticity 0.554, $t = 8.3$). Market structure explains why. Capturing MoE's compute savings requires expert-parallel serving pools far larger than one node. Price floors therefore belong exclusively to vertically integrated neoclouds, hyperscalers list identical models at 2--5$\times$ the floor, and provider participation collapses with model footprint.
 
@@ -79,8 +79,8 @@ dispersion through selection~\cite{heckman}.
 
 We collected per-provider prices for 27 candidate open-weight models from
 OpenRouter's public endpoints API on 2026-07-01, cross-checked against
-provider price pages. After exclusions, the panel comprises 121 observations
-across 18 models (12 MoE, 6 dense) from roughly 40 providers, joined to
+provider price pages. After exclusions, the panel comprises 119 observations
+across 18 models (12 MoE, 6 dense) from 35 providers, joined to
 architecture parameters verified against each model's HuggingFace
 configuration file. All statistics are computed deterministically; the data
 and code are public.\footnote{\url{https://github.com/juntao/memory_is_the_price}}

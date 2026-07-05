@@ -31,7 +31,7 @@ prices, but almost never the cluster scale, parallelism, served precision,
 batch size, utilization, or margin of any endpoint. The serving configuration
 is thus a latent variable, and posted prices are its observable proxy: in a
 competitive market, sustained price structure identifies cost structure. From
-OpenRouter's public endpoints API we assemble a panel of 121 provider--model
+OpenRouter's public endpoints API we assemble a panel of 119 provider--model
 price observations covering 18 open-weight models (12 MoE, 6 dense), joined to
 architecture parameters verified against each model's HuggingFace
 configuration. The prices contradict the claim. A hedonic log-log regression
@@ -223,10 +223,12 @@ underlying its public model pages, cross-checked against Artificial Analysis
 provider pages and providers' own published price lists~\cite{r1,r2}. We
 excluded free tiers, zero-price rows, bring-your-own-key listings, and
 deprecated or deranked endpoints. Three independent collection agents gathered
-123 raw observations; models with fewer than three qualifying providers were
-dropped. The final panel comprises \textbf{121 observations across 18 models
-(12 MoE spanning sparsity ratios $E/k$ from 4 to 128, and 6 dense) from
-approximately 40 distinct providers}.
+123 raw observations. One duplicate listing and one stale row were removed
+(\S\ref{sec:verify}), and models left with fewer than three qualifying
+providers were then dropped, which excluded one small panel. The final panel
+comprises \textbf{119 observations across 18 models (12 MoE spanning
+sparsity ratios $E/k$ from 4 to 128, and 6 dense) from 35 distinct
+providers}.
 
 \subsection{Architecture data}
 
@@ -237,9 +239,17 @@ day)~\cite{hf_scout,hf_maverick,hf_qwen,hf_kimi,hf_oss,hf_glm,hf_minimax,hf_r1}.
 Dense models take active = total and $E/k = 1$.
 
 \subsection{Verification pass}
+\label{sec:verify}
 
-A dedicated verification step re-fetched the five most anomalous price points.
-Two extreme but genuine values were retained: DeepInfra's \$0.10/M output loss-leader on Qwen3-235B-A22B, confirmed on DeepInfra's own price page~\cite{r18}, and Cloudflare's \$2.25/M on Llama-3.3-70B. One duplicate listing was deduplicated (DeepInfra's separate fp8/bf16 endpoints for Llama-3.1-8B). One stale row was dropped (a delisted SiliconFlow Qwen2.5-7B price). The same pass tested whether wide within-model spreads were explained
+A dedicated verification step re-fetched the price points that the
+collection pass had flagged as outliers or inconsistencies within their
+panels. Two extreme but genuine values were retained: DeepInfra's \$0.10/M
+output loss-leader on Qwen3-235B-A22B, confirmed on DeepInfra's own price
+page~\cite{r18}, and Cloudflare's \$2.25/M on Llama-3.3-70B. One duplicate
+listing was deduplicated (DeepInfra's separate fp8/bf16 endpoints for
+Llama-3.1-8B). One stale row was dropped (a delisted SiliconFlow Qwen2.5-7B
+price), which left that panel below the three-provider threshold and removed
+the model from the study. The same pass tested whether wide within-model spreads were explained
 by quantization differences across providers; they were not: in the three
 widest panels, the minimum and maximum prices were both fp8 offerings.
 
@@ -552,7 +562,7 @@ where the industry is heading.
 \paragraph{Data and reproducibility.}
 The raw data and analysis code are available at
 \url{https://github.com/juntao/memory_is_the_price}: the archived price panel
-(\path{pd_prices.json}, 123 raw rows; 121 qualifying observations),
+(\path{pd_prices.json}, 123 raw rows; 119 qualifying observations),
 architecture data (\path{pd_arch.json}), derived statistics
 (\path{pd_dispersion.json}, \path{pd_level.json}), the analysis script
 (\path{analysis.py}, dependency-free Python: OLS via normal equations,

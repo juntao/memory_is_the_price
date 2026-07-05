@@ -7,7 +7,7 @@ Dependency-free (standard library only). Run from the repository root:
 
 Inputs (collected 2026-07-01 from OpenRouter's public endpoints API,
 cross-checked against Artificial Analysis and provider price pages):
-  pd_prices.json     raw per-provider price rows (123 rows; 121 qualify
+  pd_prices.json     raw per-provider price rows (123 rows; 119 qualify
                      after deduplicating DeepInfra's twin fp8/bf16
                      Llama-3.1-8B endpoints and dropping one delisted
                      SiliconFlow Qwen2.5-7B row)
