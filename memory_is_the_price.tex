@@ -36,7 +36,7 @@ price observations covering 18 open-weight models (12 MoE, 6 dense), joined to
 architecture parameters verified against each model's HuggingFace
 configuration. The prices contradict the claim. A hedonic log-log regression
 of median output price on active parameters and the sparsity ratio yields
-$R^2 = 0.88$ with a sparsity elasticity of 0.541 ($t = 8.7$), which is 83\% of the active-parameter elasticity. MoE models are therefore billed most of the way toward their total memory footprint, and customers keep almost none of the advertised compute discount. The structure of the market explains why. Realizing MoE's compute savings requires expert-parallel decoding pools far larger than a single node. As a result, the price floor of every large-MoE panel is set by a vertically integrated ``neocloud,'' and hyperscalers list identical models at 2--5$\times$ that floor. Provider participation collapses with model footprint, which compresses the observed price dispersion through selection.
+$R^2 = 0.88$ with a sparsity elasticity of 0.541 ($t = 8.7$), which is 83\% of the active-parameter elasticity. MoE models are therefore billed most of the way toward their total memory footprint, and customers keep almost none of the advertised compute discount. The structure of the market explains why. Realizing MoE's compute savings requires expert-parallel decoding pools far larger than a single node. As a result, the price floor of every large-MoE panel is set by a vertically integrated provider, a neocloud in six of seven panels and the model's own vendor in the seventh, and hyperscalers list identical models at 2--5$\times$ that floor. Provider participation collapses with model footprint, which compresses the observed price dispersion through selection.
 We conclude that MoE serving economics are governed by memory capacity and
 bandwidth rather than FLOPS, and that the hardware suited to them is
 decode-oriented: large commodity memory, modest compute, moderate bandwidth.
@@ -397,7 +397,7 @@ DeepSeek production, EP144 decode (18-node H800) & $\sim$1{,}850 & $<$0.50 impli
 \end{tabular}
 \end{table}
 
-\emph{(b) The price floor is set by neoclouds; hyperscalers list at
+\emph{(b) The price floor is set by vertically integrated providers; hyperscalers list at
 2--5$\times$ the floor.} In every one of the seven panels for models of
 $\geq$200B total parameters, the lowest price is posted by a specialized
 high-volume provider (Table~\ref{tab:floors}): six of seven by DeepInfra
