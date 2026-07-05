@@ -73,7 +73,7 @@
  },
  {
   "model": "Llama 3.1 8B",
-  "med": 0.065,
+  "med": 0.08,
   "act": 8.03,
   "tot": 8.03,
   "moe": false,

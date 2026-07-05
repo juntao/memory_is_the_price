@@ -18,8 +18,8 @@ treat posted prices as an observable proxy for the latent serving
 configuration: from 119 provider-model price observations (18 open-weight
 models, 12 MoE and 6 dense, collected from OpenRouter's public endpoints API),
 a hedonic regression shows the market bills MoE models most of the way toward
-their **total memory footprint** (sparsity elasticity 0.554, t = 8.3, 83% of
-the active-parameter elasticity, R^2 = 0.87). The compute-pricing claim is
+their **total memory footprint** (sparsity elasticity 0.541, t = 8.7, 83% of
+the active-parameter elasticity, R^2 = 0.88). The compute-pricing claim is
 rejected. A second result explains why: capturing MoE's compute savings
 requires expert-parallel decoding pools far larger than a single node, so
 price floors are set exclusively by vertically integrated neoclouds,
@@ -66,10 +66,15 @@ pdflatex memory_is_the_price.tex && pdflatex memory_is_the_price.tex
   endpoints excluded.
 - Architecture parameters verified against each model repository's HuggingFace
   `config.json` on the same day.
-- 123 raw rows reduce to 119 qualifying observations: DeepInfra's twin
-  fp8/bf16 Llama-3.1-8B endpoints are deduplicated, one delisted SiliconFlow
-  Qwen2.5-7B row is dropped, and dropping that row leaves the Qwen2.5-7B
-  panel below the three-provider threshold, which removes its remaining two
-  rows along with the model.
+- 123 raw rows reduce to 119 qualifying observations: where a provider
+  lists multiple endpoints for one model the cheapest is kept (this
+  deduplicates DeepInfra's twin fp8/bf16 Llama-3.1-8B endpoints, the only
+  such pair), one delisted SiliconFlow Qwen2.5-7B row is dropped, and
+  dropping that row leaves the Qwen2.5-7B panel below the three-provider
+  threshold, which removes its remaining two rows along with the model.
+- `pd_level.json` was regenerated after correcting a deduplication omission
+  for the Llama-3.1-8B median (0.065 -> 0.08), which shifts the headline
+  estimates slightly (c2 0.554 -> 0.541, R^2 0.866 -> 0.875); the ratio
+  c2/c1 = 0.83 is unchanged.
 - Prices in this market move within weeks; the panel is a single snapshot and
   the elasticities should be re-estimated longitudinally.

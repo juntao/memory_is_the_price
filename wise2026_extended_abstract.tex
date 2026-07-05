@@ -32,7 +32,7 @@ nothing about their production systems, we treat posted prices as an
 observable proxy for the latent serving configuration. A hedonic regression
 over 119 provider--model price observations rejects the claim: the market
 bills MoE models most of the way toward their total memory footprint
-(sparsity elasticity 0.554, $t = 8.3$). Market structure explains why. Capturing MoE's compute savings requires expert-parallel serving pools far larger than one node. Price floors therefore belong exclusively to vertically integrated neoclouds, hyperscalers list identical models at 2--5$\times$ the floor, and provider participation collapses with model footprint.
+(sparsity elasticity 0.541, $t = 8.7$). Market structure explains why. Capturing MoE's compute savings requires expert-parallel serving pools far larger than one node. Price floors therefore belong exclusively to vertically integrated neoclouds, hyperscalers list identical models at 2--5$\times$ the floor, and provider participation collapses with model footprint.
 
 \section{Motivation: an efficiency claim the market can test}
 
@@ -90,7 +90,7 @@ and code are public.\footnote{\url{https://github.com/juntao/memory_is_the_price
 \textbf{H1 is rejected.} The sparsity ratio, which compute pricing predicts
 to be free, is priced at 83\% of the rate of active compute
 (Table~\ref{tab:ols}). A 671B-total/37B-active model is billed like a
-$\sim$430B dense model, and every MoE model sits 2.4--9.3$\times$ above the
+$\sim$410B dense model, and every MoE model sits 2.2--8.5$\times$ above the
 dense-only price schedule (Figure~\ref{fig:level}). Customers keep almost
 none of the advertised discount.
 
@@ -98,15 +98,15 @@ none of the advertised discount.
 \centering
 \begin{singlespace}
 \caption{The table reports OLS estimates of regression~\eqref{eq:hedonic}
-($n = 18$ models, $R^2 = 0.866$). H1 predicts $c_2 = 0$; the measured ratio
+($n = 18$ models, $R^2 = 0.875$). H1 predicts $c_2 = 0$; the measured ratio
 is $c_2/c_1 = 0.83$.}
 \label{tab:ols}
 \begin{tabular}{lrrr}
 \toprule
 Coefficient & Estimate & Std.\ err. & $t$ \\
 \midrule
-$c_1$: log(active parameters) & $+0.665$ & 0.099 & 6.7 \\
-$c_2$: log(total/active)      & $+0.554$ & 0.067 & 8.3 \\
+$c_1$: log(active parameters) & $+0.650$ & 0.093 & 7.0 \\
+$c_2$: log(total/active)      & $+0.541$ & 0.062 & 8.7 \\
 \bottomrule
 \end{tabular}
 \end{singlespace}

@@ -36,7 +36,7 @@ price observations covering 18 open-weight models (12 MoE, 6 dense), joined to
 architecture parameters verified against each model's HuggingFace
 configuration. The prices contradict the claim. A hedonic log-log regression
 of median output price on active parameters and the sparsity ratio yields
-$R^2 = 0.87$ with a sparsity elasticity of 0.554 ($t = 8.3$), which is 83\% of the active-parameter elasticity. MoE models are therefore billed most of the way toward their total memory footprint, and customers keep almost none of the advertised compute discount. The structure of the market explains why. Realizing MoE's compute savings requires expert-parallel decoding pools far larger than a single node. As a result, the price floor of every large-MoE panel is set by a vertically integrated ``neocloud,'' and hyperscalers list identical models at 2--5$\times$ that floor. Provider participation collapses with model footprint, which compresses the observed price dispersion through selection.
+$R^2 = 0.88$ with a sparsity elasticity of 0.541 ($t = 8.7$), which is 83\% of the active-parameter elasticity. MoE models are therefore billed most of the way toward their total memory footprint, and customers keep almost none of the advertised compute discount. The structure of the market explains why. Realizing MoE's compute savings requires expert-parallel decoding pools far larger than a single node. As a result, the price floor of every large-MoE panel is set by a vertically integrated ``neocloud,'' and hyperscalers list identical models at 2--5$\times$ that floor. Provider participation collapses with model footprint, which compresses the observed price dispersion through selection.
 We conclude that MoE serving economics are governed by memory capacity and
 bandwidth rather than FLOPS, and that the hardware suited to them is
 decode-oriented: large commodity memory, modest compute, moderate bandwidth.
@@ -241,17 +241,22 @@ Dense models take active = total and $E/k = 1$.
 \subsection{Verification pass}
 \label{sec:verify}
 
-A dedicated verification step re-fetched the price points that the
-collection pass had flagged as outliers or inconsistencies within their
-panels. Two extreme but genuine values were retained: DeepInfra's \$0.10/M
-output loss-leader on Qwen3-235B-A22B, confirmed on DeepInfra's own price
-page~\cite{r18}, and Cloudflare's \$2.25/M on Llama-3.3-70B. One duplicate
-listing was deduplicated (DeepInfra's separate fp8/bf16 endpoints for
-Llama-3.1-8B). One stale row was dropped (a delisted SiliconFlow Qwen2.5-7B
-price), which left that panel below the three-provider threshold and removed
-the model from the study. The same pass tested whether wide within-model spreads were explained
-by quantization differences across providers; they were not: in the three
-widest panels, the minimum and maximum prices were both fp8 offerings.
+Two mechanical rules produce the final panel from the raw rows, and both
+are checkable against the archived data. First, the unit of observation is
+one quote per provider per model; where a provider lists multiple endpoints
+for the same model, the cheapest is kept, which is the price a customer
+comparing providers would face. Exactly one pair is affected, DeepInfra's
+fp8 and bf16 endpoints for Llama-3.1-8B, and no other duplicate pair exists
+in the panel. Second, delisted rows are dropped; exactly one was found, a
+SiliconFlow Qwen2.5-7B price, and its removal left that panel below the
+three-provider threshold and removed the model from the study. In addition,
+the panel's single most extreme value, DeepInfra's \$0.10/M output price on
+Qwen3-235B-A22B, roughly eight times below its panel median, was confirmed
+on DeepInfra's own price page~\cite{r18}. Quantization does not explain the
+widest within-model spreads: in the second- and third-widest panels
+(Llama-3.1-8B and Llama-3.3-70B), the minimum and maximum prices are both
+fp8 offerings, and the widest (DeepSeek V3) separates a neocloud's
+discounted listing from a hyperscaler's managed enterprise offering.
 
 \subsection{Statistical methods}
 
@@ -267,8 +272,8 @@ deterministically from the archived JSON with no model-generated numbers.
 
 Figure~\ref{fig:level} plots median output price against active parameters on
 log-log axes. The six dense models trace a clean price line
-($\log_{10} p = -1.687 + 0.796\,\log_{10}(\text{active})$). Every MoE model
-sits above it, by 2.4$\times$ to 9.3$\times$, and the excess grows with the
+($\log_{10} p = -1.585 + 0.735\,\log_{10}(\text{active})$). Every MoE model
+sits above it, by 2.2$\times$ to 8.5$\times$, and the excess grows with the
 model's sparsity ratio.
 
 \begin{figure}[t]
@@ -279,25 +284,25 @@ token for all 18 models on log-log axes, with dense models as green circles
 and MoE models as red triangles. The dashed line is the dense-only OLS fit,
 which is the price schedule a compute-priced market would apply to all
 models. Every MoE
-model sits above the line, and the vertical gap for DeepSeek R1 (6.6$\times$)
+model sits above the line, and the vertical gap for DeepSeek R1 (6.5$\times$)
 is annotated.}
 \label{fig:level}
 \end{figure}
 
 The regression quantifies the pattern (Table~\ref{tab:ols}) and rejects H1
-decisively. Compute pricing predicts $c_2 = 0$; the estimate is 0.554 with
-$t = 8.3$. The sparsity-ratio elasticity is large, precisely estimated, and
+decisively. Compute pricing predicts $c_2 = 0$; the estimate is 0.541 with
+$t = 8.7$. The sparsity-ratio elasticity is large, precisely estimated, and
 close to the active-parameter elasticity: $c_2/c_1 = 0.83$. The sparsity
 ratio, which H1 predicts to be free, is in fact priced at 83\% of the rate of
 active compute. The market bills MoE models most of the way toward their total
 memory footprint, so a 671B-total/37B-active model is billed roughly like a
-$\sim$430B-equivalent dense model rather than the 37B model its compute would
+$\sim$410B-equivalent dense model rather than the 37B model its compute would
 suggest.
 
 \begin{table}[t]
 \centering
 \caption{The table reports OLS estimates of the hedonic regression of log
-median output price on architecture ($n = 18$ models, $R^2 = 0.866$). H1
+median output price on architecture ($n = 18$ models, $R^2 = 0.875$). H1
 (compute pricing) predicts $c_2 = 0$, and pure footprint pricing predicts
 $c_2 = c_1$; the measured ratio is $c_2/c_1 = 0.83$.}
 \label{tab:ols}
@@ -305,14 +310,14 @@ $c_2 = c_1$; the measured ratio is $c_2/c_1 = 0.83$.}
 \toprule
 Coefficient & Estimate & Std.\ err. & $t$ \\
 \midrule
-$c_1$: log(active parameters) & $+0.665$ & 0.099 & 6.7 \\
-$c_2$: log(total/active)      & $+0.554$ & 0.067 & 8.3 \\
+$c_1$: log(active parameters) & $+0.650$ & 0.093 & 7.0 \\
+$c_2$: log(total/active)      & $+0.541$ & 0.062 & 8.7 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 Table~\ref{tab:panel} reports the underlying panel. Per active parameter, MoE
-models cost 3--12$\times$ more than dense models. The per-model premium over the dense line tracks the sparsity ratio: Kimi K2 (31$\times$ sparse) sits 7.7$\times$ above the line, MiniMax M2 (23$\times$) sits 9.3$\times$ above, and GPT-OSS-120B (23$\times$) sits 6.6$\times$ above. The mildly sparse Llama-4 Scout and GPT-OSS-20B (6$\times$) sit $\sim$2.5$\times$ above.
+models cost 3--12$\times$ more than dense models. The per-model premium over the dense line tracks the sparsity ratio: Kimi K2 (31$\times$ sparse) sits 7.5$\times$ above the line, MiniMax M2 (23$\times$) sits 8.5$\times$ above, and GPT-OSS-120B (23$\times$) sits 5.8$\times$ above. The mildly sparse Llama-4 Scout and GPT-OSS-20B (6$\times$) sit $\sim$2.2$\times$ above.
 
 \begin{table}[t]
 \centering
@@ -326,24 +331,24 @@ Dense models, marked ``--'', define the reference line.}
 \toprule
 Model & Median \$/M out & Active (B) & Total (B) & \$/active-B & $\times$ dense line & MoE \\
 \midrule
-Kimi K2          & 2.50  & 32   & 1{,}000 & 0.078 & 7.7 & yes \\
-DeepSeek R1      & 2.39  & 37   & 671     & 0.065 & 6.6 & yes \\
-DeepSeek V3.1    & 1.30  & 37   & 671     & 0.035 & 3.6 & yes \\
-MiniMax M2       & 1.20  & 10   & 230     & 0.120 & 9.3 & yes \\
-DeepSeek V3      & 1.12  & 37   & 671     & 0.030 & 3.1 & yes \\
-GLM 4.5 Air      & 0.98  & 12   & 106     & 0.082 & 6.6 & yes \\
-Llama 4 Maverick & 0.87  & 17   & 400     & 0.051 & 4.4 & yes \\
-Qwen3 235B-A22B  & 0.78  & 22   & 235     & 0.035 & 3.2 & yes \\
-GPT-OSS 120B     & 0.50  & 5.1  & 117     & 0.098 & 6.6 & yes \\
-Llama 4 Scout    & 0.47  & 17   & 109     & 0.027 & 2.4 & yes \\
-Qwen3 30B-A3B    & 0.30  & 3.3  & 30.5    & 0.091 & 5.6 & yes \\
-GPT-OSS 20B      & 0.15  & 3.6  & 21      & 0.042 & 2.6 & yes \\
+Kimi K2          & 2.50  & 32   & 1{,}000 & 0.078 & 7.5 & yes \\
+DeepSeek R1      & 2.39  & 37   & 671     & 0.065 & 6.5 & yes \\
+DeepSeek V3.1    & 1.30  & 37   & 671     & 0.035 & 3.5 & yes \\
+MiniMax M2       & 1.20  & 10   & 230     & 0.120 & 8.5 & yes \\
+DeepSeek V3      & 1.12  & 37   & 671     & 0.030 & 3.0 & yes \\
+GLM 4.5 Air      & 0.98  & 12   & 106     & 0.082 & 6.1 & yes \\
+Llama 4 Maverick & 0.87  & 17   & 400     & 0.051 & 4.2 & yes \\
+Qwen3 235B-A22B  & 0.78  & 22   & 235     & 0.035 & 3.1 & yes \\
+GPT-OSS 120B     & 0.50  & 5.1  & 117     & 0.098 & 5.8 & yes \\
+Llama 4 Scout    & 0.47  & 17   & 109     & 0.027 & 2.2 & yes \\
+Qwen3 30B-A3B    & 0.30  & 3.3  & 30.5    & 0.091 & 4.8 & yes \\
+GPT-OSS 20B      & 0.15  & 3.6  & 21      & 0.042 & 2.2 & yes \\
 Llama 3.3 70B    & 0.71  & 70.6 & 70.6    & 0.010 & -- & no  \\
 Qwen2.5 72B      & 0.50  & 72.7 & 72.7    & 0.007 & -- & no  \\
 Gemma 3 12B      & 0.29  & 12.2 & 12.2    & 0.024 & -- & no  \\
 Mistral Small 3  & 0.28  & 23.6 & 23.6    & 0.012 & -- & no  \\
 Gemma 3 27B      & 0.25  & 27.4 & 27.4    & 0.009 & -- & no  \\
-Llama 3.1 8B     & 0.065 & 8.0  & 8.0     & 0.008 & -- & no  \\
+Llama 3.1 8B     & 0.08  & 8.0  & 8.0     & 0.010 & -- & no  \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -543,7 +548,7 @@ original claim for sparsity, that an MoE model costs what its active compute
 costs~\cite{r30,r31,r32}, is rejected: the market bills Mixture-of-Experts
 models by the memory they occupy, not the compute they perform. The sparsity
 elasticity of price is 83\% of the active-parameter elasticity, so a customer
-of a 671B/37B model pays approximately as if for a $\sim$430B dense model.
+of a 671B/37B model pays approximately as if for a $\sim$410B dense model.
 Second, the ability to serve large MoE near marginal cost is confined to a
 handful of massively parallel providers. General-purpose clouds price
 2--5$\times$ above them, and everyone else (edge networks, boutique

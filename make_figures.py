@@ -27,7 +27,7 @@ moe = [d for d in lev if d["moe"]]
 
 # dense-only OLS line (coefficients reproduced by analysis.py)
 xs = np.logspace(math.log10(2), math.log10(110), 50)
-ys = 10 ** (-1.687 + 0.796 * np.log10(xs))
+ys = 10 ** (-1.585 + 0.735 * np.log10(xs))
 ax.plot(xs, ys, ls="--", color="#16a34a", lw=1.4, zorder=1,
         label="Dense-only OLS fit (compute-priced schedule)")
 
@@ -39,10 +39,10 @@ ax.scatter([d["act"] for d in moe], [d["med"] for d in moe],
            edgecolor="#1a1c20", linewidth=0.4, label="MoE (12)")
 
 r1 = next(d for d in lev if d["model"] == "DeepSeek R1")
-r1_line = 10 ** (-1.687 + 0.796 * math.log10(r1["act"]))
+r1_line = 10 ** (-1.585 + 0.735 * math.log10(r1["act"]))
 ax.plot([r1["act"], r1["act"]], [r1_line, r1["med"]],
         color="#92400e", lw=1.1, ls=":")
-ax.annotate("6.6x above\ndense line",
+ax.annotate("6.5x above\ndense line",
             xy=(r1["act"], (r1["med"] * r1_line) ** 0.5),
             xytext=(58, 1.55), fontsize=8, color="#92400e",
             arrowprops=dict(arrowstyle="-", color="#92400e", lw=0.8))
