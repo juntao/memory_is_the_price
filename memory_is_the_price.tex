@@ -234,9 +234,7 @@ For each model we recorded total parameters, active parameters per token,
 expert count $E$, and routing top-$k$, verified directly against the model
 repository's HuggingFace \path{config.json} (fetched the same
 day)~\cite{hf_scout,hf_maverick,hf_qwen,hf_kimi,hf_oss,hf_glm,hf_minimax,hf_r1}.
-This verification surfaced one correction to commonly cited
-figures: GLM-4.5 has 160 routed experts (\path{n_routed_experts=160}), not
-128. Dense models take active = total and $E/k = 1$.
+Dense models take active = total and $E/k = 1$.
 
 \subsection{Verification pass}
 
