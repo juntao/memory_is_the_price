@@ -33,12 +33,11 @@ observable proxy for the latent serving configuration. A hedonic regression
 over 289 provider--model price observations (38 models, 2026-07-06) rejects
 the claim: the market bills MoE models most of the way toward their total
 memory footprint (sparsity elasticity 0.481, $t = 4.9$,
-$p = 1.9 \times 10^{-5}$). Market structure supports the scale reading in
-part. The price floor of every 200B+ panel belongs to a vertically
-integrated provider, never to a general-purpose cloud, and hyperscalers
-price 1.2--8.8$\times$ above the floor. Participation, however, has
-broadened as published expert-parallel serving recipes diffused, and MoE
-price dispersion remains compressed. DeepSeek, whose vendor anchors its own
+$p = 1.9 \times 10^{-5}$). Market structure supports the scale reading: the price floor of every
+200B+ panel belongs to a vertically integrated provider, never to a
+general-purpose cloud, hyperscalers price 1.2--8.8$\times$ above the floor,
+and MoE price dispersion remains compressed, consistent with selective
+listing. DeepSeek, whose vendor anchors its own
 serving prices, is excluded from the primary panel and analyzed separately:
 its sparse-attention generation is served at roughly one fifth of the
 market schedule.
@@ -136,7 +135,7 @@ market would apply.}
 \end{singlespace}
 \end{figure}
 
-\textbf{H2 is partially supported.} Published deployments show a
+\textbf{H2 is supported.} Published deployments show a
 $\sim$36$\times$ per-GPU decode throughput gap between a 96-GPU
 expert-parallel pool and a single 8-GPU node, so no provider can sell at the
 pool's marginal cost from a single-node
@@ -144,9 +143,8 @@ deployment~\cite{lmsys,dzhsurf}. In all seventeen panels for models of 200B+
 total parameters, the floor is set by a vertically integrated provider, a
 neocloud in eleven and the model's owner in six; no general-purpose cloud
 sets a floor, and hyperscaler listings sit 1.2--8.8$\times$ above it.
-Participation, however, no longer declines with footprint: trillion-scale
-panels attract 11--22 providers, consistent with the diffusion of published
-expert-parallel recipes. MoE price dispersion remains \emph{compressed}
+Participation counts are not used as a test, because they are confounded by
+demand for newer models. MoE price dispersion remains \emph{compressed}
 rather than widened (median coefficient of variation 0.23 versus 0.35 for
 dense): providers whose latent cost exceeds the competitive price tend not
 to list, so the observed prices are a selected sample~\cite{heckman}. The

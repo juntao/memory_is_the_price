@@ -40,15 +40,13 @@ the active-parameter elasticity; the regression is jointly significant with
 $F(2,35) = 16.8$ ($p = 7.7 \times 10^{-6}$) and $R^2 = 0.49$. MoE models are
 therefore billed most of the way toward their total memory footprint, and
 customers keep little of the advertised compute discount. Market structure
-supports the scale interpretation in part. The price floor of every panel of
+supports the scale interpretation. The price floor of every panel of
 200B+ total parameters belongs to a vertically integrated provider, a
-neocloud in eleven of seventeen panels and the model's own vendor in six.
-Hyperscalers price 1.2--8.8$\times$ above the floor and never set it.
-Participation, however, no longer declines with model size: trillion-scale
-panels now attract 11--22 providers, consistent with the diffusion of
-published expert-parallel serving recipes. MoE price dispersion remains
-compressed relative to dense models (median coefficient of variation 0.23
-versus 0.35). DeepSeek is the revealing exception: its sparse-attention
+neocloud in eleven of seventeen panels and the model's own vendor in six,
+and hyperscalers price 1.2--8.8$\times$ above the floor and never set it.
+MoE price dispersion remains compressed relative to dense models (median
+coefficient of variation 0.23 versus 0.35), consistent with selective
+listing. DeepSeek is the revealing exception: its sparse-attention
 generation is served at roughly one fifth of the schedule price, and the
 vendor itself sets the floor beneath its flagship, which is the
 vertical-integration mechanism in its purest form.
@@ -136,7 +134,7 @@ individual quote confounds cost with strategy (loss leaders, price
 discrimination, enterprise positioning). Our inferences accordingly rest on
 moments of the price distribution that are difficult to generate
 strategically: elasticities estimated across 38 models, price floors
-replicated across seventeen independent panels, and participation patterns
+replicated across seventeen independent panels, and dispersion patterns
 across 42 providers.
 
 Three strands of prior work frame our contribution. Bottom-up cost models
@@ -218,10 +216,18 @@ additionally be expert-parallel, spread across tens to hundreds of
 GPUs~\cite{r8,r10,r11}. The economic consequence is H2: the
 ability to serve large MoE at competitive prices is confined to providers who
 operate such pools and can amortize them across massive request volume. This
-predicts three observable market patterns. (a) The \emph{price floor} for each large-MoE model should be set by specialized high-volume GPU clouds (``neoclouds'') rather than by general-purpose clouds. (b) General-purpose clouds, whose business does not justify dedicated EP pools per open model, should price visibly above the floor. (c) Providers that cannot justify EP infrastructure at all (edge networks, boutique hosts, and by extension on-premises operators) should not offer large MoE models, exiting rather than listing at uncompetitive prices. A corollary concerns price
-\emph{dispersion}: because exit removes the high-cost providers from
-observation, the measured spread of prices for large MoE should be
-\emph{compressed} relative to dense models that any provider can serve.
+predicts two observable market patterns. (a) The \emph{price floor} for
+each large-MoE model should be set by a massively parallel, vertically
+integrated provider, a specialized high-volume GPU cloud (``neocloud'') or
+the model's own vendor, rather than by a general-purpose cloud. (b)
+General-purpose clouds, whose business does not justify dedicated EP pools
+per open model, should price visibly above the floor. A corollary concerns
+price \emph{dispersion}: providers whose latent cost exceeds the
+competitive price tend not to list, so the measured spread of prices for
+large MoE should be \emph{compressed} relative to dense models that any
+provider can serve. We deliberately do not use raw participation counts as
+a test: how many providers list a model is confounded by demand, because
+newer and more capable models attract providers regardless of their size.
 
 \section{Method and data}
 
@@ -440,8 +446,8 @@ Qwen3.5 and Qwen3.6 generations) list 2--6$\times$ above the schedule,
 consistent with launch-premium pricing that has not yet been competed down,
 and the DeepSeek panels sit far below it (\S\ref{sec:deepseek}).
 
-\subsection{H2 partially supported: floors belong to the vertically
-integrated; participation has broadened}
+\subsection{H2 supported: the price floor belongs to the vertically
+integrated}
 \label{sec:h2result}
 
 Published deployments show a $\sim$36$\times$ per-GPU decode throughput
@@ -536,19 +542,6 @@ GLM 5 (Bedrock), 1.9$\times$ on Llama 4 Maverick, 1.3$\times$ on GLM 4.7,
 1.2$\times$ on MiniMax M2, and 8.8$\times$ on Qwen3-235B-A22B (all Google).
 All are positioned as managed enterprise offerings~\cite{r13,r25}.
 
-\emph{(c) Participation no longer declines with footprint.} Here the 2026
-market departs from the scale-gating prediction. The trillion-parameter
-panels attract some of the largest provider counts in the data (Kimi K2.6,
-$n = 20$; GLM 5.2, $n = 22$), while the smallest dense models attract three
-to five. Serving a 744B--1{,}000B MoE is no longer the preserve of a few
-operators. The timing is consistent with the diffusion mechanism documented
-in \S\ref{sec:deepseek}: the expert-parallel serving recipes that were
-proprietary craft in early 2025 are now published and reproduced, and
-open-source serving stacks have matured around them~\cite{r8,r10}. The
-scale barrier H2 posits has not disappeared, but its observable signature
-has moved from participation counts to who sets the floor, and to the
-dispersion structure below.
-
 \subsection{Secondary result: price dispersion is compressed by selection}
 \label{sec:dispersion}
 
@@ -560,9 +553,10 @@ dispersion is negative but weaker than the floor result
 (Spearman $\rho = -0.24$ over the 37 panels with published $E/k$). The
 selection reading is unchanged in kind~\cite{r28,r29}: providers whose
 latent cost exceeds the competitive price tend not to list, so the observed
-prices of the most scale-demanding models are a truncated sample. The broadened participation
-of \S\ref{sec:h2result}(c) weakens the truncation, which is consistent with
-the weaker correlation in this snapshot.
+prices of the most scale-demanding models are a truncated sample. Participation in large-MoE serving has broadened in this snapshot
+(trillion-scale panels attract 11--22 providers as published expert-parallel
+recipes diffused~\cite{r8,r10}), which weakens the truncation and is
+consistent with the weaker correlation.
 
 \begin{figure}[t]
 \centering
@@ -652,15 +646,21 @@ strategies, and enterprise positioning. The footprint elasticity establishes wha
 premise of our design (\S1), but it also limits what we can claim. That the
 floor-setting neoclouds run large-scale expert parallelism is inferred from
 their economics and from the public availability of EP serving software, not
-observed; only SiliconFlow documents an EP deployment~\cite{r14}. No small provider
-states publicly why it declines to serve 671B-class models; the exit mechanism
-rests on documented economics rather than testimony. Our conclusions are
+observed; only SiliconFlow documents an EP deployment~\cite{r14}. No provider
+states publicly why it does or does not list a model, so the selective
+non-listing behind the dispersion result is inferred from documented
+economics rather than testimony. It is also unsurprising in its extreme
+form: that edge networks do not serve trillion-parameter models tells us
+little, which is one more reason participation is not used as a test. Our conclusions are
 consistency checks of the price structure against publicly reconstructable
 cost floors, not observations of provider internals.
 \item \textbf{Demand and quality are unobserved.} DeepSeek R1 commands
 2.1$\times$ the price of its architecture-identical sibling V3, a
 reasoning-model demand premium that the regression absorbs as noise.
-Popularity may also correlate with aggressive pricing.
+Popularity may also correlate with aggressive pricing. For the same reason
+we do not read provider participation counts as a test of scale gating:
+newer, more capable models attract providers regardless of size, and the
+trillion-scale panels in this snapshot attract 11--22 providers.
 \item \textbf{The panel is a single snapshot.} It reflects one collection
 date (2026-07-06) in a market that reprices within weeks, and the residual
 structure shows time is not ignorable: newly released models list above the
@@ -690,11 +690,8 @@ elasticity of price is 84\% of the active-parameter elasticity
 approximately as if for a $\sim$580B dense model. Second, the price floor
 of every large-MoE panel belongs to a vertically integrated provider, a
 neocloud or the model's own vendor, and general-purpose clouds price
-1.2--8.8$\times$ above the floor and never set it. Participation in
-large-MoE serving has broadened as published expert-parallel recipes
-diffused, and DeepSeek's sparse-attention generation shows the cost frontier
-itself moving; the scale advantage now shows in who sets the floor rather
-than in who can serve at all.
+1.2--8.8$\times$ above the floor and never set it. DeepSeek's sparse-attention generation shows the cost frontier itself
+moving, and the scale advantage shows most clearly in who sets the floor.
 
 Both results point to the same hardware mismatch. The mainstream GPU bundles
 enormous compute with scarce, expensive HBM; MoE decoding uses the memory

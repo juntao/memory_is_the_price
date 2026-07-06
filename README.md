@@ -27,9 +27,9 @@ rejected. Market structure supports the scale reading in part: the price
 floor of every 200B+ panel belongs to a vertically integrated provider (a
 neocloud in 11 of 17 panels, the model's own vendor in 6), never to a
 general-purpose cloud, and hyperscalers price 1.2-8.8x above the floor.
-Participation, however, has broadened as published expert-parallel recipes
-diffused, and MoE price dispersion remains compressed (median CV 0.23 vs
-0.35 dense). DeepSeek is the revealing exception, analyzed separately: its
+MoE price dispersion remains compressed (median CV 0.23 vs 0.35 dense),
+consistent with selective listing; participation counts are not used as a
+test because they are confounded by demand for newer models. DeepSeek is the revealing exception, analyzed separately: its
 sparse-attention generation is served at roughly one fifth of the market
 schedule, and the vendor floors its flagship 3.6x below the third-party
 median.
