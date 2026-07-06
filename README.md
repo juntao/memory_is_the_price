@@ -50,6 +50,38 @@ median.
 | `fig2_dispersion.{pdf,svg}` | Figure 2: within-model price dispersion (CV) by panel |
 | `fig3_floors.{pdf,svg}` | Figure 3: per-panel provider quotes; every 200B+ floor is vertically integrated |
 
+## Snapshot funnel (archived 2026-07-06)
+
+The panel construction is a mechanical funnel. The counts below are the
+verbatim output of `python3 analysis.py` (first section) against the
+archived snapshot, recorded here on 2026-07-06 so that future snapshots can
+be compared line by line:
+
+```
+========================================================================
+Section 3.1 -- panel construction funnel
+========================================================================
+candidate models fetched:                 129
+raw endpoint rows:                        532
+after zero-price/deranked exclusion:      478 rows
+after one-quote-per-provider dedup:       466 rows
+panels with >= 3 providers:               50
+category-excluded panels (VL/merge/alias): 4 -> ['deepseek/deepseek-chat', 'gryphe/mythomax-l2-13b', 'qwen/qwen3-vl-235b-a22b-instruct', 'qwen/qwen3-vl-30b-a3b-instruct']
+qualifying panels:                        46 (36 MoE + 10 dense)
+DeepSeek panels excluded from primary:    8
+primary panel:                            38 models
+
+========================================================================
+Section 4.1 -- hedonic regression
+```
+
+To collect a fresh snapshot and compare, run `python3 collect_snapshot.py`
+(writes `pd_prices_<YYYYMMDD>.json` and prints the live candidate funnel:
+models listed, with HuggingFace weights, non-free, non-code-specialized),
+then point `analysis.py` at the new file. The market reprices within weeks,
+so a fresh run yields a new snapshot rather than a reproduction; the
+archived file reproduces the published statistics exactly.
+
 ## Reproduce
 
 ```sh
