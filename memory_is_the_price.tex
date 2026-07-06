@@ -328,10 +328,13 @@ of 5.0$\times$, and the excess grows with the model's sparsity ratio.
 \includegraphics[width=\linewidth]{fig1_price_level.pdf}
 \caption{The figure plots median output price against active parameters per
 token for the 38 primary-panel models on log-log axes, with dense models as
-green circles and MoE models as red triangles; selected models are labeled.
-The dashed line is the dense-only OLS fit, which is the price schedule a
-compute-priced market would apply. Every MoE model sits on or above the
-line, and the median MoE model sits 5$\times$ above it.}
+green circles and MoE models as red triangles. Labels follow a fixed rule:
+every dense model is labeled, as is every MoE model that sits at least six
+times above the dense-only line or carries at least 1{,}000B total
+parameters, and exactly coincident points share one label. The dashed line
+is the dense-only OLS fit, which is the price schedule a compute-priced
+market would apply. Every MoE model sits on or above the line, and the
+median MoE model sits 5$\times$ above it.}
 \label{fig:level}
 \end{figure}
 

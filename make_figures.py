@@ -58,24 +58,43 @@ ax.scatter([d[1] for d in dense], [d[3] for d in dense], s=42, marker="o",
 ax.scatter([m[1] for m in moe], [m[3] for m in moe], s=50, marker="^",
            color="#dc2626", zorder=3, edgecolor="#1a1c20", linewidth=0.4,
            label=f"MoE ({len(moe)})")
-LABELS = {
+# labeling rule (stated in the caption): every dense model is labeled, and
+# every MoE model that sits at least 6x above the dense-only line or has at
+# least 1,000B total parameters; exactly coincident points share one label
+OFFSETS = {
  "GLM 5.1": (-7, 2, "right"), "GLM 5.2": (8, -1, "left"),
  "Kimi K2.6": (-8, -3, "right"), "Qwen3.5 397B-A17B": (-8, -2, "right"),
  "Qwen3.6 27B": (7, 1, "left"), "Kimi K2.5": (7, -8, "left"),
  "Qwen3.5 122B-A10B": (-7, 0, "right"), "Qwen3.5 35B-A3B": (7, 5, "left"),
- "MiniMax M2.5": (7, 1, "left"), "Qwen3.6 35B-A3B": (7, -2, "left"),
- "MiMo V2.5 Pro": (7, 1, "left"), "Qwen3 235B-A22B": (7, -2, "left"),
- "Llama 3.3 70B": (7, 1, "left"), "GPT-OSS 120B": (-7, -2, "right"),
- "MiMo V2.5": (7, -6, "left"), "Gemma 4 26B-A4B": (-7, 0, "right"),
- "Qwen3 30B-A3B": (-7, 2, "right"), "GPT-OSS 20B": (-7, -4, "right"),
+ "Qwen3.6 35B-A3B": (7, -2, "left"),
+ "MiniMax M2/M2.5/M2.7": (7, 1, "left"),
+ "Qwen3 235B-A22B Thinking": (7, -8, "left"),
+ "MiMo V2.5 Pro": (7, 1, "left"),
+ "Llama 3.3 70B": (7, 1, "left"), "Llama 3.1 70B": (7, -8, "left"),
  "Llama 3.1 8B": (7, -2, "left"), "Qwen3.5 9B": (7, 2, "left"),
- "Gemma 4 31B": (7, 2, "left"),
+ "Gemma 4 31B": (7, 2, "left"), "Gemma 3 27B": (7, -8, "left"),
+ "Mistral Small 3": (-7, -6, "right"), "Qwen3 32B": (-7, 2, "right"),
+ "Qwen3.5 27B": (-7, 5, "right"), "Qwen3 Next 80B-A3B": (7, 2, "left"),
 }
+lab_pts = {}
 for name, act, tot, med in pts:
-    if name in LABELS:
-        dx, dy, ha = LABELS[name]
-        ax.annotate(name, (act, med), textcoords="offset points",
-                    xytext=(dx, dy), fontsize=6, ha=ha, color="#1a1c20")
+    is_dense = (act == tot)
+    line = 10 ** (b0 + b1 * math.log10(act))
+    if is_dense or med / line >= 6 or tot >= 1000:
+        key = (round(math.log10(act), 3), round(math.log10(med), 3))
+        lab_pts.setdefault(key, []).append((name, act, med))
+for key, group in lab_pts.items():
+    names = [g[0] for g in group]
+    if len(names) > 1:
+        pre = names[0].rsplit(" ", 1)[0]
+        label = (pre + " " + "/".join(n.rsplit(" ", 1)[1] for n in names)
+                 if all(n.startswith(pre) for n in names) else " / ".join(names))
+    else:
+        label = names[0]
+    act, med = group[0][1], group[0][2]
+    dx, dy, ha = OFFSETS.get(label, (7, 1, "left"))
+    ax.annotate(label, (act, med), textcoords="offset points",
+                xytext=(dx, dy), fontsize=6, ha=ha, color="#1a1c20")
 ax.set_xscale("log"); ax.set_yscale("log")
 ax.set_xlabel("Active parameters per token (billions, log scale)", fontsize=9)
 ax.set_ylabel(r"Median output price (\$/M tokens, log scale)", fontsize=9)
@@ -116,7 +135,7 @@ ax.grid(True, axis="y", ls=":", lw=0.5, alpha=0.5)
 ax.legend(handles=[Patch(facecolor="#dc2626", hatch="//", edgecolor="#1a1c20",
                          label="MoE"),
                    Patch(facecolor="#16a34a", edgecolor="#1a1c20",
-                         label="Dense")], fontsize=8, loc="upper left")
+                         label="Dense")], fontsize=8, loc="upper right")
 ax.set_ylim(0, max(r[1] for r in rows) * 1.18)
 fig.tight_layout()
 fig.savefig("fig2_dispersion.pdf"); fig.savefig("fig2_dispersion.svg")
@@ -147,6 +166,7 @@ ax.set_yticks(range(len(big)))
 ax.set_yticklabels(
     [f"{ARCH[s]['model']} ({ARCH[s]['total_params_b']:,.0f}B)"
      for s in reversed(big)], fontsize=7)
+ax.set_ylim(-0.8, len(big) + 1.6)
 ax.set_xscale("log")
 ax.set_xlim(0.07, 12)
 ax.set_xticks([0.1, 0.3, 1, 3, 10]); ax.set_xticklabels(["0.1","0.3","1","3","10"])
@@ -161,7 +181,7 @@ ax.legend(handles=[
            markeredgecolor="#1a1c20", markersize=7, label="hyperscaler listing"),
     Line2D([0], [0], marker="o", color="none", markerfacecolor="none",
            markeredgecolor="#5b6470", markersize=6.5, label="other providers")],
-    fontsize=7.5, loc="lower right")
+    fontsize=7.5, loc="upper left")
 fig.tight_layout()
 fig.savefig("fig3_floors.pdf"); fig.savefig("fig3_floors.svg")
 print("wrote fig3_floors")
