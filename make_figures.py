@@ -116,7 +116,7 @@ ax.grid(True, axis="y", ls=":", lw=0.5, alpha=0.5)
 ax.legend(handles=[Patch(facecolor="#dc2626", hatch="//", edgecolor="#1a1c20",
                          label="MoE"),
                    Patch(facecolor="#16a34a", edgecolor="#1a1c20",
-                         label="Dense")], fontsize=8)
+                         label="Dense")], fontsize=8, loc="upper left")
 ax.set_ylim(0, max(r[1] for r in rows) * 1.18)
 fig.tight_layout()
 fig.savefig("fig2_dispersion.pdf"); fig.savefig("fig2_dispersion.svg")
