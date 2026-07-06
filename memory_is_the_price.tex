@@ -86,8 +86,7 @@ unit of active compute, the MoE model is roughly eleven times more
 expensive. A second irregularity compounds the first: prices for the
 \emph{same} model differ substantially across providers. Google lists
 Qwen3-235B-A22B at \$0.88 per million output tokens while DeepInfra lists it
-at \$0.10, a spread of nearly nine times on identical
-weights~\cite{r12,r13}.
+at \$0.10, a spread of nearly nine times on identical weights.
 
 These patterns cannot be explained from provider disclosures, because there
 are almost none. The production systems behind commercial inference endpoints
@@ -478,7 +477,12 @@ the lowest price is posted by a vertically integrated provider: a neocloud
 in eleven panels (DeepInfra in six, with Novita, StreamLake, Mara, ModelRun,
 and DigitalOcean setting the others) and the model's own vendor in six
 (Xiaomi, MiniMax, and Alibaba each twice). No general-purpose cloud sets a
-floor in any panel (Table~\ref{tab:floors}). Figure~\ref{fig:floors} plots
+floor in any panel (Table~\ref{tab:floors}). DeepInfra, the most frequent
+floor setter, is the archetype of the class: it raised \$107M in Series~B
+funding, owns and operates its GPU infrastructure across eight U.S.\ data
+centers, and publishes owned-hardware economics of $\sim$\$1.98 per
+GPU-hour against \$6.50 for equivalent rented public-cloud
+capacity~\cite{r12}. Figure~\ref{fig:floors} plots
 every provider quote in these panels and marks each panel's floor.
 
 \begin{table}[t]
