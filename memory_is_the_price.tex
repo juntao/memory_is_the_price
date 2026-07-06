@@ -22,24 +22,36 @@ Economics of Mixture-of-Experts Inference}
 \maketitle
 
 \begin{abstract}
-Frontier language models have shifted decisively to sparse Mixture-of-Experts
-(MoE) architectures, which activate only a small fraction of their parameters
-per token and are widely claimed to cost proportionally less to serve. This
-claim is hard to check directly, because the production systems behind
-commercial inference endpoints are undisclosed: providers publish per-token
-prices, but almost never the cluster scale, parallelism, served precision,
-batch size, utilization, or margin of any endpoint. The serving configuration
-is thus a latent variable, and posted prices are its observable proxy: in a
-competitive market, sustained price structure identifies cost structure. From
-OpenRouter's public endpoints API we assemble a panel of 119 provider--model
-price observations covering 18 open-weight models (12 MoE, 6 dense), joined to
-architecture parameters verified against each model's HuggingFace
-configuration. The prices contradict the claim. A hedonic log-log regression
-of median output price on active parameters and the sparsity ratio yields
-$R^2 = 0.88$ with a sparsity elasticity of 0.541 ($t = 8.7$), which is 83\% of the active-parameter elasticity. MoE models are therefore billed most of the way toward their total memory footprint, and customers keep almost none of the advertised compute discount. The structure of the market explains why. Realizing MoE's compute savings requires expert-parallel decoding pools far larger than a single node. As a result, the price floor of every large-MoE panel is set by a vertically integrated provider, a neocloud in six of seven panels and the model's own vendor in the seventh, and hyperscalers list identical models at 2--5$\times$ that floor. Provider participation collapses with model footprint, which compresses the observed price dispersion through selection.
-We conclude that MoE serving economics are governed by memory capacity and
-bandwidth rather than FLOPS, and that the hardware suited to them is
-decode-oriented: large commodity memory, modest compute, moderate bandwidth.
+Sparse Mixture-of-Experts (MoE) models are widely claimed to cost what their
+\emph{active} compute costs. We test this claim against the LLM serving
+market itself. Because providers disclose almost nothing about their
+production systems, we treat posted prices as an observable proxy for the
+latent serving configuration. From OpenRouter's public endpoints API we
+assemble a snapshot (2026-07-06) of every open-weight, general-purpose model
+served by at least three providers: 46 models, of which 38 form the primary
+panel of 289 provider--model observations from 42 providers, with
+architecture verified against each model's HuggingFace repository. The
+DeepSeek panels are excluded from the primary specification because the
+vendor anchors its own serving prices, and are analyzed separately. The
+prices contradict the compute-pricing claim. A hedonic log-log regression of
+median output price on active parameters and the sparsity ratio yields a
+sparsity elasticity of 0.481 ($t = 4.9$, $p = 1.9 \times 10^{-5}$), 84\% of
+the active-parameter elasticity; the regression is jointly significant with
+$F(2,35) = 16.8$ ($p = 7.7 \times 10^{-6}$) and $R^2 = 0.49$. MoE models are
+therefore billed most of the way toward their total memory footprint, and
+customers keep little of the advertised compute discount. Market structure
+supports the scale interpretation in part. The price floor of every panel of
+200B+ total parameters belongs to a vertically integrated provider, a
+neocloud in eleven of seventeen panels and the model's own vendor in six.
+Hyperscalers price 1.2--8.8$\times$ above the floor and never set it.
+Participation, however, no longer declines with model size: trillion-scale
+panels now attract 11--22 providers, consistent with the diffusion of
+published expert-parallel serving recipes. MoE price dispersion remains
+compressed relative to dense models (median coefficient of variation 0.23
+versus 0.35). DeepSeek is the revealing exception: its sparse-attention
+generation is served at roughly one fifth of the schedule price, and the
+vendor itself sets the floor beneath its flagship, which is the
+vertical-integration mechanism in its purest form.
 \end{abstract}
 
 \section{Introduction}
@@ -66,16 +78,16 @@ Sparsity is marketed as an efficiency technology. The paper that popularized
 the design promised ``outrageous numbers of parameters'' at ``a constant computational cost''~\cite{r30}, and on compute-based reasoning a
 671B-parameter model that computes with only 37B parameters per token should
 cost about as much to serve as a 37B dense model~\cite{r31,r32}. Market prices
-do not bear this out. At the time of our data collection, DeepSeek R1 (37B
-active) commanded a median output price of \$2.39 per million tokens across
-providers, while Llama-3.3-70B, a dense model with \emph{twice} R1's active
-parameters, cost \$0.71. Per unit of active compute, the MoE model is roughly
-seven times more expensive. A second irregularity compounds the first: prices
-for the \emph{same} model differ substantially across providers (Microsoft
-Azure and Amazon Bedrock list DeepSeek R1 at \$5.40 per million output tokens
-while the cheapest specialized GPU cloud lists it at
-\$2.15~\cite{r12,r13}), and the set of providers willing to serve a model at
-all shrinks sharply as models grow.
+do not bear this out. At the time of our data collection, Kimi K2.6 (one
+trillion total parameters, 32B active) commanded a median output price of
+\$3.55 per million tokens across twenty providers, while Llama-3.3-70B, a
+dense model with more than twice K2.6's active parameters, cost \$0.72. Per
+unit of active compute, the MoE model is roughly eleven times more
+expensive. A second irregularity compounds the first: prices for the
+\emph{same} model differ substantially across providers. Google lists
+Qwen3-235B-A22B at \$0.88 per million output tokens while DeepInfra lists it
+at \$0.10, a spread of nearly nine times on identical
+weights~\cite{r12,r13}.
 
 These patterns cannot be explained from provider disclosures, because there
 are almost none. The production systems behind commercial inference endpoints
@@ -98,7 +110,7 @@ from any \emph{particular} commercial endpoint to its deployment: which
 provider runs expert parallelism at what scale, at what batch size and
 utilization, at what unit cost. Engineering blogs occasionally reveal
 fragments (Cloudflare, for instance, has described the multi-node system
-behind its largest models~\cite{r19}), but for the 35 providers in our
+behind its largest models~\cite{r19}), but for the 42 providers in our
 panel, the economically decisive parameters are unobservable.
 
 The one thing every provider must publish is a price. This turns an
@@ -216,165 +228,228 @@ observation, the measured spread of prices for large MoE should be
 
 \subsection{Price panel}
 
-We collected per-provider input and output prices for 27 candidate open-weight
-models on 2026-07-01 from OpenRouter's public endpoints API
-(\path{openrouter.ai/api/v1/models/<slug>/endpoints}), the data source
-underlying its public model pages, cross-checked against Artificial Analysis
-provider pages and providers' own published price lists~\cite{r1,r2}. We
-excluded free tiers, zero-price rows, bring-your-own-key listings, and
-deprecated or deranked endpoints. Three independent collection agents gathered
-123 raw observations. One duplicate listing and one stale row were removed
-(\S\ref{sec:verify}), and models left with fewer than three qualifying
-providers were then dropped, which excluded one small panel. The final panel
-comprises \textbf{119 observations across 18 models (12 MoE spanning
-sparsity ratios $E/k$ from 4 to 128, and 6 dense) from 35 distinct
+We collected the complete endpoint listings for open-weight models from
+OpenRouter's public endpoints API on 2026-07-06, the data source underlying
+its public model pages~\cite{r1,r2}. The candidate universe is mechanical
+rather than curated: every model listed with a HuggingFace weights
+repository qualifies as a candidate, excluding code-specialized models,
+vision-language variants, community merges, and alias listings that point to
+the same weights as a versioned listing. This yields 129 candidate models
+and 532 raw endpoint rows. We excluded free tiers, zero-price rows, and
+deranked or offline endpoints. The unit of observation is one quote per
+provider per model; where a provider lists multiple endpoints for the same
+model, the cheapest is kept, which is the price a customer comparing
+providers would face. Models with fewer than three qualifying providers were
+then dropped, and the panel values were spot-verified against provider
+price pages (\S\ref{sec:verify}). The result is 46 qualifying panels comprising 347
+provider--model observations.
+
+The primary specification excludes the seven DeepSeek panels. The exclusion
+is on identifying-assumption grounds stated in \S\ref{sec:methods}, not on
+fit. DeepSeek is the one vendor that both anchors the market price of its
+own models and publishes its serving stack to third parties. Its panels
+therefore do not measure the competitive third-party serving process that
+identifies cost structure. Section~\ref{sec:deepseek} analyzes the DeepSeek panels
+against the schedule estimated without them. The primary panel is
+\textbf{38 models (28 MoE spanning expert-to-activation ratios $E/k$ from 4
+to 128, and 10 dense) comprising 289 observations from 42 distinct
 providers}.
 
 \subsection{Architecture data}
 
 For each model we recorded total parameters, active parameters per token,
-expert count $E$, and routing top-$k$, verified directly against the model
-repository's HuggingFace \path{config.json} (fetched the same
-day)~\cite{hf_scout,hf_maverick,hf_qwen,hf_kimi,hf_oss,hf_glm,hf_minimax,hf_r1}.
-Dense models take active = total and $E/k = 1$.
+expert count $E$, and routing top-$k$, verified against the model
+repository's HuggingFace \path{config.json} and model card (fetched at
+collection time)~\cite{hf_scout,hf_maverick,hf_qwen,hf_kimi,hf_oss,hf_glm,hf_minimax,hf_r1}.
+The archived architecture file records the repository for every panel model.
+Two verification notes apply. First, safetensors parameter counts are
+unreliable for quantization-packed checkpoints, so official model-card
+figures take precedence; DeepSeek V4 Flash, for example, is 284B total
+parameters by its card although its packed checkpoint stores fewer tensor
+elements. Second, MiniMax M3 does not publish its expert count, so it is
+excluded from the analyses that require $E/k$. Dense models take active =
+total and $E/k = 1$.
 
 \subsection{Verification pass}
 \label{sec:verify}
 
-Two mechanical rules produce the final panel from the raw rows, and both
-are checkable against the archived data. First, the unit of observation is
-one quote per provider per model; where a provider lists multiple endpoints
-for the same model, the cheapest is kept, which is the price a customer
-comparing providers would face. Exactly one pair is affected, DeepInfra's
-fp8 and bf16 endpoints for Llama-3.1-8B, and no other duplicate pair exists
-in the panel. Second, delisted rows are dropped; exactly one was found, a
-SiliconFlow Qwen2.5-7B price, and its removal left that panel below the
-three-provider threshold and removed the model from the study. In addition,
-the panel's single most extreme value, DeepInfra's \$0.10/M output price on
-Qwen3-235B-A22B, roughly eight times below its panel median, was confirmed
-on DeepInfra's own price page~\cite{r18}. Quantization does not explain the
-widest within-model spreads: in the second- and third-widest panels
-(Llama-3.1-8B and Llama-3.3-70B), the minimum and maximum prices are both
-fp8 offerings, and the widest (DeepSeek V3) separates a neocloud's
-discounted listing from a hyperscaler's managed enterprise offering.
+Two mechanical rules produce the final panel from the raw rows, and both are
+checkable against the archived data: the one-quote-per-provider rule and the
+three-provider threshold stated above. In addition, the panel's single most
+extreme value, DeepInfra's \$0.10/M output price on Qwen3-235B-A22B, roughly
+eight times below its panel median, was confirmed on DeepInfra's own price
+page~\cite{r18}. Quantization does not explain the widest within-model
+spreads: in the widest panels the minimum and maximum prices are posted at
+comparable quantizations, and the largest spreads separate neocloud
+listings from hyperscaler managed offerings.
 
 \subsection{Statistical methods}
+\label{sec:methods}
 
 To test H1 we compute each model's median output price across providers
 (robust to loss-leaders and premium listings) and fit the hedonic
-regression~\eqref{eq:hedonic} by ordinary least squares ($n = 18$). To test H2 (\S\ref{sec:h2}) we proceed in four steps. We identify each panel's floor-setting provider and its class. We compare hyperscaler and GPU-cloud medians within panels listed on both. We relate provider participation to model footprint. Finally, we measure within-model dispersion (the coefficient of variation of output price) for MoE versus dense panels, including a robustness split that excludes hyperscaler and edge endpoints. All statistics are computed
-deterministically from the archived JSON with no model-generated numbers.
+regression~\eqref{eq:hedonic} by ordinary least squares ($n = 38$). The
+identifying assumption is that competing third parties' posted prices reveal
+the cost structure of serving. This assumption fails for DeepSeek: the
+vendor lists its own models at strategically chosen prices, publicly commits
+to commoditizing the serving of its own models, and publishes its serving
+recipes~\cite{r10,r8}, so third-party quotes for DeepSeek models are
+anchored rather than competitive. We therefore estimate the schedule without
+the DeepSeek panels. Three robustness variants are reported: the full
+46-model universe, the panel with every vendor's own endpoints removed
+(which shows the exclusion is not doing hidden work), and the DeepSeek
+panels evaluated against the primary schedule (\S\ref{sec:deepseek}). We report standard
+errors, $t$-statistics, and $p$-values for every coefficient, and the
+regression $F$-statistic. To test H2 (\S\ref{sec:h2}) we proceed as before:
+we identify each panel's floor-setting provider and its class, compare
+hyperscaler listings with panel floors, relate provider participation to
+model footprint, and measure within-model dispersion for MoE versus dense
+panels. All statistics are computed deterministically from the archived
+JSON by \path{analysis.py}, with no model-generated numbers.
 
 \section{Results}
 
 \subsection{H1 rejected: the market prices memory footprint, not active compute}
 \label{sec:h1result}
 
-Figure~\ref{fig:level} plots median output price against active parameters on
-log-log axes. The six dense models trace a clean price line
-($\log_{10} p = -1.585 + 0.735\,\log_{10}(\text{active})$). Every MoE model
-sits above it, by 2.2$\times$ to 8.5$\times$, and the excess grows with the
-model's sparsity ratio.
+Figure~\ref{fig:level} plots median output price against active parameters
+on log-log axes. The ten dense models trace a price line with a slope near
+unit elasticity ($\log_{10} p = -1.691 + 0.950\,\log_{10}(\text{active})$).
+Every MoE model sits above it, by 1.0$\times$ to 21.6$\times$ with a median
+of 5.0$\times$, and the excess grows with the model's sparsity ratio.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig1_price_level.pdf}
 \caption{The figure plots median output price against active parameters per
-token for all 18 models on log-log axes, with dense models as green circles
-and MoE models as red triangles. The dashed line is the dense-only OLS fit,
-which is the price schedule a compute-priced market would apply to all
-models. Every MoE
-model sits above the line, and the vertical gap for DeepSeek R1 (6.5$\times$)
-is annotated.}
+token for the 38 primary-panel models on log-log axes, with dense models as
+green circles and MoE models as red triangles; selected models are labeled.
+The dashed line is the dense-only OLS fit, which is the price schedule a
+compute-priced market would apply. Every MoE model sits on or above the
+line, and the median MoE model sits 5$\times$ above it.}
 \label{fig:level}
 \end{figure}
 
 The regression quantifies the pattern (Table~\ref{tab:ols}) and rejects H1
-decisively. Compute pricing predicts $c_2 = 0$; the estimate is 0.541 with
-$t = 8.7$. The sparsity-ratio elasticity is large, precisely estimated, and
-close to the active-parameter elasticity: $c_2/c_1 = 0.83$. The sparsity
-ratio, which H1 predicts to be free, is in fact priced at 83\% of the rate of
-active compute. The market bills MoE models most of the way toward their total
-memory footprint, so a 671B-total/37B-active model is billed roughly like a
-$\sim$410B-equivalent dense model rather than the 37B model its compute would
-suggest.
+(\S\ref{sec:h1}) decisively. Compute pricing predicts $c_2 = 0$; the estimate is 0.481 with
+$t = 4.9$ and $p = 1.9 \times 10^{-5}$. The regression is jointly
+significant, with $F(2,35) = 16.8$ and $p = 7.7 \times 10^{-6}$, and
+explains about half of the variance in log prices ($R^2 = 0.49$). The
+sparsity-ratio elasticity is 84\% of the active-parameter elasticity:
+$c_2/c_1 = 0.84$. The sparsity ratio, which H1 predicts to be free, is in
+fact priced at 84\% of the rate of active compute. The market bills MoE
+models most of the way toward their total memory footprint, so a
+1{,}000B-total/32B-active model such as Kimi K2.6 is billed roughly like a
+$\sim$580B dense model rather than the 32B model its compute would suggest.
+
+The result is robust to the construction of the panel. Including the
+DeepSeek panels moves the ratio to 0.85 ($n = 46$, $c_2 = 0.391$,
+$p = 2.0 \times 10^{-4}$, $R^2 = 0.37$). Removing every vendor's own
+endpoints from every panel leaves it at 0.84 ($n = 34$, $c_2 = 0.468$,
+$p = 1.3 \times 10^{-4}$, $R^2 = 0.47$), which shows that the DeepSeek
+exclusion, and owner listings generally, are not driving the estimate.
 
 \begin{table}[t]
 \centering
-\caption{The table reports OLS estimates of the hedonic regression of log
-median output price on architecture ($n = 18$ models, $R^2 = 0.875$). H1
-(compute pricing) predicts $c_2 = 0$, and pure footprint pricing predicts
-$c_2 = c_1$; the measured ratio is $c_2/c_1 = 0.83$.}
+\caption{The table reports OLS estimates of the hedonic
+regression~\eqref{eq:hedonic} on the primary panel ($n = 38$ models,
+$R^2 = 0.490$, $F(2,35) = 16.8$ with $p = 7.7 \times 10^{-6}$). H1 (compute
+pricing) predicts $c_2 = 0$, and pure footprint pricing predicts
+$c_2 = c_1$; the measured ratio is $c_2/c_1 = 0.84$.}
 \label{tab:ols}
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-Coefficient & Estimate & Std.\ err. & $t$ \\
+Coefficient & Estimate & Std.\ err. & $t$ & $p$ \\
 \midrule
-$c_1$: log(active parameters) & $+0.650$ & 0.093 & 7.0 \\
-$c_2$: log(total/active)      & $+0.541$ & 0.062 & 8.7 \\
+$c_1$: log(active parameters) & $+0.572$ & 0.138 & 4.1 & $2.1 \times 10^{-4}$ \\
+$c_2$: log(total/active)      & $+0.481$ & 0.097 & 4.9 & $1.9 \times 10^{-5}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:panel} reports the underlying panel. Per active parameter, MoE
-models cost 3--12$\times$ more than dense models. The per-model premium over the dense line tracks the sparsity ratio: Kimi K2 (31$\times$ sparse) sits 7.5$\times$ above the line, MiniMax M2 (23$\times$) sits 8.5$\times$ above, and GPT-OSS-120B (23$\times$) sits 5.8$\times$ above. The mildly sparse Llama-4 Scout and GPT-OSS-20B (6$\times$) sit $\sim$2.2$\times$ above.
+Table~\ref{tab:panel} reports the underlying panel. Per active parameter,
+the MoE models cost up to 40$\times$ more than the dense reference (Qwen3.5
+35B-A3B at \$0.42 per active-parameter-billion against $\sim$\$0.010 for the
+Llama dense models). The premium over the dense line tracks the sparsity
+ratio: the extremely sparse small MoE models (Qwen3.5 and Qwen3.6 35B-A3B,
+Qwen3 Next 80B-A3B) sit 17--22$\times$ above the line, the frontier
+flagships (Kimi K2.6, GLM 5.1/5.2) sit 4--7$\times$ above, and the mildly
+sparse Llama 4 Scout sits 1.5$\times$ above.
 
 \begin{table}[t]
 \centering
-\caption{The table reports, for the 18-model panel, the median output price
-across providers (2026-07-01), the model architecture, the price per
-active-parameter-billion, and the multiple over the dense-only price line.
-Dense models, marked ``--'', define the reference line.}
+\caption{The table reports, for the 38-model primary panel, the median
+output price across providers (2026-07-06), the model architecture, the
+price per active-parameter-billion, and the multiple over the dense-only
+price line. Dense models, marked ``--'', define the reference line.}
 \label{tab:panel}
 \small
-\begin{tabular}{lrrrrrl}
+\begin{tabular}{lrrrrrr}
 \toprule
-Model & Median \$/M out & Active (B) & Total (B) & \$/active-B & $\times$ dense line & MoE \\
+Model & Med \$/M & Act (B) & Tot (B) & \$/act-B & $\times$ line & $n$ \\
 \midrule
-Kimi K2          & 2.50  & 32   & 1{,}000 & 0.078 & 7.5 & yes \\
-DeepSeek R1      & 2.39  & 37   & 671     & 0.065 & 6.5 & yes \\
-DeepSeek V3.1    & 1.30  & 37   & 671     & 0.035 & 3.5 & yes \\
-MiniMax M2       & 1.20  & 10   & 230     & 0.120 & 8.5 & yes \\
-DeepSeek V3      & 1.12  & 37   & 671     & 0.030 & 3.0 & yes \\
-GLM 4.5 Air      & 0.98  & 12   & 106     & 0.082 & 6.1 & yes \\
-Llama 4 Maverick & 0.87  & 17   & 400     & 0.051 & 4.2 & yes \\
-Qwen3 235B-A22B  & 0.78  & 22   & 235     & 0.035 & 3.1 & yes \\
-GPT-OSS 120B     & 0.50  & 5.1  & 117     & 0.098 & 5.8 & yes \\
-Llama 4 Scout    & 0.47  & 17   & 109     & 0.027 & 2.2 & yes \\
-Qwen3 30B-A3B    & 0.30  & 3.3  & 30.5    & 0.091 & 4.8 & yes \\
-GPT-OSS 20B      & 0.15  & 3.6  & 21      & 0.042 & 2.2 & yes \\
-Llama 3.3 70B    & 0.71  & 70.6 & 70.6    & 0.010 & -- & no  \\
-Qwen2.5 72B      & 0.50  & 72.7 & 72.7    & 0.007 & -- & no  \\
-Gemma 3 12B      & 0.29  & 12.2 & 12.2    & 0.024 & -- & no  \\
-Mistral Small 3  & 0.28  & 23.6 & 23.6    & 0.012 & -- & no  \\
-Gemma 3 27B      & 0.25  & 27.4 & 27.4    & 0.009 & -- & no  \\
-Llama 3.1 8B     & 0.08  & 8.0  & 8.0     & 0.010 & -- & no  \\
+GLM 5.1                    & 4.20  & 40   & 744     & 0.105 & 6.2  & 17 \\
+GLM 5.2                    & 4.16  & 40   & 744     & 0.104 & 6.1  & 22 \\
+Kimi K2.6                  & 3.55  & 32   & 1{,}000 & 0.111 & 6.5  & 20 \\
+Qwen3.5 397B-A17B          & 3.50  & 17   & 403     & 0.206 & 11.6 & 11 \\
+Qwen3.6 27B                & 2.95  & 27.8 & 27.8    & 0.106 & --   & 6  \\
+GLM 5                      & 2.85  & 40   & 744     & 0.071 & 4.2  & 12 \\
+Kimi K2.5                  & 2.50  & 32   & 1{,}000 & 0.078 & 4.6  & 11 \\
+Qwen3.5 27B                & 2.40  & 27.8 & 27.8    & 0.086 & --   & 3  \\
+Qwen3 235B-A22B Thinking   & 2.30  & 22   & 235     & 0.105 & 6.0  & 3  \\
+Qwen3.5 122B-A10B          & 2.24  & 10   & 125     & 0.224 & 12.3 & 4  \\
+GLM 4.7                    & 2.20  & 32   & 355     & 0.069 & 4.0  & 9  \\
+GLM 4.6                    & 1.98  & 32   & 355     & 0.062 & 3.6  & 4  \\
+Qwen3.5 35B-A3B            & 1.25  & 3    & 36      & 0.417 & 21.6 & 9  \\
+MiniMax M2                 & 1.20  & 10   & 230     & 0.120 & 6.6  & 3  \\
+MiniMax M2.5               & 1.20  & 10   & 230     & 0.120 & 6.6  & 15 \\
+MiniMax M2.7               & 1.20  & 10   & 230     & 0.120 & 6.6  & 8  \\
+MiniMax M3                 & 1.20  & 23   & 428     & 0.052 & 3.0  & 7  \\
+Qwen3 Next 80B-A3B         & 1.10  & 3    & 81.3    & 0.367 & 19.0 & 5  \\
+Qwen3.6 35B-A3B            & 1.00  & 3    & 36      & 0.333 & 17.3 & 5  \\
+MiMo V2.5 Pro              & 0.96  & 42   & 1{,}020 & 0.023 & 1.3  & 4  \\
+Llama 4 Maverick           & 0.87  & 17   & 400     & 0.051 & 2.9  & 5  \\
+GLM 4.5 Air                & 0.86  & 12   & 106     & 0.072 & 4.0  & 3  \\
+Qwen3 235B-A22B            & 0.78  & 22   & 235     & 0.035 & 2.0  & 10 \\
+Llama 3.1 70B              & 0.72  & 70.6 & 70.6    & 0.010 & --   & 3  \\
+Llama 3.3 70B              & 0.72  & 70.6 & 70.6    & 0.010 & --   & 10 \\
+GPT-OSS 120B               & 0.50  & 5.1  & 117     & 0.098 & 5.2  & 17 \\
+Llama 4 Scout              & 0.47  & 17   & 109     & 0.027 & 1.5  & 4  \\
+Nemotron 3 Super 120B-A12B & 0.45  & 12   & 124     & 0.038 & 2.1  & 4  \\
+Qwen3 32B                  & 0.42  & 32.8 & 32.8    & 0.013 & --   & 3  \\
+Gemma 4 26B-A4B            & 0.40  & 4    & 26.5    & 0.100 & 5.3  & 8  \\
+Gemma 4 31B                & 0.40  & 32.7 & 32.7    & 0.012 & --   & 10 \\
+Qwen3 30B-A3B              & 0.30  & 3.3  & 30.5    & 0.091 & 4.7  & 4  \\
+MiMo V2.5                  & 0.28  & 15   & 310     & 0.019 & 1.0  & 4  \\
+Mistral Small 3            & 0.28  & 23.6 & 23.6    & 0.012 & --   & 4  \\
+Gemma 3 27B                & 0.25  & 27.4 & 27.4    & 0.009 & --   & 4  \\
+GPT-OSS 20B                & 0.18  & 3.6  & 21      & 0.050 & 2.6  & 9  \\
+Qwen3.5 9B                 & 0.15  & 9.7  & 9.7     & 0.016 & --   & 4  \\
+Llama 3.1 8B               & 0.08  & 8.0  & 8.0     & 0.010 & --   & 5  \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \paragraph{Interpretation.}
-An 83\% footprint weighting is what memory-dominated serving costs predict and
-is difficult to reconcile with compute-dominated costs. Every provider,
-including the cheapest, must hold and stream the full expert set regardless of
-how few parameters fire per token, and the market bills accordingly. The
-claims quoted in \S\ref{sec:h1} are not reflected in market prices: a sparse
-model sells at a price set by the memory it occupies, not by its active
-parameters, and customers keep only a small share of the advertised sparsity
-discount.
+The footprint elasticity is a statement about what the market charges, and
+its stability across panel constructions makes it hard to attribute to any
+single provider's strategy. Under H1 the sparsity ratio should carry no
+price at all; instead it carries 84\% of the price of active compute, with a
+$p$-value below $10^{-4}$ under every specification. The residual variance
+($R^2 = 0.49$) is itself structured: newly released models (GLM 5.1/5.2, the
+Qwen3.5 and Qwen3.6 generations) list 2--6$\times$ above the schedule,
+consistent with launch-premium pricing that has not yet been competed down,
+and the DeepSeek panels sit far below it (\S\ref{sec:deepseek}).
 
-\subsection{H2 supported: the price floor belongs to massively parallel
-providers; others premium-price or exit}
+\subsection{H2 partially supported: floors belong to the vertically
+integrated; participation has broadened}
 \label{sec:h2result}
 
-\emph{(a) The cost gap between EP pools and small fleets is large.}
-Table~\ref{tab:deploy} assembles the published deployment evidence. Per-GPU
-decode throughput on a 96$\times$H100 expert-parallel deployment is
-$\sim$36$\times$ that of a single 8$\times$H100 node running the same model
-class; the EP operator's self-reported cost is \$0.20 per million output
-tokens, versus $\sim$\$7--10 for the single node at market GPU rates. Because
-the retail floor was \$2.15--2.50, \emph{no provider can sell at market price
-from an 8-GPU deployment}. The floor is only reachable with EP-scale pools.
+Published deployments show a $\sim$36$\times$ per-GPU decode throughput
+gap between a large expert-parallel pool and a single 8-GPU node
+(Table~\ref{tab:deploy}), which is the scale mechanism H2 posits: no
+provider can sell at the pool's marginal cost from a single-node
+deployment~\cite{r8,r9,r10}.
 
 \begin{table}[t]
 \centering
@@ -397,39 +472,42 @@ DeepSeek production, EP144 decode (18-node H800) & $\sim$1{,}850 & $<$0.50 impli
 \end{tabular}
 \end{table}
 
-\emph{(b) The price floor is set by vertically integrated providers; hyperscalers list at
-2--5$\times$ the floor.} In every one of the seven panels for models of
-$\geq$200B total parameters, the lowest price is posted by a specialized
-high-volume provider (Table~\ref{tab:floors}): six of seven by DeepInfra
-alone, the seventh by the model's owner. Figure~\ref{fig:floors} plots every
-provider quote in these panels and marks each panel's floor; the floor
-marker is a neocloud or the model's owner in every row, and every
-hyperscaler listing sits at or above it. DeepInfra is the archetype of the class. It raised \$107M in Series~B funding and owns and operates its GPU infrastructure (NVIDIA Blackwell B300) across eight U.S.\ data centers. It publishes owned-hardware economics of $\sim$\$1.98/GPU-hour against \$6.50 for equivalent rented public-cloud capacity, alongside a collaboration with NVIDIA on Dynamo disaggregated serving~\cite{r12}. By contrast, Azure AI Foundry and Amazon
-Bedrock list DeepSeek R1 at \$1.35 input / \$5.40 output, 2.5$\times$ the
-neocloud floor, and Azure lists DeepSeek V3 at \$4.56 against a \$0.90 floor,
-5.1$\times$, though the premium narrows to 1.4--2.2$\times$ on V3.1. All are
-positioned explicitly as managed enterprise offerings~\cite{r13}. Among the floor-setters, only SiliconFlow documents its
-serving architecture publicly, as co-author of the Huawei CloudMatrix-384
-paper describing large-scale expert parallelism (EP320) on a 384-NPU
-supernode~\cite{r14}.
+\emph{(a) The price floor is set by vertically integrated providers.} In
+every one of the seventeen panels for models of $\geq$200B total parameters,
+the lowest price is posted by a vertically integrated provider: a neocloud
+in eleven panels (DeepInfra in six, with Novita, StreamLake, Mara, ModelRun,
+and DigitalOcean setting the others) and the model's own vendor in six
+(Xiaomi, MiniMax, and Alibaba each twice). No general-purpose cloud sets a
+floor in any panel (Table~\ref{tab:floors}). Figure~\ref{fig:floors} plots
+every provider quote in these panels and marks each panel's floor.
 
 \begin{table}[t]
 \centering
-\caption{The table lists the price-floor provider for each of the seven
-large-MoE panels ($\geq$200B total parameters). No hyperscaler or edge
-provider sets a floor.}
+\caption{The table reports the floor-setting provider for each panel of
+200B+ total parameters in the primary panel (2026-07-06).}
 \label{tab:floors}
-\begin{tabular}{lrll}
+\small
+\begin{tabular}{lrlll}
 \toprule
-Panel (total params) & Floor \$/M out & Floor setter & Class \\
+Panel (total params) & Floor \$/M & Floor setter & Class & $n$ \\
 \midrule
-Kimi K2 (1{,}000B)        & 2.00 & DeepInfra & neocloud \\
-DeepSeek R1 (671B)        & 2.15 & DeepInfra & neocloud \\
-DeepSeek V3 (671B)        & 0.90 & DeepInfra & neocloud \\
-DeepSeek V3.1 (671B)      & 0.79 & DeepInfra & neocloud \\
-Llama 4 Maverick (400B)   & 0.60 & DeepInfra & neocloud \\
-Qwen3 235B-A22B (235B)    & 0.10 & DeepInfra & neocloud \\
-MiniMax M2 (230B)         & 1.20 & MiniMax   & model owner \\
+MiMo V2.5 Pro (1{,}020B)      & 0.87 & Xiaomi       & model owner & 4  \\
+Kimi K2.5 (1{,}000B)          & 1.90 & ModelRun     & neocloud    & 11 \\
+Kimi K2.6 (1{,}000B)          & 3.20 & DigitalOcean & neocloud    & 20 \\
+GLM 5 (744B)                  & 2.08 & DeepInfra    & neocloud    & 12 \\
+GLM 5.1 (744B)                & 3.04 & StreamLake   & neocloud    & 17 \\
+GLM 5.2 (744B)                & 2.16 & Novita       & neocloud    & 22 \\
+MiniMax M3 (428B)             & 1.20 & MiniMax      & model owner & 7  \\
+Qwen3.5 397B-A17B (403B)      & 2.34 & Alibaba      & model owner & 11 \\
+Llama 4 Maverick (400B)       & 0.60 & DeepInfra    & neocloud    & 5  \\
+GLM 4.6 (355B)                & 1.74 & DeepInfra    & neocloud    & 4  \\
+GLM 4.7 (355B)                & 1.75 & DeepInfra    & neocloud    & 9  \\
+MiMo V2.5 (310B)              & 0.28 & Xiaomi       & model owner & 4  \\
+Qwen3 235B-A22B (235B)        & 0.10 & DeepInfra    & neocloud    & 10 \\
+Qwen3 235B Thinking (235B)    & 1.50 & Alibaba      & model owner & 3  \\
+MiniMax M2 (230B)             & 1.02 & MiniMax      & model owner & 3  \\
+MiniMax M2.5 (230B)           & 0.48 & Mara         & neocloud    & 15 \\
+MiniMax M2.7 (230B)           & 1.00 & DeepInfra    & neocloud    & 8  \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -437,69 +515,124 @@ MiniMax M2 (230B)         & 1.20 & MiniMax   & model owner \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig3_floors.pdf}
-\caption{The figure plots every provider's output price for the seven
-panels of models with 200B+ total parameters (log scale). The lowest quote
-in each panel (filled triangle, labeled) is posted by a vertically
-integrated neocloud in six of seven panels and by the model's owner in the
-seventh. Hyperscaler listings (squares) sit at or above the floor in every
-panel where they appear, and the remaining providers (open circles) fill
-the range between.}
+\caption{The figure plots every provider's output price for the seventeen
+primary-panel models of 200B+ total parameters (log scale). The lowest
+quote in each panel (filled triangle, labeled) is posted by a neocloud in
+eleven panels and by the model's owner in six. Hyperscaler listings
+(squares) never set a floor, and the remaining providers (open circles)
+fill the range between.}
 \label{fig:floors}
 \end{figure}
 
-\emph{(c) Providers without EP scale exit.} Market participation collapses
-with footprint, by provider class rather than by count alone. GPT-OSS-120B,
-which OpenAI states is ``optimized to run on a single H100,'' attracts 17
-providers, including boutique and trusted-execution-environment specialists
-(Phala, DekaLLM, Mancer). DeepSeek R1/V3 at 671B attract 5--10 providers:
-exclusively large neoclouds plus premium hyperscaler listings, no boutiques.
-Kimi K2 at one trillion parameters attracts three. Cloudflare, an edge network
-with H100-class GPUs in more than 180 cities, offers only small dense models
-in our panel (Llama-3.1-8B and Llama-3.3-70B, in both cases at the
-\emph{highest} price in the panel) and no 671B-class model. The exception is
-instructive: in March 2026 Cloudflare began serving Kimi K2.5, but did so by
-building centralized multi-node serving with disaggregated prefill and expert
-parallelism in selected locations~\cite{r19}. In effect, it constructed a
-small EP pool rather than serving the model at the edge. Entry into large-MoE
-serving requires becoming a neocloud.
+\emph{(b) Hyperscalers price above the floor and never set it.} Hyperscaler
+listings appear in five of the seventeen panels (Google Vertex and Amazon
+Bedrock; Microsoft Azure lists no open-weight endpoint on the marketplace at
+the snapshot date). Their premiums over the panel floor are 1.5$\times$ on
+GLM 5 (Bedrock), 1.9$\times$ on Llama 4 Maverick, 1.3$\times$ on GLM 4.7,
+1.2$\times$ on MiniMax M2, and 8.8$\times$ on Qwen3-235B-A22B (all Google).
+All are positioned as managed enterprise offerings~\cite{r13,r25}.
+
+\emph{(c) Participation no longer declines with footprint.} Here the 2026
+market departs from the scale-gating prediction. The trillion-parameter
+panels attract some of the largest provider counts in the data (Kimi K2.6,
+$n = 20$; GLM 5.2, $n = 22$), while the smallest dense models attract three
+to five. Serving a 744B--1{,}000B MoE is no longer the preserve of a few
+operators. The timing is consistent with the diffusion mechanism documented
+in \S\ref{sec:deepseek}: the expert-parallel serving recipes that were
+proprietary craft in early 2025 are now published and reproduced, and
+open-source serving stacks have matured around them~\cite{r8,r10}. The
+scale barrier H2 posits has not disappeared, but its observable signature
+has moved from participation counts to who sets the floor, and to the
+dispersion structure below.
 
 \subsection{Secondary result: price dispersion is compressed by selection}
 \label{sec:dispersion}
 
-A natural first intuition, and our own initial prediction, is that the MoE
-cost mechanism should appear as \emph{wider} price dispersion for MoE models,
-with under-scaled providers passing their higher costs through. The data show
-the opposite (Figure~\ref{fig:disp}): MoE panels have \emph{lower}
-within-model dispersion than dense panels (median coefficient of variation
-0.34 versus 0.54; Spearman correlation between the sparsity ratio $E/k$ and CV
-is $-0.40$, and $-0.54$ when hyperscaler and edge endpoints are excluded).
+Within-model price dispersion remains compressed for MoE panels: the median
+coefficient of variation of output price is 0.23 for the 28 MoE panels
+against 0.35 for the 10 dense panels (Figure~\ref{fig:disp}). The rank
+correlation between a panel's expert-to-activation ratio $E/k$ and its
+dispersion is negative but weaker than the floor result
+(Spearman $\rho = -0.24$ over the 37 panels with published $E/k$). The
+selection reading is unchanged in kind~\cite{r28,r29}: providers whose
+latent cost exceeds the competitive price tend not to list, so the observed
+prices of the most scale-demanding models are a truncated sample. The broadened participation
+of \S\ref{sec:h2result}(c) weakens the truncation, which is consistent with
+the weaker correlation in this snapshot.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig2_dispersion.pdf}
 \caption{The figure shows within-model price dispersion, measured as the
 coefficient of variation of output price across providers, for MoE panels
-(hatched bars) versus dense panels (solid bars).}
+(hatched bars) versus dense panels (solid bars) in the primary panel.}
 \label{fig:disp}
 \end{figure}
 
-The selection mechanism of H2(c) explains this. In the classical account,
-price dispersion for a homogeneous good reflects seller cost heterogeneity and
-buyer search frictions~\cite{r28}; on that account, models that are harder to
-serve should disperse \emph{more}. But participation here is endogenous:
-listing a model is a choice, and providers whose latent cost exceeds the
-competitive price decline to list rather than post a losing quote. The
-observed prices are therefore a selected sample~\cite{r29}: the market
-truncates the upper tail of the latent cost distribution before it can appear
-as a price. Dense panels remain wide because any provider can serve a 70B
-dense model, so the full heterogeneity of provider cost structures (from
-bargain GPU clouds to premium edge networks at 5.7--7$\times$ the floor)
-appears in the prices. What survives in large-MoE panels is instead a bimodal
-structure: a tight neocloud floor plus a hyperscaler premium tier at
-2--5$\times$. The compressed dispersion, initially surprising,
-corroborates H2 once selection is accounted for: the high prices that would
-widen the spread are never posted, because the providers who would have to
-post them do not enter.
+\section{The DeepSeek exception}
+\label{sec:deepseek}
+
+DeepSeek is excluded from the primary panel because its prices are set by a
+different process, and evaluating its panels against the schedule estimated
+without them shows exactly what that process does
+(Table~\ref{tab:deepseek}). Three regularities stand out.
+
+\begin{table}[t]
+\centering
+\caption{The table evaluates the seven DeepSeek panels against the primary
+schedule of Table~\ref{tab:ols}. ``Schedule'' is the price the ex-DeepSeek
+regression predicts for the model's architecture; ``ratio'' is the observed
+median over that prediction.}
+\label{tab:deepseek}
+\small
+\begin{tabular}{lrrrlr}
+\toprule
+Panel & Med \$/M & Schedule & Ratio & Floor setter & $n$ \\
+\midrule
+DeepSeek R1 (671/37)          & 2.18 & 2.24 & 0.97 & DeepInfra (\$2.15) & 3  \\
+DeepSeek V4 Pro (1{,}600/49)  & 3.14 & 3.49 & 0.90 & DeepSeek (\$0.87)  & 13 \\
+DeepSeek V3.1 (671/37)        & 1.25 & 2.24 & 0.56 & DeepInfra (\$0.79) & 6  \\
+DeepSeek V3 (671/37)          & 1.06 & 2.24 & 0.47 & DeepInfra (\$0.90) & 4  \\
+DeepSeek V3.1 Terminus (671/37) & 0.98 & 2.24 & 0.44 & DeepInfra (\$0.95) & 4 \\
+DeepSeek V3.2 (671/37)        & 0.45 & 2.24 & 0.20 & StreamLake (\$0.34) & 12 \\
+DeepSeek V3.2-Exp (671/37)    & 0.41 & 2.24 & 0.18 & Novita (\$0.41)    & 3  \\
+DeepSeek V4 Flash (284/13)    & 0.28 & 1.35 & 0.21 & DeepInfra (\$0.18) & 13 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+First, the discount is generation-specific, which identifies it as
+technological rather than purely strategic. The pre-V3.2 models price near
+or moderately below the schedule (R1 at 0.97$\times$, the V3.1 family at
+0.44--0.56$\times$), while every model carrying DeepSeek's sparse attention
+(V3.2, V3.2-Exp, V4 Flash) is served at roughly one fifth of the schedule
+price by a dozen competing third parties. The architecture genuinely lowers
+serving cost, and because DeepSeek publishes the serving
+recipes~\cite{r10,r8}, third parties can realize the saving and compete it
+into prices. The floor setters are the same class of provider that documents
+large-scale expert parallelism publicly~\cite{r14}.
+
+Second, the vendor anchors. On its flagship V4 Pro, DeepSeek itself sets the
+floor at \$0.87 against a third-party median of \$3.14, underpricing the
+competitive market for its own model by 3.6$\times$. This is the
+vertical-integration mechanism of H2 in its purest observed form: the one
+operator with hyperscale expert-parallel pools for a model prices it where
+no third party can follow.
+
+Third, the exception clarifies rather than threatens the footprint result.
+Including the DeepSeek panels barely moves the elasticity ratio (0.85
+against 0.84), because the schedule is identified from the cross-section of
+architectures, not from any one family's level. What DeepSeek breaks is the
+fit, not the slope: its sparse-attention generation shows that the cost
+frontier itself is moving, and that a vendor with the right strategy can
+detach its prices from the market schedule. A popular comparison from the
+snapshot week illustrates the point: DeepSeek V4 Flash (284B total) is
+served at a lower per-token price than Qwen3.6 35B-A3B (36B total), a
+model an eighth its size. Under any parameter-based schedule, including
+compute pricing, the larger model should cost more. The inversion is the
+combination of a genuine cost technology, published recipes, an owner
+anchor, and a launch premium on the smaller model, and it is visible only
+because both effects are large.
 
 \section{Discussion and limitations}
 
@@ -512,10 +645,10 @@ limitation and the reason we believe the conclusions survive it.
 \item \textbf{Price is not cost.} List prices embed margins, loss-leader
 strategies, and enterprise positioning. The footprint elasticity establishes what the market \emph{charges}; the inference to underlying cost is an interpretation. That interpretation is supported by the deployment-cost evidence of Table~\ref{tab:deploy} (EP-pool cost \$0.20--0.50/M against floors of \$0.79--2.50) and by the competitive structure of open-weight serving. LMSYS's \$0.20/M and DeepSeek's 545\% margin figures, however, are self-reported, not audited.
 \item \textbf{Inference from prices is indirect.} Provider opacity is the
-premise of our design (\S1), but it also limits what we can claim: that the
+premise of our design (\S1), but it also limits what we can claim. That the
 floor-setting neoclouds run large-scale expert parallelism is inferred from
 their economics and from the public availability of EP serving software, not
-observed; only SiliconFlow documents an EP deployment. No small provider
+observed; only SiliconFlow documents an EP deployment~\cite{r14}. No small provider
 states publicly why it declines to serve 671B-class models; the exit mechanism
 rests on documented economics rather than testimony. Our conclusions are
 consistency checks of the price structure against publicly reconstructable
@@ -525,15 +658,16 @@ cost floors, not observations of provider internals.
 reasoning-model demand premium that the regression absorbs as noise.
 Popularity may also correlate with aggressive pricing.
 \item \textbf{The panel is a single snapshot.} It reflects one collection
-date (2026-07-01) in a market that reprices within weeks: DeepInfra's own R1 price moved from
-the panel's \$2.15 to \$2.50 between collection and verification, and an
-earlier 14$\times$ R1 spread reported in a prior draft had collapsed to
-$\sim$2.5$\times$ by collection time. The elasticities should be re-estimated
-longitudinally; the collection pipeline is automated.
+date (2026-07-06) in a market that reprices within weeks, and the residual
+structure shows time is not ignorable: newly released models list above the
+schedule and DeepSeek's newest generation lists far below it. The collection
+pipeline is automated and mechanical, and we intend to re-collect monthly so
+that the schedule's stability, and the decay of launch premia, can be
+estimated longitudinally.
 \item \textbf{The sample has limits.} OpenRouter covers the competitive
 open-weight market; hyperscaler-exclusive and closed models are
 underrepresented. The
-dense subsample is small ($n = 6$) and confined to $\leq$73B, because larger
+dense subsample is small ($n = 10$) and confined to $\leq$73B, because larger
 dense models have left the market, which is itself evidence of footprint
 economics. Delivered throughput tiers are not controlled. Finally, capacity
 and bandwidth requirements both scale with total parameters, so our test
@@ -547,33 +681,36 @@ Two results emerge from the serving market's own prices. First, the industry's
 original claim for sparsity, that an MoE model costs what its active compute
 costs~\cite{r30,r31,r32}, is rejected: the market bills Mixture-of-Experts
 models by the memory they occupy, not the compute they perform. The sparsity
-elasticity of price is 83\% of the active-parameter elasticity, so a customer
-of a 671B/37B model pays approximately as if for a $\sim$410B dense model.
-Second, the ability to serve large MoE near marginal cost is confined to a
-handful of massively parallel providers. General-purpose clouds price
-2--5$\times$ above them, and everyone else (edge networks, boutique
-hosts, and by extension on-premises operators using the same GPU building
-blocks) either pays those premiums or exits.
+elasticity of price is 84\% of the active-parameter elasticity
+($p = 1.9 \times 10^{-5}$), so a customer of a 1{,}000B/32B model pays
+approximately as if for a $\sim$580B dense model. Second, the price floor
+of every large-MoE panel belongs to a vertically integrated provider, a
+neocloud or the model's own vendor, and general-purpose clouds price
+1.2--8.8$\times$ above the floor and never set it. Participation in
+large-MoE serving has broadened as published expert-parallel recipes
+diffused, and DeepSeek's sparse-attention generation shows the cost frontier
+itself moving; the scale advantage now shows in who sets the floor rather
+than in who can serve at all.
 
 Both results point to the same hardware mismatch. The mainstream GPU bundles
 enormous compute with scarce, expensive HBM; MoE decoding uses the memory
 fully and the compute hardly at all, except inside hyperscale expert-parallel
 pools that only a few operators can build. For everyone else, the economically rational serving device is the opposite shape. It has \textbf{large, cheap memory capacity} to hold the full expert set without buying stranded FLOPS. It has \textbf{modest compute}, since decoding at realistic concurrency cannot exercise more. And it has \textbf{moderate bandwidth}, sufficient for interactive token rates and procurable from commodity supply chains rather than the allocation-constrained HBM market. Shipping products are beginning to approximate this design point, notably Apple's Mac Studio (up to 512 GB unified LPDDR5)~\cite{r42}. NVIDIA's DGX Spark (128 GB LPDDR5X)~\cite{r43} supplies the memory capacity but pairs it with a compute-to-bandwidth balance that only datacenter-scale concurrency could exercise, so it meets the capacity criterion alone. Purpose-built decode accelerators instantiate the full design point directly, such as the Skymizer HTX-301, a 28 nm PCIe card carrying 384 GB of commodity LPDDR, whose performance figures are vendor-claimed pending independent benchmarks~\cite{r44}. The
-market prices measured here quantify the opportunity such hardware addresses:
-the gap between footprint-cheap serving cost and market price is widest for
-the most sparse frontier models (Kimi K2, MiniMax M2, GPT-OSS-120B), which is
-where the industry is heading.
+market prices measured here quantify the opportunity such hardware
+addresses. The gap between footprint-cheap serving cost and market price is
+widest for the most sparse frontier models (the Qwen 35B-A3B generations,
+Kimi K2.6, GLM 5.x), which is where the industry is heading.
 
 \paragraph{Data and reproducibility.}
 The raw data and analysis code are available at
-\url{https://github.com/juntao/memory_is_the_price}: the archived price panel
-(\path{pd_prices.json}, 123 raw rows; 119 qualifying observations),
-architecture data (\path{pd_arch.json}), derived statistics
-(\path{pd_dispersion.json}, \path{pd_level.json}), the analysis script
-(\path{analysis.py}, dependency-free Python: OLS via normal equations,
-Spearman by ranks), and the figure-generation script
-(\path{make_figures.py}). Running \path{analysis.py} reproduces every
-statistic in \S4. All references below were verified by direct fetch at the
+\url{https://github.com/juntao/memory_is_the_price}. The repository
+archives the price snapshot (\path{pd_prices_20260706.json}, 532 raw
+endpoint rows for 129 candidate models) and the verified architecture data
+(\path{pd_arch_20260706.json}). The analysis script (\path{analysis.py})
+is dependency-free Python: OLS via normal equations, exact $t$ and $F$
+$p$-values via the incomplete beta function, and Spearman by ranks; the
+figures are generated by \path{make_figures.py}. Running \path{analysis.py}
+reproduces every statistic in \S4--\S5. All references below were verified by direct fetch at the
 time of writing; architecture parameters were verified against each
 repository's \path{config.json}.
 
@@ -699,12 +836,12 @@ NVL72 rack-scale systems.
 \bibitem{r18} DeepInfra. Qwen3-235B-A22B-Instruct-2507 price page
 (loss-leader verification).
 \url{https://deepinfra.com/Qwen/Qwen3-235B-A22B-Instruct-2507}
-\bibitem{r14} Huawei \& SiliconFlow. Serving large language models on Huawei
-CloudMatrix384. arXiv:2506.12708. \url{https://arxiv.org/pdf/2506.12708}
 \bibitem{r28} Stigler, G.~J. The economics of information. \emph{Journal of
 Political Economy} 69(3), 213--225, 1961.
 \bibitem{r29} Heckman, J.~J. Sample selection bias as a specification error.
 \emph{Econometrica} 47(1), 153--161, 1979.
+\bibitem{r14} Huawei \& SiliconFlow. Serving large language models on Huawei
+CloudMatrix384. arXiv:2506.12708. \url{https://arxiv.org/pdf/2506.12708}
 \bibitem{r42} Apple. Apple reveals M3 Ultra, taking Apple silicon to a new
 extreme. Newsroom, March 2025.
 \url{https://www.apple.com/newsroom/2025/03/apple-reveals-m3-ultra-taking-apple-silicon-to-a-new-extreme/}

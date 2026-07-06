@@ -1,0 +1,462 @@
+[
+ {
+  "model": "DeepSeek V4 Pro",
+  "slug": "deepseek/deepseek-v4-pro",
+  "hf": "deepseek-ai/DeepSeek-V4-Pro",
+  "total_params_b": 1600,
+  "active_params_b": 49,
+  "num_experts": 384,
+  "top_k": 6,
+  "is_moe": true
+ },
+ {
+  "model": "MiMo V2.5 Pro",
+  "slug": "xiaomi/mimo-v2.5-pro",
+  "hf": "XiaomiMiMo/MiMo-V2.5-Pro",
+  "total_params_b": 1020,
+  "active_params_b": 42,
+  "num_experts": 384,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Kimi K2.5",
+  "slug": "moonshotai/kimi-k2.5",
+  "hf": "moonshotai/Kimi-K2.5",
+  "total_params_b": 1000,
+  "active_params_b": 32,
+  "num_experts": 384,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Kimi K2.6",
+  "slug": "moonshotai/kimi-k2.6",
+  "hf": "moonshotai/Kimi-K2.6",
+  "total_params_b": 1000,
+  "active_params_b": 32,
+  "num_experts": 384,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "GLM 5",
+  "slug": "z-ai/glm-5",
+  "hf": "zai-org/GLM-5",
+  "total_params_b": 744,
+  "active_params_b": 40,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "GLM 5.1",
+  "slug": "z-ai/glm-5.1",
+  "hf": "zai-org/GLM-5.1",
+  "total_params_b": 744,
+  "active_params_b": 40,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "GLM 5.2",
+  "slug": "z-ai/glm-5.2",
+  "hf": "zai-org/GLM-5.2",
+  "total_params_b": 744,
+  "active_params_b": 40,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "DeepSeek V3",
+  "slug": "deepseek/deepseek-chat-v3-0324",
+  "hf": "deepseek-ai/DeepSeek-V3-0324",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "DeepSeek V3.1",
+  "slug": "deepseek/deepseek-chat-v3.1",
+  "hf": "deepseek-ai/DeepSeek-V3.1",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "DeepSeek R1",
+  "slug": "deepseek/deepseek-r1-0528",
+  "hf": "deepseek-ai/DeepSeek-R1-0528",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "DeepSeek V3.1 Terminus",
+  "slug": "deepseek/deepseek-v3.1-terminus",
+  "hf": "deepseek-ai/DeepSeek-V3.1-Terminus",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "DeepSeek V3.2",
+  "slug": "deepseek/deepseek-v3.2",
+  "hf": "deepseek-ai/DeepSeek-V3.2",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "DeepSeek V3.2-Exp",
+  "slug": "deepseek/deepseek-v3.2-exp",
+  "hf": "deepseek-ai/DeepSeek-V3.2-Exp",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "MiniMax M3",
+  "slug": "minimax/minimax-m3",
+  "hf": "MiniMaxAI/Minimax-M3",
+  "total_params_b": 428,
+  "active_params_b": 23,
+  "num_experts": null,
+  "top_k": 4,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3.5 397B-A17B",
+  "slug": "qwen/qwen3.5-397b-a17b",
+  "hf": "Qwen/Qwen3.5-397B-A17B",
+  "total_params_b": 403,
+  "active_params_b": 17,
+  "num_experts": 512,
+  "top_k": 10,
+  "is_moe": true
+ },
+ {
+  "model": "Llama 4 Maverick",
+  "slug": "meta-llama/llama-4-maverick",
+  "hf": "meta-llama/Llama-4-Maverick-17B-128E-Instruct",
+  "total_params_b": 400,
+  "active_params_b": 17,
+  "num_experts": 128,
+  "top_k": 1,
+  "is_moe": true
+ },
+ {
+  "model": "GLM 4.6",
+  "slug": "z-ai/glm-4.6",
+  "hf": "zai-org/GLM-4.6",
+  "total_params_b": 355,
+  "active_params_b": 32,
+  "num_experts": 160,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "GLM 4.7",
+  "slug": "z-ai/glm-4.7",
+  "hf": "zai-org/GLM-4.7",
+  "total_params_b": 355,
+  "active_params_b": 32,
+  "num_experts": 160,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "MiMo V2.5",
+  "slug": "xiaomi/mimo-v2.5",
+  "hf": "XiaomiMiMo/MiMo-V2.5",
+  "total_params_b": 310,
+  "active_params_b": 15,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "DeepSeek V4 Flash",
+  "slug": "deepseek/deepseek-v4-flash",
+  "hf": "deepseek-ai/DeepSeek-V4-Flash",
+  "total_params_b": 284,
+  "active_params_b": 13,
+  "num_experts": 256,
+  "top_k": 6,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3 235B-A22B",
+  "slug": "qwen/qwen3-235b-a22b-2507",
+  "hf": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "total_params_b": 235,
+  "active_params_b": 22,
+  "num_experts": 128,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3 235B-A22B Thinking",
+  "slug": "qwen/qwen3-235b-a22b-thinking-2507",
+  "hf": "Qwen/Qwen3-235B-A22B-Thinking-2507",
+  "total_params_b": 235,
+  "active_params_b": 22,
+  "num_experts": 128,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "MiniMax M2",
+  "slug": "minimax/minimax-m2",
+  "hf": "MiniMaxAI/MiniMax-M2",
+  "total_params_b": 230,
+  "active_params_b": 10,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "MiniMax M2.5",
+  "slug": "minimax/minimax-m2.5",
+  "hf": "MiniMaxAI/MiniMax-M2.5",
+  "total_params_b": 230,
+  "active_params_b": 10,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "MiniMax M2.7",
+  "slug": "minimax/minimax-m2.7",
+  "hf": "MiniMaxAI/MiniMax-M2.7",
+  "total_params_b": 230,
+  "active_params_b": 10,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3.5 122B-A10B",
+  "slug": "qwen/qwen3.5-122b-a10b",
+  "hf": "Qwen/Qwen3.5-122B-A10B",
+  "total_params_b": 125,
+  "active_params_b": 10,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Nemotron 3 Super 120B-A12B",
+  "slug": "nvidia/nemotron-3-super-120b-a12b",
+  "hf": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+  "total_params_b": 124,
+  "active_params_b": 12,
+  "num_experts": 512,
+  "top_k": 22,
+  "is_moe": true
+ },
+ {
+  "model": "GPT-OSS 120B",
+  "slug": "openai/gpt-oss-120b",
+  "hf": "openai/gpt-oss-120b",
+  "total_params_b": 117,
+  "active_params_b": 5.1,
+  "num_experts": 128,
+  "top_k": 4,
+  "is_moe": true
+ },
+ {
+  "model": "Llama 4 Scout",
+  "slug": "meta-llama/llama-4-scout",
+  "hf": "meta-llama/Llama-4-Scout-17B-16E-Instruct",
+  "total_params_b": 109,
+  "active_params_b": 17,
+  "num_experts": 16,
+  "top_k": 1,
+  "is_moe": true
+ },
+ {
+  "model": "GLM 4.5 Air",
+  "slug": "z-ai/glm-4.5-air",
+  "hf": "zai-org/GLM-4.5-Air",
+  "total_params_b": 106,
+  "active_params_b": 12,
+  "num_experts": 128,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3 Next 80B-A3B",
+  "slug": "qwen/qwen3-next-80b-a3b-instruct",
+  "hf": "Qwen/Qwen3-Next-80B-A3B-Instruct",
+  "total_params_b": 81.3,
+  "active_params_b": 3,
+  "num_experts": 512,
+  "top_k": 10,
+  "is_moe": true
+ },
+ {
+  "model": "Llama 3.1 70B",
+  "slug": "meta-llama/llama-3.1-70b-instruct",
+  "hf": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+  "total_params_b": 70.6,
+  "active_params_b": 70.6,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "Llama 3.3 70B",
+  "slug": "meta-llama/llama-3.3-70b-instruct",
+  "hf": "meta-llama/Llama-3.3-70B-Instruct",
+  "total_params_b": 70.6,
+  "active_params_b": 70.6,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "Qwen3.5 35B-A3B",
+  "slug": "qwen/qwen3.5-35b-a3b",
+  "hf": "Qwen/Qwen3.5-35B-A3B",
+  "total_params_b": 36,
+  "active_params_b": 3,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3.6 35B-A3B",
+  "slug": "qwen/qwen3.6-35b-a3b",
+  "hf": "Qwen/Qwen3.6-35B-A3B",
+  "total_params_b": 36,
+  "active_params_b": 3,
+  "num_experts": 256,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3 32B",
+  "slug": "qwen/qwen3-32b",
+  "hf": "Qwen/Qwen3-32B",
+  "total_params_b": 32.8,
+  "active_params_b": 32.8,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "Gemma 4 31B",
+  "slug": "google/gemma-4-31b-it",
+  "hf": "google/gemma-4-31B-it",
+  "total_params_b": 32.7,
+  "active_params_b": 32.7,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "Qwen3 30B-A3B",
+  "slug": "qwen/qwen3-30b-a3b-instruct-2507",
+  "hf": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "total_params_b": 30.5,
+  "active_params_b": 3.3,
+  "num_experts": 128,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3.5 27B",
+  "slug": "qwen/qwen3.5-27b",
+  "hf": "Qwen/Qwen3.5-27B",
+  "total_params_b": 27.8,
+  "active_params_b": 27.8,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "Qwen3.6 27B",
+  "slug": "qwen/qwen3.6-27b",
+  "hf": "Qwen/Qwen3.6-27B",
+  "total_params_b": 27.8,
+  "active_params_b": 27.8,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "Gemma 3 27B",
+  "slug": "google/gemma-3-27b-it",
+  "hf": "google/gemma-3-27b-it",
+  "total_params_b": 27.4,
+  "active_params_b": 27.4,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "Gemma 4 26B-A4B",
+  "slug": "google/gemma-4-26b-a4b-it",
+  "hf": "google/gemma-4-26B-A4B-it",
+  "total_params_b": 26.5,
+  "active_params_b": 4,
+  "num_experts": 128,
+  "top_k": 8,
+  "is_moe": true
+ },
+ {
+  "model": "Mistral Small 3",
+  "slug": "mistralai/mistral-small-3.2-24b-instruct",
+  "hf": "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+  "total_params_b": 23.6,
+  "active_params_b": 23.6,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "GPT-OSS 20B",
+  "slug": "openai/gpt-oss-20b",
+  "hf": "openai/gpt-oss-20b",
+  "total_params_b": 21,
+  "active_params_b": 3.6,
+  "num_experts": 32,
+  "top_k": 4,
+  "is_moe": true
+ },
+ {
+  "model": "Qwen3.5 9B",
+  "slug": "qwen/qwen3.5-9b",
+  "hf": "Qwen/Qwen3.5-9B",
+  "total_params_b": 9.7,
+  "active_params_b": 9.7,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ },
+ {
+  "model": "Llama 3.1 8B",
+  "slug": "meta-llama/llama-3.1-8b-instruct",
+  "hf": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+  "total_params_b": 8.03,
+  "active_params_b": 8.03,
+  "num_experts": 1,
+  "top_k": 1,
+  "is_moe": false
+ }
+]

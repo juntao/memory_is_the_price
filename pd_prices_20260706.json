@@ -1,0 +1,4263 @@
+{
+ "collected": "2026-07-06",
+ "source": "https://openrouter.ai/api/v1/models/{slug}/endpoints",
+ "note": "All endpoints for open-weight general-purpose instruct models on OpenRouter (130 candidate models). status<0 = deranked/offline; out/in are USD per million tokens.",
+ "rows": [
+  {
+   "slug": "ai21/jamba-large-1.7",
+   "provider": "AI21",
+   "in": 2.0,
+   "out": 8.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "aion-labs/aion-1.0-mini",
+   "provider": "AionLabs",
+   "in": 0.7,
+   "out": 1.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "anthracite-org/magnum-v4-72b",
+   "provider": "Mancer 2",
+   "in": 3.0,
+   "out": 5.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "arcee-ai/trinity-large-thinking",
+   "provider": "Arcee AI",
+   "in": 0.25,
+   "out": 0.8,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "arcee-ai/trinity-mini",
+   "provider": "Clarifai",
+   "in": 0.045,
+   "out": 0.15,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "baidu/ernie-4.5-vl-424b-a47b",
+   "provider": "Novita",
+   "in": 0.42,
+   "out": 1.25,
+   "quant": "fp16",
+   "status": 0
+  },
+  {
+   "slug": "bytedance/ui-tars-1.5-7b",
+   "provider": "Parasail",
+   "in": 0.1,
+   "out": 0.2,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "cohere/command-a",
+   "provider": "Cohere",
+   "in": 2.5,
+   "out": 10.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat",
+   "provider": "StreamLake",
+   "in": 0.2002,
+   "out": 0.8001,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat",
+   "provider": "DeepInfra",
+   "in": 0.32,
+   "out": 0.89,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat",
+   "provider": "Novita",
+   "in": 0.4,
+   "out": 1.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3-0324",
+   "provider": "DeepInfra",
+   "in": 0.24,
+   "out": 0.9,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3-0324",
+   "provider": "SiliconFlow",
+   "in": 0.25,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3-0324",
+   "provider": "Novita",
+   "in": 0.27,
+   "out": 1.12,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3-0324",
+   "provider": "GMICloud",
+   "in": 0.29,
+   "out": 1.14,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3.1",
+   "provider": "DeepInfra",
+   "in": 0.21,
+   "out": 0.79,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3.1",
+   "provider": "Novita",
+   "in": 0.27,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3.1",
+   "provider": "SiliconFlow",
+   "in": 0.27,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3.1",
+   "provider": "AtlasCloud",
+   "in": 0.3,
+   "out": 0.95,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3.1",
+   "provider": "WandB",
+   "in": 0.55,
+   "out": 1.65,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3.1",
+   "provider": "Google",
+   "in": 0.6,
+   "out": 1.7,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-chat-v3.1",
+   "provider": "SambaNova",
+   "in": 0.65,
+   "out": 1.5,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-r1",
+   "provider": "Novita",
+   "in": 0.7,
+   "out": 2.5,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-r1",
+   "provider": "Azure",
+   "in": 1.485,
+   "out": 5.94,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "deepseek/deepseek-r1-0528",
+   "provider": "DeepInfra",
+   "in": 0.5,
+   "out": 2.15,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-r1-0528",
+   "provider": "SiliconFlow",
+   "in": 0.5,
+   "out": 2.18,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-r1-0528",
+   "provider": "StreamLake",
+   "in": 0.571,
+   "out": 2.286,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "deepseek/deepseek-r1-0528",
+   "provider": "Novita",
+   "in": 0.7,
+   "out": 2.5,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-r1-distill-llama-70b",
+   "provider": "Novita",
+   "in": 0.8,
+   "out": 0.8,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.1-terminus",
+   "provider": "DeepInfra",
+   "in": 0.27,
+   "out": 0.95,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.1-terminus",
+   "provider": "SiliconFlow",
+   "in": 0.27,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "deepseek/deepseek-v3.1-terminus",
+   "provider": "Novita",
+   "in": 0.27,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.1-terminus",
+   "provider": "AtlasCloud",
+   "in": 0.3,
+   "out": 0.95,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.1-terminus",
+   "provider": "StreamLake",
+   "in": 0.3426,
+   "out": 1.0284,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "StreamLake",
+   "in": 0.2288,
+   "out": 0.3432,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "Baidu",
+   "in": 0.252,
+   "out": 0.378,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "SiliconFlow",
+   "in": 0.259,
+   "out": 0.42,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "DeepInfra",
+   "in": 0.26,
+   "out": 0.38,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "AtlasCloud",
+   "in": 0.26,
+   "out": 0.38,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "Novita",
+   "in": 0.269,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "Venice",
+   "in": 0.33,
+   "out": 0.48,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "Alibaba",
+   "in": 0.3705,
+   "out": 1.1115,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "DigitalOcean",
+   "in": 0.425,
+   "out": 1.36,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "Friendli",
+   "in": 0.5,
+   "out": 1.5,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "Google",
+   "in": 0.56,
+   "out": 1.68,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2",
+   "provider": "SambaNova",
+   "in": 3.0,
+   "out": 4.5,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2-exp",
+   "provider": "Novita",
+   "in": 0.27,
+   "out": 0.41,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2-exp",
+   "provider": "SiliconFlow",
+   "in": 0.27,
+   "out": 0.41,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v3.2-exp",
+   "provider": "AtlasCloud",
+   "in": 0.27,
+   "out": 0.41,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "DeepInfra",
+   "in": 0.09,
+   "out": 0.18,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "GMICloud",
+   "in": 0.098,
+   "out": 0.196,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "Baidu",
+   "in": 0.0983,
+   "out": 0.1966,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "DigitalOcean",
+   "in": 0.112,
+   "out": 0.224,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "StreamLake",
+   "in": 0.1288,
+   "out": 0.2576,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "SiliconFlow",
+   "in": 0.13,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "Alibaba",
+   "in": 0.134,
+   "out": 0.268,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "Venice",
+   "in": 0.138,
+   "out": 0.275,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "Morph",
+   "in": 0.139,
+   "out": 0.278,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "Parasail",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "AkashML",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "Fireworks",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "Novita",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "WandB",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "AtlasCloud",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-flash",
+   "provider": "DeepSeek",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "DeepSeek",
+   "in": 0.435,
+   "out": 0.87,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "StreamLake",
+   "in": 0.7482,
+   "out": 1.4964,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "Baidu",
+   "in": 0.7605,
+   "out": 1.521,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "GMICloud",
+   "in": 1.131,
+   "out": 2.262,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "DeepInfra",
+   "in": 1.3,
+   "out": 2.6,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "DigitalOcean",
+   "in": 1.392,
+   "out": 2.784,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "Novita",
+   "in": 1.568,
+   "out": 3.136,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "SiliconFlow",
+   "in": 1.6,
+   "out": 3.135,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "Alibaba",
+   "in": 1.608,
+   "out": 3.216,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "Venice",
+   "in": 1.65,
+   "out": 3.301,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "AtlasCloud",
+   "in": 1.68,
+   "out": 3.38,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "Parasail",
+   "in": 1.74,
+   "out": 3.48,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "WandB",
+   "in": 1.74,
+   "out": 3.48,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "Together",
+   "in": 1.74,
+   "out": 3.48,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "deepseek/deepseek-v4-pro",
+   "provider": "Fireworks",
+   "in": 1.74,
+   "out": 3.48,
+   "quant": "unknown",
+   "status": -5
+  },
+  {
+   "slug": "google/gemma-2-27b-it",
+   "provider": "NextBit",
+   "in": 0.65,
+   "out": 0.65,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-3-12b-it",
+   "provider": "DeepInfra",
+   "in": 0.05,
+   "out": 0.15,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-3-27b-it",
+   "provider": "DeepInfra",
+   "in": 0.08,
+   "out": 0.16,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-3-27b-it",
+   "provider": "Parasail",
+   "in": 0.08,
+   "out": 0.45,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-3-27b-it",
+   "provider": "Nebius",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-3-27b-it",
+   "provider": "Novita",
+   "in": 0.119,
+   "out": 0.2,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-3-27b-it",
+   "provider": "Phala",
+   "in": 0.15,
+   "out": 0.46,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "google/gemma-3-4b-it",
+   "provider": "DeepInfra",
+   "in": 0.05,
+   "out": 0.1,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-3n-e4b-it",
+   "provider": "Together",
+   "in": 0.06,
+   "out": 0.12,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "DekaLLM",
+   "in": 0.06,
+   "out": 0.33,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "DeepInfra",
+   "in": 0.07,
+   "out": 0.34,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "Cloudflare",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "SiliconFlow",
+   "in": 0.12,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": -5
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "Novita",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "Parasail",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "NextBit",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "Venice",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "Wafer",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-26b-a4b-it",
+   "provider": "Google",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "WandB",
+   "in": 0.12,
+   "out": 0.35,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "Venice",
+   "in": 0.12,
+   "out": 0.36,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "DeepInfra",
+   "in": 0.12,
+   "out": 0.37,
+   "quant": "fp4",
+   "status": -2
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "Chutes",
+   "in": 0.12,
+   "out": 0.37,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "DeepInfra",
+   "in": 0.13,
+   "out": 0.38,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "SiliconFlow",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": -5
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "Novita",
+   "in": 0.14,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "Parasail",
+   "in": 0.15,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "Phala",
+   "in": 0.15,
+   "out": 0.46,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "ModelRun",
+   "in": 0.22,
+   "out": 0.55,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "SambaNova",
+   "in": 0.22,
+   "out": 0.59,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "Together",
+   "in": 0.28,
+   "out": 0.86,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "google/gemma-4-31b-it",
+   "provider": "Together",
+   "in": 0.39,
+   "out": 0.97,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "gryphe/mythomax-l2-13b",
+   "provider": "NextBit",
+   "in": 0.06,
+   "out": 0.06,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "gryphe/mythomax-l2-13b",
+   "provider": "DeepInfra",
+   "in": 0.4,
+   "out": 0.4,
+   "quant": "fp16",
+   "status": 0
+  },
+  {
+   "slug": "gryphe/mythomax-l2-13b",
+   "provider": "Mancer 2",
+   "in": 0.5,
+   "out": 0.75,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "ibm-granite/granite-4.0-h-micro",
+   "provider": "Cloudflare",
+   "in": 0.017,
+   "out": 0.112,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "ibm-granite/granite-4.1-8b",
+   "provider": "WandB",
+   "in": 0.05,
+   "out": 0.1,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "liquid/lfm-2-24b-a2b",
+   "provider": "Together",
+   "in": 0.03,
+   "out": 0.12,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3-8b-instruct",
+   "provider": "Together",
+   "in": 0.14,
+   "out": 0.14,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-70b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.4,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-70b-instruct",
+   "provider": "Amazon Bedrock",
+   "in": 0.72,
+   "out": 0.72,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-70b-instruct",
+   "provider": "WandB",
+   "in": 0.8,
+   "out": 0.8,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-8b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.02,
+   "out": 0.03,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-8b-instruct",
+   "provider": "Novita",
+   "in": 0.02,
+   "out": 0.05,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-8b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.02,
+   "out": 0.05,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-8b-instruct",
+   "provider": "Groq",
+   "in": 0.05,
+   "out": 0.08,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-8b-instruct",
+   "provider": "Cloudflare",
+   "in": 0.152,
+   "out": 0.287,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.1-8b-instruct",
+   "provider": "WandB",
+   "in": 0.22,
+   "out": 0.22,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.2-11b-vision-instruct",
+   "provider": "DeepInfra",
+   "in": 0.345,
+   "out": 0.345,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.2-1b-instruct",
+   "provider": "Cloudflare",
+   "in": 0.027,
+   "out": 0.201,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.2-3b-instruct",
+   "provider": "Cloudflare",
+   "in": 0.0509,
+   "out": 0.335,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.1,
+   "out": 0.32,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "Nebius",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "AkashML",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "Novita",
+   "in": 0.135,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "Parasail",
+   "in": 0.22,
+   "out": 0.5,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "Cloudflare",
+   "in": 0.293,
+   "out": 2.253,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "SambaNova",
+   "in": 0.45,
+   "out": 0.9,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "Groq",
+   "in": 0.59,
+   "out": 0.79,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "WandB",
+   "in": 0.71,
+   "out": 0.71,
+   "quant": "fp16",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "Google",
+   "in": 0.72,
+   "out": 0.72,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "Google",
+   "in": 0.72,
+   "out": 0.72,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-3.3-70b-instruct",
+   "provider": "Together",
+   "in": 1.04,
+   "out": 1.04,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-maverick",
+   "provider": "DeepInfra",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-maverick",
+   "provider": "DigitalOcean",
+   "in": 0.25,
+   "out": 0.87,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-maverick",
+   "provider": "Novita",
+   "in": 0.27,
+   "out": 0.85,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-maverick",
+   "provider": "Parasail",
+   "in": 0.35,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-maverick",
+   "provider": "Google",
+   "in": 0.35,
+   "out": 1.15,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-scout",
+   "provider": "DeepInfra",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-scout",
+   "provider": "Groq",
+   "in": 0.11,
+   "out": 0.34,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-scout",
+   "provider": "Novita",
+   "in": 0.18,
+   "out": 0.59,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "meta-llama/llama-4-scout",
+   "provider": "Google",
+   "in": 0.25,
+   "out": 0.7,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "microsoft/phi-4",
+   "provider": "DeepInfra",
+   "in": 0.07,
+   "out": 0.14,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "microsoft/wizardlm-2-8x22b",
+   "provider": "Novita",
+   "in": 0.62,
+   "out": 0.62,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-01",
+   "provider": "Minimax",
+   "in": 0.2,
+   "out": 1.1,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2",
+   "provider": "Minimax",
+   "in": 0.255,
+   "out": 1.02,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2",
+   "provider": "Google",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2",
+   "provider": "Novita",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.1",
+   "provider": "Novita",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.1",
+   "provider": "Minimax",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.1",
+   "provider": "Minimax",
+   "in": 0.3,
+   "out": 2.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Mara",
+   "in": 0.12,
+   "out": 0.48,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Inceptron",
+   "in": 0.15,
+   "out": 0.9,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "DeepInfra",
+   "in": 0.15,
+   "out": 1.15,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Chutes",
+   "in": 0.15,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Phala",
+   "in": 0.2,
+   "out": 1.38,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "DigitalOcean",
+   "in": 0.225,
+   "out": 0.9,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Venice",
+   "in": 0.27,
+   "out": 0.95,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "StreamLake",
+   "in": 0.27,
+   "out": 1.08,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "AtlasCloud",
+   "in": 0.295,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Friendli",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Minimax",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Novita",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "SiliconFlow",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Parasail",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "WandB",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.5",
+   "provider": "Minimax",
+   "in": 0.6,
+   "out": 2.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "Mara",
+   "in": 0.18,
+   "out": 0.72,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "DeepInfra",
+   "in": 0.25,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "Novita",
+   "in": 0.27,
+   "out": 1.08,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "Morph",
+   "in": 0.279,
+   "out": 1.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "Minimax",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "Fireworks",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "Together",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "DeepInfra",
+   "in": 0.4,
+   "out": 2.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "Groq",
+   "in": 0.6,
+   "out": 1.8,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "Minimax",
+   "in": 0.6,
+   "out": 2.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "SambaNova",
+   "in": 0.6,
+   "out": 2.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m2.7",
+   "provider": "SambaNova",
+   "in": 2.5,
+   "out": 7.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m3",
+   "provider": "Minimax",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m3",
+   "provider": "Novita",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m3",
+   "provider": "AtlasCloud",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m3",
+   "provider": "Together",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m3",
+   "provider": "Parasail",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m3",
+   "provider": "DeepInfra",
+   "in": 0.3,
+   "out": 1.2,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "minimax/minimax-m3",
+   "provider": "Morph",
+   "in": 0.6,
+   "out": 2.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/devstral-2512",
+   "provider": "Mistral",
+   "in": 0.4,
+   "out": 2.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/ministral-14b-2512",
+   "provider": "Mistral",
+   "in": 0.2,
+   "out": 0.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/ministral-14b-2512",
+   "provider": "NextBit",
+   "in": 0.35,
+   "out": 0.35,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/ministral-3b-2512",
+   "provider": "Mistral",
+   "in": 0.1,
+   "out": 0.1,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/ministral-3b-2512",
+   "provider": "NextBit",
+   "in": 0.15,
+   "out": 0.15,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/ministral-8b-2512",
+   "provider": "Mistral",
+   "in": 0.15,
+   "out": 0.15,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/ministral-8b-2512",
+   "provider": "NextBit",
+   "in": 0.3,
+   "out": 0.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-nemo",
+   "provider": "DekaLLM",
+   "in": 0.02,
+   "out": 0.03,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "mistralai/mistral-nemo",
+   "provider": "DeepInfra",
+   "in": 0.02,
+   "out": 0.04,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-nemo",
+   "provider": "Novita",
+   "in": 0.04,
+   "out": 0.17,
+   "quant": "fp8",
+   "status": -5
+  },
+  {
+   "slug": "mistralai/mistral-nemo",
+   "provider": "Mistral",
+   "in": 0.15,
+   "out": 0.15,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-small-24b-instruct-2501",
+   "provider": "DeepInfra",
+   "in": 0.05,
+   "out": 0.08,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-small-2603",
+   "provider": "Mistral",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-small-2603",
+   "provider": "Venice",
+   "in": 0.1875,
+   "out": 0.75,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-small-3.1-24b-instruct",
+   "provider": "Cloudflare",
+   "in": 0.351,
+   "out": 0.555,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-small-3.2-24b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.075,
+   "out": 0.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-small-3.2-24b-instruct",
+   "provider": "Parasail",
+   "in": 0.09,
+   "out": 0.3,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-small-3.2-24b-instruct",
+   "provider": "Venice",
+   "in": 0.0938,
+   "out": 0.25,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mistral-small-3.2-24b-instruct",
+   "provider": "Mistral",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/mixtral-8x22b-instruct",
+   "provider": "Mistral",
+   "in": 2.0,
+   "out": 6.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "mistralai/voxtral-small-24b-2507",
+   "provider": "Mistral",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2",
+   "provider": "Novita",
+   "in": 0.57,
+   "out": 2.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2-0905",
+   "provider": "Novita",
+   "in": 0.6,
+   "out": 2.5,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2-0905",
+   "provider": "Groq",
+   "in": 1.0,
+   "out": 3.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2-thinking",
+   "provider": "Novita",
+   "in": 0.6,
+   "out": 2.5,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2-thinking",
+   "provider": "Google",
+   "in": 0.6,
+   "out": 2.5,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "DigitalOcean",
+   "in": 0.375,
+   "out": 2.025,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "ModelRun",
+   "in": 0.4,
+   "out": 1.9,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "Chutes",
+   "in": 0.44,
+   "out": 2.0,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "DeepInfra",
+   "in": 0.45,
+   "out": 2.25,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "SiliconFlow",
+   "in": 0.45,
+   "out": 2.25,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "AtlasCloud",
+   "in": 0.49,
+   "out": 2.5,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "StreamLake",
+   "in": 0.54,
+   "out": 2.7,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "Venice",
+   "in": 0.56,
+   "out": 3.5,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "Novita",
+   "in": 0.57,
+   "out": 2.85,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "Moonshot AI",
+   "in": 0.6,
+   "out": 3.0,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.5",
+   "provider": "Phala",
+   "in": 0.6,
+   "out": 3.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Inceptron",
+   "in": 0.66,
+   "out": 3.41,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Decart",
+   "in": 0.66,
+   "out": 3.41,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Chutes",
+   "in": 0.66,
+   "out": 3.5,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Baidu",
+   "in": 0.684,
+   "out": 3.42,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "ModelRun",
+   "in": 0.7,
+   "out": 3.4,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Parasail",
+   "in": 0.75,
+   "out": 3.5,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Venice",
+   "in": 0.75,
+   "out": 3.5,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "DeepInfra",
+   "in": 0.75,
+   "out": 3.5,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "DigitalOcean",
+   "in": 0.76,
+   "out": 3.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "SiliconFlow",
+   "in": 0.77,
+   "out": 4.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Novita",
+   "in": 0.8,
+   "out": 3.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "StreamLake",
+   "in": 0.855,
+   "out": 3.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Moonshot AI",
+   "in": 0.95,
+   "out": 4.0,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "WandB",
+   "in": 0.95,
+   "out": 4.0,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "AtlasCloud",
+   "in": 0.95,
+   "out": 4.0,
+   "quant": "int4",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Cloudflare",
+   "in": 0.95,
+   "out": 4.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Phala",
+   "in": 1.09,
+   "out": 4.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Together",
+   "in": 1.2,
+   "out": 4.5,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "Fireworks",
+   "in": 0.95,
+   "out": 4.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "moonshotai/kimi-k2.6",
+   "provider": "BaseTen",
+   "in": 0.95,
+   "out": 4.0,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "nex-agi/nex-n2-pro",
+   "provider": "Nex AGI",
+   "in": 0.25,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "nex-agi/nex-n2-pro",
+   "provider": "SiliconFlow",
+   "in": 0.5,
+   "out": 2.5,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "nousresearch/hermes-3-llama-3.1-405b",
+   "provider": "DeepInfra",
+   "in": 1.0,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "nousresearch/hermes-3-llama-3.1-70b",
+   "provider": "DeepInfra",
+   "in": 0.7,
+   "out": 0.7,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "nousresearch/hermes-4-405b",
+   "provider": "Nebius",
+   "in": 1.0,
+   "out": 3.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "nousresearch/hermes-4-70b",
+   "provider": "Nebius",
+   "in": 0.13,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+   "provider": "DeepInfra",
+   "in": 0.4,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/nemotron-3-nano-30b-a3b",
+   "provider": "DeepInfra",
+   "in": 0.05,
+   "out": 0.2,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/nemotron-3-nano-30b-a3b",
+   "provider": "Novita",
+   "in": 0.05,
+   "out": 0.2,
+   "quant": "fp4",
+   "status": -2
+  },
+  {
+   "slug": "nvidia/nemotron-3-nano-30b-a3b",
+   "provider": "Nebius",
+   "in": 0.06,
+   "out": 0.24,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/nemotron-3-super-120b-a12b",
+   "provider": "DekaLLM",
+   "in": 0.08,
+   "out": 0.45,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/nemotron-3-super-120b-a12b",
+   "provider": "DeepInfra",
+   "in": 0.085,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/nemotron-3-super-120b-a12b",
+   "provider": "DigitalOcean",
+   "in": 0.21,
+   "out": 0.455,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/nemotron-3-super-120b-a12b",
+   "provider": "Nebius",
+   "in": 0.3,
+   "out": 0.9,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/nemotron-3-ultra-550b-a55b",
+   "provider": "DeepInfra",
+   "in": 0.5,
+   "out": 2.2,
+   "quant": "fp4",
+   "status": -2
+  },
+  {
+   "slug": "nvidia/nemotron-3-ultra-550b-a55b",
+   "provider": "Together",
+   "in": 0.6,
+   "out": 3.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "nvidia/nemotron-3-ultra-550b-a55b",
+   "provider": "Nebius",
+   "in": 1.0,
+   "out": 3.0,
+   "quant": "fp4",
+   "status": -2
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Mara",
+   "in": 0.03,
+   "out": 0.15,
+   "quant": "unknown",
+   "status": -5
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "DekaLLM",
+   "in": 0.038,
+   "out": 0.18,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "DeepInfra",
+   "in": 0.039,
+   "out": 0.17,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "WandB",
+   "in": 0.04,
+   "out": 0.14,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Novita",
+   "in": 0.05,
+   "out": 0.25,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Mancer 2",
+   "in": 0.05,
+   "out": 0.375,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "SiliconFlow",
+   "in": 0.05,
+   "out": 0.45,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "DigitalOcean",
+   "in": 0.07,
+   "out": 0.49,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Google",
+   "in": 0.09,
+   "out": 0.36,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "BaseTen",
+   "in": 0.1,
+   "out": 0.5,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Parasail",
+   "in": 0.1,
+   "out": 0.75,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "SambaNova",
+   "in": 0.14,
+   "out": 0.95,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Amazon Bedrock",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "DeepInfra",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Together",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Nebius",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Amazon Bedrock",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Phala",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Groq",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-120b",
+   "provider": "Cerebras",
+   "in": 0.35,
+   "out": 0.75,
+   "quant": "fp16",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "DekaLLM",
+   "in": 0.029,
+   "out": 0.14,
+   "quant": "bf16",
+   "status": -2
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "WandB",
+   "in": 0.03,
+   "out": 0.13,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "DeepInfra",
+   "in": 0.03,
+   "out": 0.14,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Novita",
+   "in": 0.04,
+   "out": 0.15,
+   "quant": "fp4",
+   "status": -2
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Phala",
+   "in": 0.04,
+   "out": 0.15,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "SiliconFlow",
+   "in": 0.04,
+   "out": 0.18,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Parasail",
+   "in": 0.04,
+   "out": 0.2,
+   "quant": "fp4",
+   "status": -2
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Together",
+   "in": 0.05,
+   "out": 0.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Amazon Bedrock",
+   "in": 0.07,
+   "out": 0.15,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Amazon Bedrock",
+   "in": 0.07,
+   "out": 0.15,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Google",
+   "in": 0.07,
+   "out": 0.25,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Fireworks",
+   "in": 0.07,
+   "out": 0.3,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "openai/gpt-oss-20b",
+   "provider": "Groq",
+   "in": 0.075,
+   "out": 0.3,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen-2.5-72b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.36,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen-2.5-72b-instruct",
+   "provider": "Novita",
+   "in": 0.38,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen-2.5-7b-instruct",
+   "provider": "Phala",
+   "in": 0.04,
+   "out": 0.1,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen-2.5-7b-instruct",
+   "provider": "Together",
+   "in": 0.3,
+   "out": 0.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen2.5-vl-72b-instruct",
+   "provider": "Parasail",
+   "in": 0.8,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-14b",
+   "provider": "NextBit",
+   "in": 0.1,
+   "out": 0.24,
+   "quant": "int4",
+   "status": -5
+  },
+  {
+   "slug": "qwen/qwen3-14b",
+   "provider": "DeepInfra",
+   "in": 0.12,
+   "out": 0.24,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-14b",
+   "provider": "Alibaba",
+   "in": 0.2275,
+   "out": 0.91,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b",
+   "provider": "Alibaba",
+   "in": 0.455,
+   "out": 1.82,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "DeepInfra",
+   "in": 0.09,
+   "out": 0.1,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "Novita",
+   "in": 0.09,
+   "out": 0.58,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "Parasail",
+   "in": 0.14,
+   "out": 0.8,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "Alibaba",
+   "in": 0.1495,
+   "out": 0.598,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "Venice",
+   "in": 0.15,
+   "out": 0.75,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "Together",
+   "in": 0.2,
+   "out": 0.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "Friendli",
+   "in": 0.2,
+   "out": 0.8,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "AtlasCloud",
+   "in": 0.2,
+   "out": 0.88,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "StreamLake",
+   "in": 0.21,
+   "out": 0.84,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "Google",
+   "in": 0.22,
+   "out": 0.88,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-2507",
+   "provider": "Google",
+   "in": 0.25,
+   "out": 1.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-thinking-2507",
+   "provider": "Alibaba",
+   "in": 0.1495,
+   "out": 1.495,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-thinking-2507",
+   "provider": "DeepInfra",
+   "in": 0.23,
+   "out": 2.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-235b-a22b-thinking-2507",
+   "provider": "Novita",
+   "in": 0.3,
+   "out": 3.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b",
+   "provider": "DeepInfra",
+   "in": 0.12,
+   "out": 0.5,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b",
+   "provider": "Alibaba",
+   "in": 0.13,
+   "out": 0.52,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b",
+   "provider": "NextBit",
+   "in": 0.14,
+   "out": 0.55,
+   "quant": "fp8",
+   "status": -5
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b-instruct-2507",
+   "provider": "StreamLake",
+   "in": 0.0481,
+   "out": 0.193,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b-instruct-2507",
+   "provider": "SiliconFlow",
+   "in": 0.09,
+   "out": 0.3,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b-instruct-2507",
+   "provider": "Nebius",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b-instruct-2507",
+   "provider": "WandB",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b-instruct-2507",
+   "provider": "Alibaba",
+   "in": 0.13,
+   "out": 0.52,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-30b-a3b-thinking-2507",
+   "provider": "Alibaba",
+   "in": 0.13,
+   "out": 1.56,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-32b",
+   "provider": "DeepInfra",
+   "in": 0.08,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-32b",
+   "provider": "Nebius",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "fp8",
+   "status": -5
+  },
+  {
+   "slug": "qwen/qwen3-32b",
+   "provider": "Alibaba",
+   "in": 0.104,
+   "out": 0.416,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-32b",
+   "provider": "SiliconFlow",
+   "in": 0.14,
+   "out": 0.57,
+   "quant": "fp8",
+   "status": -5
+  },
+  {
+   "slug": "qwen/qwen3-32b",
+   "provider": "Groq",
+   "in": 0.29,
+   "out": 0.59,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-8b",
+   "provider": "Alibaba",
+   "in": 0.117,
+   "out": 0.455,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-next-80b-a3b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.09,
+   "out": 1.1,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-next-80b-a3b-instruct",
+   "provider": "Alibaba",
+   "in": 0.0975,
+   "out": 0.78,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-next-80b-a3b-instruct",
+   "provider": "Parasail",
+   "in": 0.1,
+   "out": 1.1,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-next-80b-a3b-instruct",
+   "provider": "Google",
+   "in": 0.15,
+   "out": 1.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-next-80b-a3b-instruct",
+   "provider": "Novita",
+   "in": 0.15,
+   "out": 1.5,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-next-80b-a3b-thinking",
+   "provider": "Alibaba",
+   "in": 0.0975,
+   "out": 0.78,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-next-80b-a3b-thinking",
+   "provider": "Google",
+   "in": 0.15,
+   "out": 1.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-235b-a22b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.2,
+   "out": 0.88,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-235b-a22b-instruct",
+   "provider": "Venice",
+   "in": 0.21,
+   "out": 1.9,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-235b-a22b-instruct",
+   "provider": "Parasail",
+   "in": 0.21,
+   "out": 1.9,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-235b-a22b-instruct",
+   "provider": "Alibaba",
+   "in": 0.26,
+   "out": 1.04,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-235b-a22b-instruct",
+   "provider": "Novita",
+   "in": 0.3,
+   "out": 1.5,
+   "quant": "bf16",
+   "status": -2
+  },
+  {
+   "slug": "qwen/qwen3-vl-235b-a22b-thinking",
+   "provider": "Alibaba",
+   "in": 0.26,
+   "out": 2.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-235b-a22b-thinking",
+   "provider": "Novita",
+   "in": 0.98,
+   "out": 3.95,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-30b-a3b-instruct",
+   "provider": "Alibaba",
+   "in": 0.13,
+   "out": 0.52,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-30b-a3b-instruct",
+   "provider": "DeepInfra",
+   "in": 0.15,
+   "out": 0.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-30b-a3b-instruct",
+   "provider": "Novita",
+   "in": 0.2,
+   "out": 0.7,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-30b-a3b-instruct",
+   "provider": "Phala",
+   "in": 0.2,
+   "out": 0.7,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-30b-a3b-instruct",
+   "provider": "SiliconFlow",
+   "in": 0.29,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-30b-a3b-thinking",
+   "provider": "Alibaba",
+   "in": 0.13,
+   "out": 1.56,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-30b-a3b-thinking",
+   "provider": "SiliconFlow",
+   "in": 0.29,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-32b-instruct",
+   "provider": "Alibaba",
+   "in": 0.104,
+   "out": 0.416,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-8b-instruct",
+   "provider": "Alibaba",
+   "in": 0.117,
+   "out": 0.455,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-8b-instruct",
+   "provider": "Parasail",
+   "in": 0.25,
+   "out": 0.75,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3-vl-8b-thinking",
+   "provider": "Alibaba",
+   "in": 0.117,
+   "out": 1.365,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-122b-a10b",
+   "provider": "SiliconFlow",
+   "in": 0.26,
+   "out": 2.08,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-122b-a10b",
+   "provider": "Alibaba",
+   "in": 0.26,
+   "out": 2.08,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-122b-a10b",
+   "provider": "AtlasCloud",
+   "in": 0.3,
+   "out": 2.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-122b-a10b",
+   "provider": "Novita",
+   "in": 0.4,
+   "out": 3.2,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-27b",
+   "provider": "Alibaba",
+   "in": 0.195,
+   "out": 1.56,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "qwen/qwen3.5-27b",
+   "provider": "SiliconFlow",
+   "in": 0.25,
+   "out": 2.0,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "qwen/qwen3.5-27b",
+   "provider": "DeepInfra",
+   "in": 0.26,
+   "out": 2.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-27b",
+   "provider": "AtlasCloud",
+   "in": 0.27,
+   "out": 2.16,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-27b",
+   "provider": "Phala",
+   "in": 0.3,
+   "out": 2.4,
+   "quant": "unknown",
+   "status": -5
+  },
+  {
+   "slug": "qwen/qwen3.5-27b",
+   "provider": "Novita",
+   "in": 0.3,
+   "out": 2.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "DeepInfra",
+   "in": 0.14,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "AkashML",
+   "in": 0.14,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "Parasail",
+   "in": 0.15,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "Alibaba",
+   "in": 0.1625,
+   "out": 1.3,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "AtlasCloud",
+   "in": 0.225,
+   "out": 1.8,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "NextBit",
+   "in": 0.23,
+   "out": 1.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "SiliconFlow",
+   "in": 0.24,
+   "out": 1.8,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "WandB",
+   "in": 0.25,
+   "out": 1.25,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-35b-a3b",
+   "provider": "Venice",
+   "in": 0.3125,
+   "out": 1.25,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "DigitalOcean",
+   "in": 0.385,
+   "out": 2.45,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "Alibaba",
+   "in": 0.39,
+   "out": 2.34,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "Chutes",
+   "in": 0.45,
+   "out": 3.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "DeepInfra",
+   "in": 0.45,
+   "out": 3.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "Morph",
+   "in": 0.5,
+   "out": 3.5,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "Parasail",
+   "in": 0.5,
+   "out": 3.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "AtlasCloud",
+   "in": 0.55,
+   "out": 3.5,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "Phala",
+   "in": 0.55,
+   "out": 3.5,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "Novita",
+   "in": 0.6,
+   "out": 3.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "StreamLake",
+   "in": 0.6,
+   "out": 3.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "GMICloud",
+   "in": 0.6,
+   "out": 3.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-397b-a17b",
+   "provider": "Venice",
+   "in": 0.75,
+   "out": 4.5,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-9b",
+   "provider": "SiliconFlow",
+   "in": 0.1,
+   "out": 0.15,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-9b",
+   "provider": "DeepInfra",
+   "in": 0.1,
+   "out": 0.15,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-9b",
+   "provider": "Venice",
+   "in": 0.1,
+   "out": 0.15,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.5-9b",
+   "provider": "Together",
+   "in": 0.17,
+   "out": 0.25,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "Io Net",
+   "in": 0.285,
+   "out": 2.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "Morph",
+   "in": 0.289,
+   "out": 2.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "Chutes",
+   "in": 0.3,
+   "out": 2.0,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "SiliconFlow",
+   "in": 0.3,
+   "out": 3.2,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "Phala",
+   "in": 0.32,
+   "out": 2.7,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "DeepInfra",
+   "in": 0.32,
+   "out": 3.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "Venice",
+   "in": 0.325,
+   "out": 3.25,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "Alibaba",
+   "in": 0.45,
+   "out": 2.7,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-27b",
+   "provider": "WandB",
+   "in": 0.6,
+   "out": 3.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-35b-a3b",
+   "provider": "AkashML",
+   "in": 0.14,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-35b-a3b",
+   "provider": "Parasail",
+   "in": 0.15,
+   "out": 1.0,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-35b-a3b",
+   "provider": "AtlasCloud",
+   "in": 0.1612,
+   "out": 0.9652,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-35b-a3b",
+   "provider": "SiliconFlow",
+   "in": 0.2,
+   "out": 1.6,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "qwen/qwen3.6-35b-a3b",
+   "provider": "WandB",
+   "in": 0.25,
+   "out": 1.25,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "rekaai/reka-edge",
+   "provider": "Reka",
+   "in": 0.1,
+   "out": 0.1,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "rekaai/reka-flash-3",
+   "provider": "Reka",
+   "in": 0.1,
+   "out": 0.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "sao10k/l3-lunaris-8b",
+   "provider": "DeepInfra",
+   "in": 0.04,
+   "out": 0.05,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "sao10k/l3-lunaris-8b",
+   "provider": "Novita",
+   "in": 0.05,
+   "out": 0.05,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "sao10k/l3.1-70b-hanami-x1",
+   "provider": "Infermatic",
+   "in": 3.0,
+   "out": 3.0,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "sao10k/l3.1-euryale-70b",
+   "provider": "DeepInfra",
+   "in": 0.85,
+   "out": 0.85,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "sao10k/l3.1-euryale-70b",
+   "provider": "Novita",
+   "in": 1.4504,
+   "out": 1.4504,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "sao10k/l3.3-euryale-70b",
+   "provider": "NextBit",
+   "in": 0.65,
+   "out": 0.75,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "stepfun/step-3.5-flash",
+   "provider": "SiliconFlow",
+   "in": 0.1,
+   "out": 0.3,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "stepfun/step-3.7-flash",
+   "provider": "StepFun",
+   "in": 0.2,
+   "out": 1.15,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "stepfun/step-3.7-flash",
+   "provider": "DeepInfra",
+   "in": 0.2,
+   "out": 1.15,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "stepfun/step-3.7-flash",
+   "provider": "Novita",
+   "in": 0.2,
+   "out": 1.15,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "tencent/hunyuan-a13b-instruct",
+   "provider": "SiliconFlow",
+   "in": 0.14,
+   "out": 0.57,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "tencent/hy3-preview",
+   "provider": "GMICloud",
+   "in": 0.063,
+   "out": 0.21,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "tencent/hy3-preview",
+   "provider": "SiliconFlow",
+   "in": 0.066,
+   "out": 0.26,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "thedrummer/cydonia-24b-v4.1",
+   "provider": "Parasail",
+   "in": 0.3,
+   "out": 0.5,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "thedrummer/rocinante-12b",
+   "provider": "Infermatic",
+   "in": 0.25,
+   "out": 0.5,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "thedrummer/skyfall-36b-v2",
+   "provider": "Parasail",
+   "in": 0.55,
+   "out": 0.8,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "thedrummer/unslopnemo-12b",
+   "provider": "NextBit",
+   "in": 0.4,
+   "out": 0.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "undi95/remm-slerp-l2-13b",
+   "provider": "NextBit",
+   "in": 0.45,
+   "out": 0.65,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "undi95/remm-slerp-l2-13b",
+   "provider": "Mancer 2",
+   "in": 0.5,
+   "out": 0.75,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5",
+   "provider": "DigitalOcean",
+   "in": 0.105,
+   "out": 0.28,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5",
+   "provider": "Xiaomi",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5",
+   "provider": "Parasail",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5",
+   "provider": "Venice",
+   "in": 0.14,
+   "out": 0.28,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5",
+   "provider": "DeepInfra",
+   "in": 0.4,
+   "out": 2.0,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5-pro",
+   "provider": "Xiaomi",
+   "in": 0.435,
+   "out": 0.87,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5-pro",
+   "provider": "AtlasCloud",
+   "in": 0.435,
+   "out": 0.87,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5-pro",
+   "provider": "Novita",
+   "in": 0.522,
+   "out": 1.044,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5-pro",
+   "provider": "DigitalOcean",
+   "in": 0.6,
+   "out": 3.0,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "xiaomi/mimo-v2.5-pro",
+   "provider": "DeepInfra",
+   "in": 1.0,
+   "out": 3.0,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "z-ai/glm-4.5",
+   "provider": "Z.AI",
+   "in": 0.6,
+   "out": 2.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.5-air",
+   "provider": "Novita",
+   "in": 0.13,
+   "out": 0.85,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.5-air",
+   "provider": "SiliconFlow",
+   "in": 0.14,
+   "out": 0.86,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.5-air",
+   "provider": "Z.AI",
+   "in": 0.2,
+   "out": 1.1,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.5v",
+   "provider": "Novita",
+   "in": 0.6,
+   "out": 1.8,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.5v",
+   "provider": "Z.AI",
+   "in": 0.6,
+   "out": 1.8,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.6",
+   "provider": "DeepInfra",
+   "in": 0.43,
+   "out": 1.74,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.6",
+   "provider": "Venice",
+   "in": 0.43,
+   "out": 1.75,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.6",
+   "provider": "Novita",
+   "in": 0.55,
+   "out": 2.2,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.6",
+   "provider": "Z.AI",
+   "in": 0.6,
+   "out": 2.2,
+   "quant": "fp4",
+   "status": -5
+  },
+  {
+   "slug": "z-ai/glm-4.6",
+   "provider": "AtlasCloud",
+   "in": 0.6,
+   "out": 2.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.6v",
+   "provider": "Novita",
+   "in": 0.3,
+   "out": 0.9,
+   "quant": "bf16",
+   "status": -2
+  },
+  {
+   "slug": "z-ai/glm-4.6v",
+   "provider": "Z.AI",
+   "in": 0.3,
+   "out": 0.9,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "DeepInfra",
+   "in": 0.4,
+   "out": 1.75,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "StreamLake",
+   "in": 0.48,
+   "out": 1.76,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "AtlasCloud",
+   "in": 0.52,
+   "out": 1.85,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "Novita",
+   "in": 0.54,
+   "out": 1.98,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "Venice",
+   "in": 0.55,
+   "out": 2.65,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "Z.AI",
+   "in": 0.6,
+   "out": 2.2,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "Google",
+   "in": 0.6,
+   "out": 2.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "Phala",
+   "in": 0.85,
+   "out": 3.3,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7",
+   "provider": "Cerebras",
+   "in": 2.25,
+   "out": 2.75,
+   "quant": "fp16",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7-flash",
+   "provider": "DeepInfra",
+   "in": 0.06,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-4.7-flash",
+   "provider": "Cloudflare",
+   "in": 0.0605,
+   "out": 0.4,
+   "quant": "unknown",
+   "status": -5
+  },
+  {
+   "slug": "z-ai/glm-4.7-flash",
+   "provider": "Novita",
+   "in": 0.07,
+   "out": 0.4,
+   "quant": "bf16",
+   "status": -5
+  },
+  {
+   "slug": "z-ai/glm-4.7-flash",
+   "provider": "Venice",
+   "in": 0.125,
+   "out": 0.5,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "GMICloud",
+   "in": 0.6,
+   "out": 1.92,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "DeepInfra",
+   "in": 0.6,
+   "out": 2.08,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "StreamLake",
+   "in": 0.65,
+   "out": 2.08,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "Baidu",
+   "in": 0.7,
+   "out": 2.24,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "DigitalOcean",
+   "in": 0.75,
+   "out": 2.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "SiliconFlow",
+   "in": 0.95,
+   "out": 2.55,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "Chutes",
+   "in": 0.95,
+   "out": 2.55,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "AtlasCloud",
+   "in": 0.95,
+   "out": 3.15,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "Amazon Bedrock",
+   "in": 1.0,
+   "out": 3.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "Novita",
+   "in": 1.0,
+   "out": 3.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "Z.AI",
+   "in": 1.0,
+   "out": 3.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "Parasail",
+   "in": 1.0,
+   "out": 3.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "Venice",
+   "in": 1.0,
+   "out": 3.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5",
+   "provider": "Phala",
+   "in": 1.2,
+   "out": 3.5,
+   "quant": "unknown",
+   "status": -5
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "StreamLake",
+   "in": 0.966,
+   "out": 3.036,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "DigitalOcean",
+   "in": 0.975,
+   "out": 4.3,
+   "quant": "unknown",
+   "status": -5
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "GMICloud",
+   "in": 0.98,
+   "out": 3.08,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Chutes",
+   "in": 0.98,
+   "out": 3.08,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Baidu",
+   "in": 0.98,
+   "out": 3.08,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Wafer",
+   "in": 1.0,
+   "out": 3.2,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "DeepInfra",
+   "in": 1.05,
+   "out": 3.5,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "SiliconFlow",
+   "in": 1.19,
+   "out": 3.74,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Phala",
+   "in": 1.21,
+   "out": 4.2,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "AtlasCloud",
+   "in": 1.26,
+   "out": 3.96,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "BaseTen",
+   "in": 1.3,
+   "out": 4.3,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Novita",
+   "in": 1.38,
+   "out": 4.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Parasail",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Fireworks",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Friendli",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Together",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Z.AI",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.1",
+   "provider": "Venice",
+   "in": 1.54,
+   "out": 4.84,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Novita",
+   "in": 0.686,
+   "out": 2.156,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "StreamLake",
+   "in": 0.7,
+   "out": 2.2,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "DeepInfra",
+   "in": 0.93,
+   "out": 3.0,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "DekaLLM",
+   "in": 0.94,
+   "out": 3.0,
+   "quant": "unknown",
+   "status": -5
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Ambient",
+   "in": 0.96,
+   "out": 3.06,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "GMICloud",
+   "in": 0.98,
+   "out": 3.08,
+   "quant": "fp8",
+   "status": -2
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "DigitalOcean",
+   "in": 1.05,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": -5
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Morph",
+   "in": 1.1,
+   "out": 4.1,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Baidu",
+   "in": 1.12,
+   "out": 3.96,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Inceptron",
+   "in": 1.15,
+   "out": 3.62,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Io Net",
+   "in": 1.2,
+   "out": 3.75,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Wafer",
+   "in": 1.2,
+   "out": 4.1,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Decart",
+   "in": 1.2,
+   "out": 4.2,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "AkashML",
+   "in": 1.3,
+   "out": 4.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "SiliconFlow",
+   "in": 1.302,
+   "out": 4.092,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Alibaba",
+   "in": 1.3188,
+   "out": 4.1448,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "AtlasCloud",
+   "in": 1.33,
+   "out": 4.18,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "WandB",
+   "in": 1.39,
+   "out": 4.4,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Z.AI",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Fireworks",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Cloudflare",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Friendli",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Parasail",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "fp4",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Venice",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "fp8",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Together",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Phala",
+   "in": 1.4,
+   "out": 4.4,
+   "quant": "unknown",
+   "status": -2
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Fireworks",
+   "in": 2.1,
+   "out": 6.6,
+   "quant": "unknown",
+   "status": 0
+  },
+  {
+   "slug": "z-ai/glm-5.2",
+   "provider": "Wafer",
+   "in": 3.0,
+   "out": 10.25,
+   "quant": "fp4",
+   "status": 0
+  }
+ ]
+}

@@ -30,9 +30,18 @@ claimed to cost what their \emph{active} compute costs. We test this claim
 against the LLM serving market itself. Because providers disclose almost
 nothing about their production systems, we treat posted prices as an
 observable proxy for the latent serving configuration. A hedonic regression
-over 119 provider--model price observations rejects the claim: the market
-bills MoE models most of the way toward their total memory footprint
-(sparsity elasticity 0.541, $t = 8.7$). Market structure explains why. Capturing MoE's compute savings requires expert-parallel serving pools far larger than one node. Price floors therefore belong exclusively to vertically integrated providers rather than general-purpose clouds, hyperscalers list identical models at 2--5$\times$ the floor, and provider participation collapses with model footprint.
+over 289 provider--model price observations (38 models, 2026-07-06) rejects
+the claim: the market bills MoE models most of the way toward their total
+memory footprint (sparsity elasticity 0.481, $t = 4.9$,
+$p = 1.9 \times 10^{-5}$). Market structure supports the scale reading in
+part. The price floor of every 200B+ panel belongs to a vertically
+integrated provider, never to a general-purpose cloud, and hyperscalers
+price 1.2--8.8$\times$ above the floor. Participation, however, has
+broadened as published expert-parallel serving recipes diffused, and MoE
+price dispersion remains compressed. DeepSeek, whose vendor anchors its own
+serving prices, is excluded from the primary panel and analyzed separately:
+its sparse-attention generation is served at roughly one fifth of the
+market schedule.
 
 \section{Motivation: an efficiency claim the market can test}
 
@@ -77,36 +86,39 @@ dispersion through selection~\cite{heckman}.
 
 \section{Data and method}
 
-We collected per-provider prices for 27 candidate open-weight models from
-OpenRouter's public endpoints API on 2026-07-01, cross-checked against
-provider price pages. After exclusions, the panel comprises 119 observations
-across 18 models (12 MoE, 6 dense) from 35 providers, joined to
-architecture parameters verified against each model's HuggingFace
-configuration file. All statistics are computed deterministically; the data
+We collected the complete endpoint listings for 129 candidate open-weight
+models from OpenRouter's public endpoints API on 2026-07-06, cross-checked
+against provider price pages. After mechanical exclusions and a
+three-provider threshold, 46 models qualify. The seven DeepSeek panels are
+excluded on identifying-assumption grounds, because the vendor anchors its
+own prices. The primary panel comprises 289 observations across 38 models
+(28 MoE, 10 dense) from 42 providers, joined to architecture parameters
+verified against each model's HuggingFace repository. All statistics are computed deterministically; the data
 and code are public.\footnote{\url{https://github.com/juntao/memory_is_the_price}}
 
 \section{Results}
 
 \textbf{H1 is rejected.} The sparsity ratio, which compute pricing predicts
-to be free, is priced at 83\% of the rate of active compute
-(Table~\ref{tab:ols}). A 671B-total/37B-active model is billed like a
-$\sim$410B dense model, and every MoE model sits 2.2--8.5$\times$ above the
-dense-only price schedule (Figure~\ref{fig:level}). Customers keep almost
-none of the advertised discount.
+to be free, is priced at 84\% of the rate of active compute
+(Table~\ref{tab:ols}). A 1{,}000B-total/32B-active model is billed like a
+$\sim$580B dense model, and the median MoE model sits 5$\times$ above the
+dense-only price schedule (Figure~\ref{fig:level}). Customers keep little
+of the advertised discount.
 
 \begin{table}[h]
 \centering
 \begin{singlespace}
 \caption{The table reports OLS estimates of regression~\eqref{eq:hedonic}
-($n = 18$ models, $R^2 = 0.875$). H1 predicts $c_2 = 0$; the measured ratio
-is $c_2/c_1 = 0.83$.}
+($n = 38$ models, $R^2 = 0.490$, $F(2,35) = 16.8$,
+$p = 7.7 \times 10^{-6}$). H1 predicts $c_2 = 0$; the measured ratio is
+$c_2/c_1 = 0.84$.}
 \label{tab:ols}
-\begin{tabular}{lrrr}
+\begin{tabular}{lrrrr}
 \toprule
-Coefficient & Estimate & Std.\ err. & $t$ \\
+Coefficient & Estimate & Std.\ err. & $t$ & $p$ \\
 \midrule
-$c_1$: log(active parameters) & $+0.650$ & 0.093 & 7.0 \\
-$c_2$: log(total/active)      & $+0.541$ & 0.062 & 8.7 \\
+$c_1$: log(active parameters) & $+0.572$ & 0.138 & 4.1 & $2.1 \times 10^{-4}$ \\
+$c_2$: log(total/active)      & $+0.481$ & 0.097 & 4.9 & $1.9 \times 10^{-5}$ \\
 \bottomrule
 \end{tabular}
 \end{singlespace}
@@ -124,14 +136,24 @@ market would apply.}
 \end{singlespace}
 \end{figure}
 
-\textbf{H2 is supported.} Published deployments show a $\sim$36$\times$
-per-GPU decode throughput gap between a 96-GPU expert-parallel pool and a
-single 8-GPU node, so no provider can sell at the market floor from a
-single-node deployment~\cite{lmsys,dzhsurf}. In all seven panels for models of 200B+ total parameters, the floor is set by a vertically integrated provider: six of seven by the neocloud DeepInfra alone, the seventh by the model's owner. Hyperscalers list identical models at 2--5$\times$ the floor. Participation collapses with footprint, from 17 providers for a 117B-parameter model to three for a one-trillion-parameter model. A corollary result is
-that MoE price dispersion is \emph{compressed} rather than widened (median
-coefficient of variation 0.34 versus 0.54 for dense): providers whose latent
-cost exceeds the competitive price do not list at all, so the observed prices
-are a selected sample~\cite{heckman}.
+\textbf{H2 is partially supported.} Published deployments show a
+$\sim$36$\times$ per-GPU decode throughput gap between a 96-GPU
+expert-parallel pool and a single 8-GPU node, so no provider can sell at the
+pool's marginal cost from a single-node
+deployment~\cite{lmsys,dzhsurf}. In all seventeen panels for models of 200B+
+total parameters, the floor is set by a vertically integrated provider, a
+neocloud in eleven and the model's owner in six; no general-purpose cloud
+sets a floor, and hyperscaler listings sit 1.2--8.8$\times$ above it.
+Participation, however, no longer declines with footprint: trillion-scale
+panels attract 11--22 providers, consistent with the diffusion of published
+expert-parallel recipes. MoE price dispersion remains \emph{compressed}
+rather than widened (median coefficient of variation 0.23 versus 0.35 for
+dense): providers whose latent cost exceeds the competitive price tend not
+to list, so the observed prices are a selected sample~\cite{heckman}. The
+excluded DeepSeek panels sharpen the mechanism: the vendor's
+sparse-attention generation is served at roughly one fifth of the schedule
+by a dozen third parties, and DeepSeek itself floors its flagship
+3.6$\times$ below the third-party median.
 
 \section{Contribution and implications}
 
