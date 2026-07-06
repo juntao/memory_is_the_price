@@ -76,7 +76,7 @@ pdflatex memory_is_the_price.tex && pdflatex memory_is_the_price.tex
   safetensors counts for quantization-packed checkpoints (e.g., DeepSeek V4
   Flash is 284B by its card). MiniMax M3 publishes no expert count and is
   excluded from E/k analyses.
-- The seven DeepSeek panels are excluded from the primary regression on
+- The eight DeepSeek panels are excluded from the primary regression on
   identifying-assumption grounds (the vendor anchors its own serving prices
   and publishes its serving stack); they are analyzed separately in Section
   5 against the schedule estimated without them.

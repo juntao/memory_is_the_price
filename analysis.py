@@ -141,6 +141,33 @@ def regress(panels, exclude_deepseek):
                 pts=pts, t=[c[i] / se[i] for i in range(3)],
                 p=[t_pvalue(abs(c[i] / se[i]), n - 3) for i in range(3)])
 
+# ---------- section 3.1 funnel ----------
+print("=" * 72); print("Section 3.1 -- panel construction funnel"); print("=" * 72)
+_slugs = {r["slug"] for r in RAW}
+print(f"candidate models fetched:                 {len(_slugs)}")
+print(f"raw endpoint rows:                        {len(RAW)}")
+_ok = [r for r in RAW if r["out"] > 0 and r["status"] >= 0]
+print(f"after zero-price/deranked exclusion:      {len(_ok)} rows")
+_best = {}
+for r in _ok:
+    k = (r["slug"], r["provider"])
+    if k not in _best or r["out"] < _best[k]["out"]: _best[k] = r
+print(f"after one-quote-per-provider dedup:       {len(_best)} rows")
+from collections import Counter
+_pan = Counter(r["slug"] for r in _best.values())
+_q = [s for s, n in _pan.items() if n >= 3]
+print(f"panels with >= 3 providers:               {len(_q)}")
+_cat = sorted(s for s in _q if s not in SLUG2M or s == "deepseek/deepseek-chat")
+print(f"category-excluded panels (VL/merge/alias): {len(_cat)} -> {_cat}")
+_q2 = [s for s in _q if s in SLUG2M and s != "deepseek/deepseek-chat"]
+_ds = [s for s in _q2 if s.startswith("deepseek/")]
+_moe_u = sum(1 for s in _q2 if ARCH[SLUG2M[s]]["is_moe"])
+print(f"qualifying panels:                        {len(_q2)} "
+      f"({_moe_u} MoE + {len(_q2)-_moe_u} dense)")
+print(f"DeepSeek panels excluded from primary:    {len(_ds)}")
+print(f"primary panel:                            {len(_q2)-len(_ds)} models")
+print()
+
 panels = build_rows()
 PRIMARY = regress(panels, exclude_deepseek=True)
 FULL = regress(panels, exclude_deepseek=False)
