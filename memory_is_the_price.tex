@@ -300,10 +300,10 @@ To test H1 we compute each model's median output price across providers
 (robust to loss-leaders and premium listings) and fit the hedonic
 regression~\eqref{eq:hedonic} by ordinary least squares ($n = 38$). The
 identifying assumption is that competing third parties' posted prices reveal
-the cost structure of serving. This assumption fails for DeepSeek: the
+the cost structure of serving. This assumption fails for DeepSeek. The
 vendor lists its own models at strategically chosen prices, publicly commits
 to commoditizing the serving of its own models, and publishes its serving
-recipes~\cite{r10,r8}, so third-party quotes for DeepSeek models are
+recipes~\cite{r10,r8}. Third-party quotes for DeepSeek models are therefore
 anchored rather than competitive. We therefore estimate the schedule without
 the DeepSeek panels. Three robustness variants are reported: the full
 46-model universe, the panel with every vendor's own endpoints removed
@@ -384,7 +384,7 @@ Table~\ref{tab:panel} reports the underlying panel. Per active parameter,
 the MoE models cost up to 40$\times$ more than the dense reference (Qwen3.5
 35B-A3B at \$0.42 per active-parameter-billion against $\sim$\$0.010 for the
 Llama dense models). The premium over the dense line tracks the sparsity
-ratio: the extremely sparse small MoE models (Qwen3.5 and Qwen3.6 35B-A3B,
+ratio. The extremely sparse small MoE models (Qwen3.5 and Qwen3.6 35B-A3B,
 Qwen3 Next 80B-A3B) sit 17--22$\times$ above the line, the frontier
 flagships (Kimi K2.6, GLM 5.1/5.2) sit 4--7$\times$ above, and the mildly
 sparse Llama 4 Scout sits 1.5$\times$ above.
@@ -487,16 +487,15 @@ DeepSeek production, EP144 decode (18-node H800) & $\sim$1{,}850 & $<$0.50 impli
 
 \emph{(a) The price floor is set by vertically integrated providers.} In
 every one of the seventeen panels for models of $\geq$200B total parameters,
-the lowest price is posted by a vertically integrated provider: a neocloud
-in eleven panels (DeepInfra in six, with Novita, StreamLake, Mara, ModelRun,
-and DigitalOcean setting the others) and the model's own vendor in six
-(Xiaomi, MiniMax, and Alibaba each twice). No general-purpose cloud sets a
+the lowest price is posted by a vertically integrated provider. The floor
+setter is a neocloud in eleven panels (DeepInfra in six, with Novita,
+StreamLake, Mara, ModelRun, and DigitalOcean setting the others) and the
+model's own vendor in six (Xiaomi, MiniMax, and Alibaba each twice). No general-purpose cloud sets a
 floor in any panel (Table~\ref{tab:floors}). DeepInfra, the most frequent
-floor setter, is the archetype of the class: it raised \$107M in Series~B
-funding, owns and operates its GPU infrastructure across eight U.S.\ data
-centers, and publishes owned-hardware economics of $\sim$\$1.98 per
-GPU-hour against \$6.50 for equivalent rented public-cloud
-capacity~\cite{r12}. Figure~\ref{fig:floors} plots
+floor setter, is the archetype of the class. It raised \$107M in Series~B
+funding and owns and operates its GPU infrastructure across eight U.S.\ data
+centers. It publishes owned-hardware economics of $\sim$\$1.98 per GPU-hour
+against \$6.50 for equivalent rented public-cloud capacity~\cite{r12}. Figure~\ref{fig:floors} plots
 every provider quote in these panels and marks each panel's floor.
 
 \begin{table}[t]
@@ -761,13 +760,6 @@ model.'')
 2024-03-27.
 \url{https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm}
 (DBRX inference throughput is ``up to 2x faster'' than Llama2-70B ``thanks to having about half as many active parameters'').
-\bibitem{r12} DeepInfra. Series B announcement and DeepCluster owned-hardware
-pricing. \url{https://deepinfra.com/blog/deepinfra-series-b};
-\url{https://deepinfra.com/deepcluster}
-\bibitem{r13} Microsoft Azure AI Foundry, DeepSeek model pricing.
-\url{https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/deepseek/};
-Amazon Web Services, DeepSeek-R1 on Bedrock.
-\url{https://aws.amazon.com/blogs/aws/deepseek-r1-now-available-as-a-fully-managed-serverless-model-in-amazon-bedrock/}
 \bibitem{r25} Google. Llama 4 models generally available as managed API
 service on Vertex AI. Google Developers Blog, 2025-04-29.
 \url{https://developers.googleblog.com/en/llama-4-ga-maas-vertex-ai/} (``The
@@ -847,6 +839,13 @@ NVL72 rack-scale systems.
 \bibitem{r18} DeepInfra. Qwen3-235B-A22B-Instruct-2507 price page
 (loss-leader verification).
 \url{https://deepinfra.com/Qwen/Qwen3-235B-A22B-Instruct-2507}
+\bibitem{r12} DeepInfra. Series B announcement and DeepCluster owned-hardware
+pricing. \url{https://deepinfra.com/blog/deepinfra-series-b};
+\url{https://deepinfra.com/deepcluster}
+\bibitem{r13} Microsoft Azure AI Foundry, DeepSeek model pricing.
+\url{https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/deepseek/};
+Amazon Web Services, DeepSeek-R1 on Bedrock.
+\url{https://aws.amazon.com/blogs/aws/deepseek-r1-now-available-as-a-fully-managed-serverless-model-in-amazon-bedrock/}
 \bibitem{r28} Stigler, G.~J. The economics of information. \emph{Journal of
 Political Economy} 69(3), 213--225, 1961.
 \bibitem{r29} Heckman, J.~J. Sample selection bias as a specification error.

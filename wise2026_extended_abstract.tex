@@ -77,11 +77,15 @@ memory rather than compute is the binding cost, $c_2 \approx c_1$.
 \textbf{H2 (scale economies)} holds that the minimum efficient scale of large
 MoE serving exceeds a single node, because the compute savings are only
 captured when traffic from thousands of users is aggregated across
-expert-parallel decoding pools~\cite{deepseek,lmsys}. H2 predicts that price
-floors are set by massively parallel ``neocloud'' providers, that
-general-purpose clouds price above them, and that providers who cannot
-justify such pools exit rather than list, which compresses observed price
-dispersion through selection~\cite{heckman}.
+expert-parallel decoding pools~\cite{deepseek,lmsys}. H2 predicts that the
+price floor of each large-MoE model is set by a massively parallel,
+vertically integrated provider, a specialized ``neocloud'' or the model's
+own vendor, and that general-purpose clouds price above the floor. A
+corollary concerns dispersion: providers whose latent cost exceeds the
+competitive price tend not to list, so the observed spread for large MoE
+should be compressed through selection~\cite{heckman}. We do not use raw
+participation counts as a test, because they are confounded by demand for
+newer models.
 
 \section{Data and method}
 
@@ -142,12 +146,11 @@ pool's marginal cost from a single-node
 deployment~\cite{lmsys,dzhsurf}. In all seventeen panels for models of 200B+
 total parameters, the floor is set by a vertically integrated provider, a
 neocloud in eleven and the model's owner in six; no general-purpose cloud
-sets a floor, and hyperscaler listings sit 1.2--8.8$\times$ above it.
-Participation counts are not used as a test, because they are confounded by
-demand for newer models. MoE price dispersion remains \emph{compressed}
-rather than widened (median coefficient of variation 0.23 versus 0.35 for
-dense): providers whose latent cost exceeds the competitive price tend not
-to list, so the observed prices are a selected sample~\cite{heckman}. The
+sets a floor, and hyperscaler listings sit 1.2--8.8$\times$ above it. MoE
+price dispersion remains \emph{compressed} rather than widened (median
+coefficient of variation 0.23 versus 0.35 for dense): providers whose latent
+cost exceeds the competitive price tend not to list, so the observed prices
+are a selected sample~\cite{heckman}. The
 excluded DeepSeek panels sharpen the mechanism: the vendor's
 sparse-attention generation is served at roughly one fifth of the schedule
 by a dozen third parties, and DeepSeek itself floors its flagship
