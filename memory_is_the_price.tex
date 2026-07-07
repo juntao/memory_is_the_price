@@ -128,13 +128,13 @@ characteristics that drive resource consumption (active parameters; total
 memory footprint) and read the estimated coefficients as implicit prices, the
 market's marginal valuation of each underlying resource. The industry's claim
 that sparsity's compute savings pass through into proportionally cheaper
-serving then becomes a testable restriction on hedonic coefficients (H1). The question of what serving scale is required to capture those savings becomes a prediction about which provider class posts each panel's price floor, who participates in each market, and how endogenous participation truncates the observed price distribution (H2).
+serving then becomes a testable restriction on hedonic coefficients (H1). The question of what serving scale is required to capture those savings becomes a prediction about which provider class posts each panel's price floor, and about how selective non-listing by high-cost providers compresses the observed price dispersion (H2).
 
 We are explicit about the limits of this inversion. Price is a low-dimensional
 proxy: it cannot reconstruct any single endpoint's configuration, and an
 individual quote confounds cost with strategy (loss leaders, price
 discrimination, enterprise positioning). Our inferences accordingly rest on
-moments of the price distribution that are difficult to generate
+aggregate features of the price distribution that are difficult to generate
 strategically: elasticities estimated across 38 models, price floors
 replicated across seventeen independent panels, and dispersion patterns
 across 42 providers.
@@ -146,7 +146,7 @@ models against a dense price trendline in early 2025 and observed informally
 that MoE prices sit ``somewhere between their active and total parameter
 count, perhaps closer to the total parameter count''~\cite{r21}. We formalize
 that observation into an identified quantity. To our knowledge, this paper
-makes three contributions. It provides the first hedonic estimate of the sparsity elasticity of price (\S\ref{sec:h1result}). It presents the first evidence that the price floors for large MoE models are set exclusively by massively parallel providers (\S\ref{sec:h2result}). And it provides the first documentation that provider participation, and through selection the measured price dispersion, is gated by model memory footprint (\S\ref{sec:h2result}--\ref{sec:dispersion}). The concluding section draws out
+makes three contributions. It provides the first hedonic estimate of the sparsity elasticity of price (\S\ref{sec:h1result}). It presents the first evidence that the price floors for large MoE models belong exclusively to vertically integrated providers, a neocloud or the model's own vendor, and never to a general-purpose cloud (\S\ref{sec:h2result}). And it documents that the within-model price dispersion of large-MoE panels is compressed relative to dense models, the selection signature of high-cost providers declining to list (\S\ref{sec:h2result}--\ref{sec:dispersion}). The concluding section draws out
 the hardware implication.
 
 \section{Background and hypotheses}
