@@ -38,17 +38,18 @@ median output price on active parameters and the sparsity ratio yields a
 sparsity elasticity of 0.481 ($t = 4.9$, $p = 1.9 \times 10^{-5}$), 84\% of
 the active-parameter elasticity; the regression is jointly significant with
 $F(2,35) = 16.8$ ($p = 7.7 \times 10^{-6}$) and $R^2 = 0.49$. MoE models are
-therefore billed most of the way toward their total memory footprint, and
-customers keep little of the advertised compute discount. Market structure
+therefore billed most of the way toward their total memory footprint (the
+size of the whole model in memory, including every expert), and customers
+keep little of the advertised compute discount. Market structure
 supports the scale interpretation. The price floor of every panel of
 200B+ total parameters belongs to a vertically integrated provider, a
 neocloud in eleven of seventeen panels and the model's own vendor in six,
 and hyperscalers price 1.2--8.8$\times$ above the floor and never set it.
 MoE price dispersion remains compressed relative to dense models (median
 coefficient of variation 0.23 versus 0.35), consistent with selective
-listing. DeepSeek is the revealing exception: its sparse-attention
-generation is served at roughly one fifth of the schedule price, and the
-vendor itself sets the floor beneath its flagship, which is the
+listing. DeepSeek is the revealing exception. Its sparse-attention generation is
+served at roughly one fifth of the price its size would otherwise command,
+and the vendor itself sets the floor beneath its flagship. This is the
 vertical-integration mechanism in its purest form.
 \end{abstract}
 
@@ -259,8 +260,8 @@ is on identifying-assumption grounds stated in \S\ref{sec:methods}, not on
 fit. DeepSeek is the one vendor that both anchors the market price of its
 own models and publishes its serving stack to third parties. Its panels
 therefore do not measure the competitive third-party serving process that
-identifies cost structure. Section~\ref{sec:deepseek} analyzes the DeepSeek panels
-against the schedule estimated without them. The primary panel is
+identifies cost structure. Section~\ref{sec:deepseek} compares the DeepSeek panels
+against the prices predicted by the regression fitted to the other models. The primary panel is
 \textbf{38 models (28 MoE spanning expert-to-activation ratios $E/k$ from 4
 to 128, and 10 dense) comprising 289 observations from 42 distinct
 providers}.
@@ -444,15 +445,17 @@ Llama 3.1 8B               & 0.08  & 8.0  & 8.0     & 0.010 & --   & 5  \\
 \end{table}
 
 \paragraph{Interpretation.}
-The footprint elasticity is a statement about what the market charges, and
-its stability across panel constructions makes it hard to attribute to any
-single provider's strategy. Under H1 the sparsity ratio should carry no
+This result is a statement about what the market charges, and its stability
+across different ways of building the panel makes it hard to attribute to
+any single provider's strategy. Under H1 the sparsity ratio should carry no
 price at all; instead it carries 84\% of the price of active compute, with a
 $p$-value below $10^{-4}$ under every specification. The residual variance
-($R^2 = 0.49$) is itself structured: newly released models (GLM 5.1/5.2, the
-Qwen3.5 and Qwen3.6 generations) list 2--6$\times$ above the schedule,
-consistent with launch-premium pricing that has not yet been competed down,
-and the DeepSeek panels sit far below it (\S\ref{sec:deepseek}).
+($R^2 = 0.49$) is itself structured. Newly released models (GLM 5.1/5.2, the
+Qwen3.5 and Qwen3.6 generations) list 2--6$\times$ above the price the fitted
+regression predicts for their size, which we call the \emph{schedule price}.
+That is launch-premium pricing that has not yet been competed down. The
+DeepSeek panels, by contrast, sit far below the schedule price
+(\S\ref{sec:deepseek}).
 
 \subsection{H2 supported: the price floor belongs to the vertically
 integrated}
@@ -578,9 +581,11 @@ coefficient of variation of output price across providers, for MoE panels
 \label{sec:deepseek}
 
 DeepSeek is excluded from the primary panel because its prices are set by a
-different process, and evaluating its panels against the schedule estimated
-without them shows exactly what that process does
-(Table~\ref{tab:deepseek}). Three regularities stand out.
+different process. To see what that process does, we take the regression
+fitted to the other 38 models and read off the price it predicts for each
+DeepSeek model, given that model's active and total size. This predicted
+price is the schedule price. Table~\ref{tab:deepseek} sets it against what
+DeepSeek models actually sell for. Three regularities stand out.
 
 \begin{table}[t]
 \centering
@@ -624,13 +629,15 @@ vertical-integration mechanism of H2 in its purest observed form: the one
 operator with hyperscale expert-parallel pools for a model prices it where
 no third party can follow.
 
-Third, the exception clarifies rather than threatens the footprint result.
-Including the DeepSeek panels barely moves the elasticity ratio (0.85
-against 0.84), because the schedule is identified from the cross-section of
-architectures, not from any one family's level. What DeepSeek breaks is the
-fit, not the slope: its sparse-attention generation shows that the cost
-frontier itself is moving, and that a vendor with the right strategy can
-detach its prices from the market schedule. A popular comparison from the
+Third, the exception clarifies rather than threatens our central finding,
+that the market prices a model by its total size rather than its active
+compute. Including the DeepSeek panels barely moves the elasticity ratio
+(0.85 against 0.84), because the pricing pattern comes from comparing many
+architectures and no single family can drive it. DeepSeek changes how
+tightly models cluster around that pattern, not the pattern itself. Its
+sparse-attention generation shows that the underlying cost of serving is
+falling, and that a vendor with the right strategy can push its prices away
+from what the rest of the market charges. A popular comparison from the
 snapshot week illustrates the point: DeepSeek V4 Flash (284B total) is
 served at a lower per-token price than Qwen3.6 35B-A3B (36B total), a
 model an eighth its size. Under any parameter-based schedule, including
@@ -648,7 +655,7 @@ limitation and the reason we believe the conclusions survive it.
 
 \begin{itemize}
 \item \textbf{Price is not cost.} List prices embed margins, loss-leader
-strategies, and enterprise positioning. The footprint elasticity establishes what the market \emph{charges}; the inference to underlying cost is an interpretation. That interpretation is supported by the deployment-cost evidence of Table~\ref{tab:deploy} (EP-pool cost \$0.20--0.50/M against large-MoE floors of \$0.28--3.20) and by the competitive structure of open-weight serving. LMSYS's \$0.20/M and DeepSeek's 545\% margin figures, however, are self-reported, not audited.
+strategies, and enterprise positioning. The estimated elasticity establishes what the market \emph{charges}; the inference to underlying cost is an interpretation. That interpretation is supported by the deployment-cost evidence of Table~\ref{tab:deploy} (EP-pool cost \$0.20--0.50/M against large-MoE floors of \$0.28--3.20) and by the competitive structure of open-weight serving. LMSYS's \$0.20/M and DeepSeek's 545\% margin figures, however, are self-reported, not audited.
 \item \textbf{Inference from prices is indirect.} Provider opacity is the
 premise of our design (\S1), but it also limits what we can claim. That the
 floor-setting neoclouds run large-scale expert parallelism is inferred from
@@ -768,9 +775,8 @@ the API usage price.''). See also AWS Bedrock model card for DeepSeek-R1
 (commercial terms only):
 \url{https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-deepseek-deepseek-r1.html}
 \bibitem{r1} OpenRouter. Public endpoints API, per-model provider listings.
-\url{https://openrouter.ai/api/v1/models/deepseek/deepseek-r1-0528/endpoints}
-(pattern identical for all 18 models). Accessed 2026-07-01; re-verified at
-writing.
+\url{https://openrouter.ai/api/v1/models/{slug}/endpoints}
+(schema identical across all models). Snapshot collected 2026-07-06.
 \bibitem{r23} Gao, I., Liang, P., \& Guestrin, C. Model equality testing:
 which model is this API serving? ICLR 2025. arXiv:2410.20247.
 \url{https://arxiv.org/abs/2410.20247}
