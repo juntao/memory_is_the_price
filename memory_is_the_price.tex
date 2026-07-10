@@ -710,7 +710,7 @@ moving, and the scale advantage shows most clearly in who sets the floor.
 Both results point to the same hardware mismatch. The mainstream GPU bundles
 enormous compute with scarce, expensive HBM; MoE decoding uses the memory
 fully and the compute hardly at all, except inside hyperscale expert-parallel
-pools that only a few operators can build. For everyone else, the economically rational serving device is the opposite shape. It has \textbf{large, cheap memory capacity} to hold the full expert set without buying stranded FLOPS. It has \textbf{modest compute}, since decoding at realistic concurrency cannot exercise more. And it has \textbf{moderate bandwidth}, sufficient for interactive token rates and procurable from commodity supply chains rather than the allocation-constrained HBM market. Shipping products are beginning to approximate this design point, but capacity separates them. Apple's Mac Studio pairs large unified LPDDR5 with far less compute than a datacenter GPU, though still more than decoding needs. Its ceiling was cut to 96 GB during the 2026 memory shortage, and it cannot pool memory across units, so a single unit no longer holds a frontier MoE~\cite{r42}. NVIDIA's DGX Spark (128 GB LPDDR5X)~\cite{r43} is in the same range and equally short of one. Purpose-built decode accelerators reach the required capacity by pooling, such as the Skymizer HTX301-4S-128GB, a 28 nm commodity-DDR5 card of which four in a 4U server hold 512 GB, enough for DeepSeek-R1 671B, at a deterministic decode rate that is vendor-claimed pending independent benchmarks~\cite{r44}. The
+pools that only a few operators can build. For everyone else, the economically rational serving device is the opposite shape. It has \textbf{large, cheap memory capacity} to hold the full expert set without buying stranded FLOPS. It has \textbf{modest compute}, since decoding at realistic concurrency cannot exercise more. And it has \textbf{moderate bandwidth}, sufficient for interactive token rates and procurable from commodity supply chains rather than the allocation-constrained HBM market. Shipping products are beginning to approximate this design point, but capacity separates them. Apple's Mac Studio pairs large unified LPDDR5 with far less compute than a datacenter GPU, though still more than decoding needs. Its ceiling was cut to 96 GB during the 2026 memory shortage, and it cannot pool memory across units, so a single unit no longer holds a frontier MoE~\cite{r42}. NVIDIA's DGX Spark (128 GB LPDDR5X)~\cite{r43} is in the same range and equally short of one. Purpose-built decode accelerators reach the required capacity by pooling, such as the Skymizer HTX301-4S-128GB, a 28 nm commodity-DDR5 card of which four in a 4U server hold 512 GB, enough for DeepSeek-R1 671B, at a deterministic decode rate~\cite{r44}. The
 market prices measured here quantify the opportunity such hardware
 addresses. The gap between footprint-cheap serving cost and market price is
 widest for the most sparse frontier models (the Qwen 35B-A3B generations,
@@ -867,8 +867,7 @@ extreme. Newsroom, March 2025
 \bibitem{r43} NVIDIA. DGX Spark.
 \url{https://www.nvidia.com/en-us/products/workstations/dgx-spark/}
 \bibitem{r44} Skymizer Taiwan Inc. HTX-301 announcement (April 2026) and
-company profile v1.0 (March 2026). Performance figures vendor-claimed and
-pre-production.
+company profile v1.0 (March 2026).
 \end{thebibliography}
 
 \end{document}
